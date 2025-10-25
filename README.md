@@ -51,12 +51,12 @@ Fitness Apps   Normalization     Detection      Patient Views
 
 ## 🌐 Live Website
 
-Visit our live website: **[https://geneticalgorithms.github.io/Mify/](https://geneticalgorithms.github.io/Mify/)**
+Visit our live website: **[https://medical-insights-for-you.github.io/Mify/](https://medical-insights-for-you.github.io/Mify/)**
 
 ## 🔗 Links
 
-- **Website**: [geneticalgorithms.github.io/Mify](https://geneticalgorithms.github.io/Mify/)
-- **GitHub Repository**: [github.com/GeneticAlgorithms/Mify](https://github.com/GeneticAlgorithms/Mify)
+- **Website**: [medical-insights-for-you.github.io/Mify](https://medical-insights-for-you.github.io/Mify/)
+- **GitHub Repository**: [github.com/Medical-Insights-For-You/Mify](https://github.com/Medical-Insights-For-You/Mify)
 - **Documentation**: [docs.mify.ai](https://docs.mify.ai) (Coming Soon)
 
 ## 📱 Supported Devices
