@@ -13,6 +13,7 @@ Mify is an AI Agent that converts health data from wearables like Apple Watch an
 - **Dual Perspectives**: Specialized views for both healthcare providers and patients
 - **JSON Data Processing**: Converts raw sensor data into structured, analyzable format
 - **Real-time Insights**: Generate actionable recommendations based on medical best practices
+- **Interactive Charts**: Sophisticated data visualizations with trend lines, pie charts, and histograms
 
 ## 🏥 How It Works
 
@@ -48,10 +49,14 @@ Apple Watch    Structured Data   Pattern        Provider &
 Fitness Apps   Normalization     Detection      Patient Views
 ```
 
+## 🌐 Live Website
+
+Visit our live website: **[https://geneticalgorithms.github.io/Mify/](https://geneticalgorithms.github.io/Mify/)**
+
 ## 🔗 Links
 
-- **Website**: [mify.ai](https://mify.ai) (Coming Soon)
-- **GitHub Repository**: [github.com/your-org/mify](https://github.com/your-org/mify)
+- **Website**: [geneticalgorithms.github.io/Mify](https://geneticalgorithms.github.io/Mify/)
+- **GitHub Repository**: [github.com/GeneticAlgorithms/Mify](https://github.com/GeneticAlgorithms/Mify)
 - **Documentation**: [docs.mify.ai](https://docs.mify.ai) (Coming Soon)
 
 ## 📱 Supported Devices
@@ -80,6 +85,9 @@ Fitness Apps   Normalization     Detection      Patient Views
 
 This project is currently in active development. We're working on:
 
+- [x] Website with interactive charts and animations
+- [x] Statistical visualizations (trend lines, pie charts, histograms)
+- [x] Responsive design for all devices
 - [ ] Core AI analysis engine
 - [ ] Wearable device integrations
 - [ ] Provider dashboard
