@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mify - Authentication</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .auth-container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 1.25rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.3);
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-top: 3px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success {
+            color: #00ff88;
+        }
+        .error {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div id="loading">
+            <div class="spinner"></div>
+            <h2>Authenticating...</h2>
+            <p>Please wait while we complete your Google Fit connection.</p>
+        </div>
+        <div id="success" style="display: none;">
+            <h2 class="success">✅ Authentication Successful!</h2>
+            <p>You have successfully connected your Google Fit account.</p>
+            <p>Redirecting you back to the dashboard...</p>
+        </div>
+        <div id="error" style="display: none;">
+            <h2 class="error">❌ Authentication Failed</h2>
+            <p id="error-message">There was an error connecting your Google Fit account.</p>
+            <button onclick="window.close()" style="
+                background: #00d4ff;
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                margin-top: 1rem;
+            ">Close Window</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle OAuth callback
+        async function handleCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            const error = urlParams.get('error');
+
+            if (error) {
+                showError('Authentication was cancelled or failed: ' + error);
+                return;
+            }
+
+            if (!code || !state) {
+                showError('Invalid authentication response');
+                return;
+            }
+
+            try {
+                // In a real implementation, you would send the code to your backend
+                // to exchange it for an access token. For this demo, we'll simulate success.
+                
+                // Store the auth code in localStorage for the main app to use
+                localStorage.setItem('google_auth_code', code);
+                localStorage.setItem('google_auth_state', state);
+                
+                showSuccess();
+                
+                // Redirect back to the main app after a short delay
+                setTimeout(() => {
+                    window.location.href = '../index.html#fitness-dashboard';
+                }, 2000);
+                
+            } catch (err) {
+                showError('Failed to complete authentication: ' + err.message);
+            }
+        }
+
+        function showSuccess() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+        }
+
+        // Start the callback process when the page loads
+        document.addEventListener('DOMContentLoaded', handleCallback);
+    </script>
+</body>
+</html>
