@@ -249,6 +249,76 @@ body {
     border-color: var(--primary-blue);
 }
 
+/* Dropdown Navigation Styles */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.dropdown-toggle ion-icon {
+    font-size: 0.875rem;
+    transition: var(--transition-smooth);
+}
+
+.nav-dropdown:hover .dropdown-toggle ion-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-sm);
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition-smooth);
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: calc(var(--border-radius) - 4px);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.dropdown-menu a:hover {
+    background: var(--bg-overlay);
+    color: var(--primary-blue);
+}
+
+.dropdown-menu a::after {
+    display: none;
+}
+
 /* ============================================
    HERO SECTION
 ============================================= */
@@ -1401,6 +1471,295 @@ body {
 }
 
 /* ============================================
+   INTEGRATED ECOSYSTEM STYLES
+============================================= */
+.bottlenecks-overview {
+    margin-bottom: var(--space-2xl);
+}
+
+.bottlenecks-overview h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.bottlenecks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.bottleneck-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.bottleneck-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary-blue);
+}
+
+.bottleneck-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+    color: white;
+}
+
+.bottleneck-icon ion-icon {
+    font-size: 1.5rem;
+}
+
+.bottleneck-item h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.bottleneck-item p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.integrated-workflow {
+    margin-bottom: var(--space-2xl);
+}
+
+.integrated-workflow h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.workflow-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.workflow-step {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-xl);
+    width: 100%;
+    max-width: 800px;
+    transition: var(--transition-smooth);
+}
+
+.workflow-step:hover {
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary-blue);
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.step-header h4 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.step-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.component-card {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+    transition: var(--transition-smooth);
+}
+
+.component-card:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.component-card h5 {
+    color: var(--text-primary);
+    margin: 0 0 var(--space-sm) 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.component-card p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.bottleneck-solved {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: var(--border-radius);
+    color: var(--medical-green);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.bottleneck-solved ion-icon {
+    font-size: 1.25rem;
+}
+
+.workflow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-size: 2rem;
+    margin: var(--space-sm) 0;
+}
+
+.integration-benefits {
+    margin-top: var(--space-2xl);
+}
+
+.integration-benefits h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.benefit-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-xl);
+    transition: var(--transition-smooth);
+}
+
+.benefit-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary-blue);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-medical);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+    color: white;
+}
+
+.benefit-icon ion-icon {
+    font-size: 1.5rem;
+}
+
+.benefit-item h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.benefit-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefit-item li {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-md);
+    position: relative;
+    line-height: 1.6;
+}
+
+.benefit-item li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--medical-green);
+    font-weight: 600;
+}
+
+/* Responsive Design for Integrated Ecosystem */
+@media (max-width: 768px) {
+    .bottlenecks-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .step-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .workflow-step {
+        padding: var(--space-lg);
+    }
+    
+    .step-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-sm);
+    }
+}
+
+/* ============================================
    WIRING GUIDE STYLES
 ============================================= */
 .wiring-guide-section {
@@ -1485,6 +1844,16 @@ body {
 
     .nav-links {
         display: none;
+    }
+    
+    /* Mobile dropdown adjustments */
+    .dropdown-menu {
+        min-width: 180px;
+    }
+    
+    .dropdown-menu a {
+        font-size: 0.875rem;
+        padding: var(--space-xs) var(--space-sm);
     }
 
     .hero {
