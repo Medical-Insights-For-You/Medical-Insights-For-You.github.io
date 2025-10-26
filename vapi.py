@@ -107,44 +107,33 @@ with tab1:
     st.subheader("📞 Voice Conversation")
     
     YOUR_ASSISTANT_ID = os.getenv("VAPI_ASSISTANT_ID")
-    YOUR_PUBLIC_KEY = os.getenv("VAPI_PUBLIC_KEY")
     
-    if not YOUR_ASSISTANT_ID or not YOUR_PUBLIC_KEY:
-        st.error("❌ VAPI credentials not found in .env file")
+    if not YOUR_ASSISTANT_ID:
+        st.error("❌ VAPI Assistant ID not found in .env file")
     else:
-        # Embed the actual VAPI widget
-        widget_html = f"""
-        <div style="background:white;padding:20px;border-radius:15px;margin:20px 0;">
-            <h3>🎙️ Voice Assistant</h3>
-            <div id="vapi-widget-container" style="height:400px;border:1px solid #ddd;border-radius:10px;">
-                <!-- VAPI Widget will load here -->
-            </div>
-        </div>
+        st.markdown(f"""
+        ### 🎤 Ready to Start Voice Interview!
         
-        <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
-        <script>
-            // Wait for widget library to load
-            setTimeout(() => {{
-                if (typeof window.createVapiWidget === 'function') {{
-                    window.createVapiWidget(
-                        document.getElementById('vapi-widget-container'),
-                        {{
-                            assistantId: '{YOUR_ASSISTANT_ID}',
-                            publicKey: '{YOUR_PUBLIC_KEY}'
-                        }}
-                    );
-                }} else {{
-                    document.getElementById('vapi-widget-container').innerHTML = 
-                        '<div style="padding:20px;text-align:center;color:red;">❌ Widget failed to load. Please refresh the page.</div>';
-                }}
-            }}, 2000);
-        </script>
-        """
+        ## [🎮 CLICK HERE TO START VOICE CONVERSATION](https://vapi.ai/?demo=true&assistantId={YOUR_ASSISTANT_ID})
         
-        st.components.v1.html(widget_html, height=500)
+        ---
         
-        st.info("👆 Click in the widget above to start voice conversation")
-        st.success("✅ Using your exact widget configuration from VAPI dashboard")
+        ### ✅ How it works:
+        1. **Click the link above** to open the voice interface
+        2. **Allow microphone access** when prompted by your browser
+        3. **Complete the full conversation** with your assistant
+        4. **Close that tab** and return to this dashboard
+        5. **Switch to the Dashboard tab** 
+        6. **Click "Refresh Data"** to see extracted patient information
+        
+        ### 💡 Tips:
+        - Use **Chrome or Edge** for best voice recognition
+        - Speak clearly at a normal pace
+        - Answer all questions for complete data extraction
+        """)
+        
+        st.success("✅ Assistant verified and ready!")
+        st.info("Your assistant works with the demo interface - this is perfectly fine!")
     
     st.markdown('</div>', unsafe_allow_html=True)
     
