@@ -757,6 +757,89 @@ body {
 }
 
 /* ============================================
+   POSTMAN FLOW SECTION STYLES
+============================================= */
+.postman-flow-section {
+    margin-top: var(--space-3xl);
+    padding: var(--space-2xl);
+    background: var(--gradient-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-lg);
+}
+
+.flow-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.flow-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+}
+
+.flow-diagram {
+    text-align: center;
+    margin: var(--space-2xl) 0;
+    padding: var(--space-lg);
+    background: var(--bg-dark);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-subtle);
+}
+
+.flow-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-smooth);
+}
+
+.flow-image:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-glow);
+}
+
+.flow-explanation {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+}
+
+.flow-step {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.flow-step:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+}
+
+.flow-step h4 {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.flow-step p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ============================================
    FITNESS DASHBOARD STYLES
 ============================================= */
 
@@ -1176,5 +1259,13 @@ body {
     .bar-value {
         font-size: 0.7rem;
         top: -20px;
+    }
+
+    .flow-explanation {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-diagram {
+        padding: var(--space-md);
     }
 }
