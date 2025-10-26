@@ -44,15 +44,15 @@
         
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#fitness-dashboard">Fitness</a></li>
                     <li><a href="#ai-chat">AI Chat</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
-                        <ion-icon name="logo-github"></ion-icon>
-                        GitHub
-                    </a></li>
-                </ul>
+                <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
+                    <ion-icon name="logo-github"></ion-icon>
+                    GitHub
+                </a></li>
+            </ul>
         </div>
     </nav>
 
@@ -78,6 +78,352 @@
                         <ion-icon name="logo-github"></ion-icon>
                         View on GitHub
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ARDUINO HEALTH MONITORING SECTION
+    ============================================= -->
+    <section id="arduino-health" class="section">
+        <div class="container">
+            <h2 class="section-title">Affordable Health Monitoring</h2>
+            <p class="section-description">
+                Build your own health monitoring system with Arduino and ultrasonic sensors. 
+                A cost-effective solution that democratizes health tracking for communities worldwide, 
+                powered by AI analysis and real-time insights.
+            </p>
+
+            <!-- Arduino Setup -->
+            <div class="arduino-setup">
+                <h3>Hardware Setup</h3>
+                <div class="setup-grid">
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="hardware-chip-outline"></ion-icon>
+                        </div>
+                        <h4>Arduino UNO R4 WiFi</h4>
+                        <p>Advanced IoT board with ESP32-S3, 12x8 LED matrix, Qwiic connector, and WiFi/Bluetooth</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="radio-outline"></ion-icon>
+                        </div>
+                        <h4>Ultrasonic Sensor (HC-SR04)</h4>
+                        <p>Measures distance and detects movement for health parameter monitoring</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="bulb-outline"></ion-icon>
+                        </div>
+                        <h4>Hue Light Indicator</h4>
+                        <p>Visual feedback system that activates when placed on conductive surfaces</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <h4>Metal Tin Plate</h4>
+                        <p>Conductive surface that completes the circuit for light activation</p>
+                    </div>
+                </div>
+                
+                <!-- Wiring Guide -->
+                <div class="wiring-guide-section">
+                    <h3>Wiring Guide</h3>
+                    <p class="section-description">
+                        Follow the official Arduino guide to properly connect your Arduino UNO R4 WiFi with the HC-SR04 ultrasonic sensor and other components.
+                    </p>
+                    <div class="wiring-guide-container">
+                        <div class="wiring-guide-content">
+                            <h4>HC-SR04 Ultrasonic Sensor Connections:</h4>
+                            <ul class="wiring-list">
+                                <li><strong>VCC</strong> → Arduino 5V</li>
+                                <li><strong>GND</strong> → Arduino GND</li>
+                                <li><strong>Trig</strong> → Arduino Digital Pin 9</li>
+                                <li><strong>Echo</strong> → Arduino Digital Pin 10</li>
+                            </ul>
+                            <div class="guide-links">
+                                <a href="https://www.arduino.cc/en/Guide/ArduinoUnoR4WiFi" target="_blank" rel="noopener" class="btn btn-primary">
+                                    <ion-icon name="link-outline"></ion-icon>
+                                    Official Arduino UNO R4 WiFi Guide
+                                </a>
+                                <a href="https://create.arduino.cc/projecthub/abdularbi17/ultrasonic-sensor-hc-sr04-with-arduino-tutorial-327ff6" target="_blank" rel="noopener" class="btn btn-secondary">
+                                    <ion-icon name="hardware-chip-outline"></ion-icon>
+                                    HC-SR04 Tutorial
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Dashboard -->
+            <div class="arduino-dashboard">
+                <h3>Real-time Health Monitoring</h3>
+                <div class="dashboard-controls">
+                    <div class="connection-status">
+                        <div id="arduino-status" class="status-indicator">
+                            <ion-icon name="radio-outline"></ion-icon>
+                            <span>Disconnected</span>
+                        </div>
+                        <button id="connect-arduino" class="btn btn-primary">
+                            <ion-icon name="link-outline"></ion-icon>
+                            Connect Arduino
+                        </button>
+                    </div>
+                    <div class="data-interval">
+                        <label for="data-interval">Update Interval:</label>
+                        <select id="data-interval">
+                            <option value="1000">1 second</option>
+                            <option value="5000">5 seconds</option>
+                            <option value="10000">10 seconds</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Live Data Display -->
+                <div class="live-data-grid">
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="pulse-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Heart Rate</h4>
+                            <div id="heart-rate" class="data-value">-- BPM</div>
+                            <div class="data-trend">
+                                <span id="heart-rate-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="walk-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Movement</h4>
+                            <div id="movement-level" class="data-value">--</div>
+                            <div class="data-trend">
+                                <span id="movement-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="thermometer-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Proximity</h4>
+                            <div id="proximity-level" class="data-value">-- cm</div>
+                            <div class="data-trend">
+                                <span id="proximity-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Circuit Status</h4>
+                            <div id="circuit-status" class="data-value">Open</div>
+                            <div class="data-trend">
+                                <span id="circuit-indicator" class="circuit-indicator">●</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Health Insights -->
+                <div class="ai-insights-section">
+                    <h3>AI Health Analysis</h3>
+                    <div id="ai-insights" class="insights-container">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>System Status</h4>
+                                <p>Waiting for Arduino connection to begin health analysis...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Log -->
+                <div class="data-log-section">
+                    <h3>Data Log</h3>
+                    <div id="data-log" class="log-container">
+                        <div class="log-entry">
+                            <span class="log-time">--:--:--</span>
+                            <span class="log-message">System initialized. Ready to receive Arduino data.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Health Analytics -->
+            <div class="demo-analytics">
+                <h3>Demo: Health Analytics Dashboard</h3>
+                <p class="section-description">
+                    See what your Arduino health data looks like when processed by our AI system. 
+                    These are sample visualizations generated from simulated sensor data.
+                </p>
+                
+                <div class="analytics-grid">
+                    <!-- Heart Rate Trend Chart -->
+                    <div class="chart-container">
+                        <h4>Heart Rate Trend (24h)</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="heartRateChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat">
+                                <span class="stat-label">Average:</span>
+                                <span class="stat-value">72 BPM</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Peak:</span>
+                                <span class="stat-value">95 BPM</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Resting:</span>
+                                <span class="stat-value">65 BPM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Movement Activity Chart -->
+                    <div class="chart-container">
+                        <h4>Movement Activity</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="movementChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat">
+                                <span class="stat-label">Active Time:</span>
+                                <span class="stat-value">4.2h</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Peak Activity:</span>
+                                <span class="stat-value">High</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Rest Periods:</span>
+                                <span class="stat-value">8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proximity Detection Chart -->
+                    <div class="chart-container">
+                        <h4>Proximity Detection</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="proximityChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat">
+                                <span class="stat-label">Avg Distance:</span>
+                                <span class="stat-value">15.3 cm</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Close Events:</span>
+                                <span class="stat-value">12</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Posture Score:</span>
+                                <span class="stat-value">Good</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Score Overview -->
+                    <div class="chart-container">
+                        <h4>Overall Health Score</h4>
+                        <div class="health-score-display">
+                            <div class="score-circle">
+                                <div class="score-value">87</div>
+                                <div class="score-label">Health Score</div>
+                            </div>
+                            <div class="score-breakdown">
+                                <div class="score-item">
+                                    <span class="score-category">Heart Rate</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span class="score-percentage">85%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-category">Activity</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 92%"></div>
+                                    </div>
+                                    <span class="score-percentage">92%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-category">Posture</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 78%"></div>
+                                    </div>
+                                    <span class="score-percentage">78%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-category">Consistency</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 90%"></div>
+                                    </div>
+                                    <span class="score-percentage">90%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights from Demo Data -->
+                <div class="demo-insights">
+                    <h4>AI-Generated Insights</h4>
+                    <div class="insights-grid">
+                        <div class="insight-card positive">
+                            <div class="insight-icon">
+                                <ion-icon name="trending-up-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Excellent Activity Pattern</h5>
+                                <p>Your movement data shows consistent activity throughout the day with good rest periods.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card warning">
+                            <div class="insight-icon">
+                                <ion-icon name="warning-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Posture Improvement Needed</h5>
+                                <p>Consider adjusting your workspace setup - proximity sensor detected frequent close-range readings.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card positive">
+                            <div class="insight-icon">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Stable Heart Rate</h5>
+                                <p>Your heart rate shows healthy variability with good recovery patterns after activity.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card info">
+                            <div class="insight-icon">
+                                <ion-icon name="bulb-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Recommendation</h5>
+                                <p>Try taking a 5-minute break every hour to improve posture and reduce eye strain.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,9 +548,9 @@
                             Track progress, set health goals, and receive continuous monitoring 
                             with real-time alerts and updates.
                         </p>
-                    </div>
-                </div>
-            </div>
+                                </div>
+                                </div>
+                                </div>
             
             <!-- Postman Flow Diagram -->
             <div class="postman-flow-section">
@@ -215,12 +561,12 @@
                 </p>
                 <div class="flow-diagram">
                     <img src="assets/images/PostmanFlowMify.svg" alt="Google Fit Data Integration Flow" class="flow-image">
-                </div>
+                                </div>
                 <div class="flow-explanation">
                     <div class="flow-step">
                         <h4>1. Data Retrieval</h4>
                         <p>Secure API calls to Google Fit to fetch your health data including steps, calories, and activity segments.</p>
-                    </div>
+                                </div>
                     <div class="flow-step">
                         <h4>2. Data Processing</h4>
                         <p>Advanced algorithms parse and structure the raw data for analysis and visualization.</p>
@@ -256,24 +602,24 @@
                     <div class="bottleneck-item">
                         <div class="bottleneck-icon">
                             <ion-icon name="pulse-outline"></ion-icon>
-                        </div>
+                                </div>
                         <h4>Data Fragmentation</h4>
                         <p>Health data scattered across devices and platforms</p>
-                    </div>
+                                </div>
                     <div class="bottleneck-item">
                         <div class="bottleneck-icon">
                             <ion-icon name="analytics-outline"></ion-icon>
-                        </div>
+                                </div>
                         <h4>Analysis Complexity</h4>
                         <p>Raw data requires expert interpretation</p>
-                    </div>
+                                </div>
                     <div class="bottleneck-item">
                         <div class="bottleneck-icon">
                             <ion-icon name="cash-outline"></ion-icon>
-                        </div>
+                                </div>
                         <h4>Cost Barriers</h4>
                         <p>Expensive monitoring solutions limit access</p>
-                    </div>
+                            </div>
                     <div class="bottleneck-item">
                         <div class="bottleneck-icon">
                             <ion-icon name="time-outline"></ion-icon>
@@ -281,9 +627,9 @@
                         <h4>Time Constraints</h4>
                         <p>Providers lack time for comprehensive analysis</p>
                     </div>
-                </div>
-            </div>
-
+                        </div>
+                    </div>
+                    
             <!-- Integrated Solution Workflow -->
             <div class="integrated-workflow">
                 <h3>How Our Components Work Together</h3>
@@ -308,16 +654,16 @@
                             <span>Solves: Data Fragmentation & Cost Barriers</span>
                         </div>
                     </div>
-
+                    
                     <div class="workflow-arrow">
                         <ion-icon name="arrow-down-outline"></ion-icon>
-                    </div>
+                            </div>
 
                     <div class="workflow-step">
                         <div class="step-header">
                             <div class="step-number">2</div>
                             <h4>AI Processing</h4>
-                        </div>
+                            </div>
                         <div class="step-content">
                             <div class="component-card">
                                 <h5>Intelligent Health Assistant</h5>
@@ -333,16 +679,16 @@
                             <span>Solves: Analysis Complexity & Time Constraints</span>
                         </div>
                     </div>
-
+                    
                     <div class="workflow-arrow">
                         <ion-icon name="arrow-down-outline"></ion-icon>
-                    </div>
+                            </div>
 
                     <div class="workflow-step">
                         <div class="step-header">
                             <div class="step-number">3</div>
                             <h4>Actionable Output</h4>
-                        </div>
+                            </div>
                         <div class="step-content">
                             <div class="component-card">
                                 <h5>Clinical Trial ICF Generator</h5>
@@ -356,11 +702,11 @@
                         <div class="bottleneck-solved">
                             <ion-icon name="checkmark-circle-outline"></ion-icon>
                             <span>Solves: Time Constraints & Workflow Efficiency</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+                
             <!-- Integration Benefits -->
             <div class="integration-benefits">
                 <h3>Integrated Benefits</h3>
@@ -375,8 +721,8 @@
                             <li>Intelligent insights from AI assistant</li>
                             <li>Personalized recommendations</li>
                             <li>Accessible health analytics</li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
                     <div class="benefit-item">
                         <div class="benefit-icon">
                             <ion-icon name="medical-outline"></ion-icon>
@@ -704,191 +1050,6 @@
                                 <h4>Recommendation</h4>
                                 <p>Consider adding 15 minutes of moderate exercise to reach your daily activity goals more consistently.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         ARDUINO HEALTH MONITORING SECTION
-    ============================================= -->
-    <section id="arduino-health" class="section">
-        <div class="container">
-            <h2 class="section-title">Affordable Health Monitoring</h2>
-            <p class="section-description">
-                Build your own health monitoring system with Arduino and ultrasonic sensors. 
-                A cost-effective solution that democratizes health tracking for communities worldwide, 
-                powered by AI analysis and real-time insights.
-            </p>
-
-            <!-- Arduino Setup -->
-            <div class="arduino-setup">
-                <h3>Hardware Setup</h3>
-                <div class="setup-grid">
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="hardware-chip-outline"></ion-icon>
-                        </div>
-                        <h4>Arduino UNO R4 WiFi</h4>
-                        <p>Advanced IoT board with ESP32-S3, 12x8 LED matrix, Qwiic connector, and WiFi/Bluetooth</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="radio-outline"></ion-icon>
-                        </div>
-                        <h4>Ultrasonic Sensor (HC-SR04)</h4>
-                        <p>Measures distance and detects movement for health parameter monitoring</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="bulb-outline"></ion-icon>
-                        </div>
-                        <h4>Hue Light Indicator</h4>
-                        <p>Visual feedback system that activates when placed on conductive surfaces</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="flash-outline"></ion-icon>
-                        </div>
-                        <h4>Metal Tin Plate</h4>
-                        <p>Conductive surface that completes the circuit for light activation</p>
-                    </div>
-                </div>
-                
-                <!-- Wiring Guide -->
-                <div class="wiring-guide-section">
-                    <h3>Wiring Guide</h3>
-                    <p class="section-description">
-                        Follow the official Arduino guide to properly connect your Arduino UNO R4 WiFi with the HC-SR04 ultrasonic sensor and other components.
-                    </p>
-                    <div class="wiring-guide-container">
-                        <div class="wiring-guide-content">
-                            <h4>HC-SR04 Ultrasonic Sensor Connections:</h4>
-                            <ul class="wiring-list">
-                                <li><strong>VCC</strong> → Arduino 5V</li>
-                                <li><strong>GND</strong> → Arduino GND</li>
-                                <li><strong>Trig</strong> → Arduino Digital Pin 9</li>
-                                <li><strong>Echo</strong> → Arduino Digital Pin 10</li>
-                            </ul>
-                            <div class="guide-links">
-                                <a href="https://www.arduino.cc/en/Guide/ArduinoUnoR4WiFi" target="_blank" rel="noopener" class="btn btn-primary">
-                                    <ion-icon name="link-outline"></ion-icon>
-                                    Official Arduino UNO R4 WiFi Guide
-                                </a>
-                                <a href="https://create.arduino.cc/projecthub/abdularbi17/ultrasonic-sensor-hc-sr04-with-arduino-tutorial-327ff6" target="_blank" rel="noopener" class="btn btn-secondary">
-                                    <ion-icon name="hardware-chip-outline"></ion-icon>
-                                    HC-SR04 Tutorial
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Real-time Dashboard -->
-            <div class="arduino-dashboard">
-                <h3>Real-time Health Monitoring</h3>
-                <div class="dashboard-controls">
-                    <div class="connection-status">
-                        <div id="arduino-status" class="status-indicator">
-                            <ion-icon name="radio-outline"></ion-icon>
-                            <span>Disconnected</span>
-                        </div>
-                        <button id="connect-arduino" class="btn btn-primary">
-                            <ion-icon name="link-outline"></ion-icon>
-                            Connect Arduino
-                        </button>
-                    </div>
-                    <div class="data-interval">
-                        <label for="data-interval">Update Interval:</label>
-                        <select id="data-interval">
-                            <option value="1000">1 second</option>
-                            <option value="5000">5 seconds</option>
-                            <option value="10000">10 seconds</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Live Data Display -->
-                <div class="live-data-grid">
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="pulse-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Heart Rate</h4>
-                            <div id="heart-rate" class="data-value">-- BPM</div>
-                            <div class="data-trend">
-                                <span id="heart-rate-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="walk-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Movement</h4>
-                            <div id="movement-level" class="data-value">--</div>
-                            <div class="data-trend">
-                                <span id="movement-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="thermometer-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Proximity</h4>
-                            <div id="proximity-level" class="data-value">-- cm</div>
-                            <div class="data-trend">
-                                <span id="proximity-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="flash-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Circuit Status</h4>
-                            <div id="circuit-status" class="data-value">Open</div>
-                            <div class="data-trend">
-                                <span id="circuit-indicator" class="circuit-indicator">●</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Health Insights -->
-                <div class="ai-insights-section">
-                    <h3>AI Health Analysis</h3>
-                    <div id="ai-insights" class="insights-container">
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="analytics-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>System Status</h4>
-                                <p>Waiting for Arduino connection to begin health analysis...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Log -->
-                <div class="data-log-section">
-                    <h3>Data Log</h3>
-                    <div id="data-log" class="log-container">
-                        <div class="log-entry">
-                            <span class="log-time">--:--:--</span>
-                            <span class="log-message">System initialized. Ready to receive Arduino data.</span>
                         </div>
                     </div>
                 </div>
