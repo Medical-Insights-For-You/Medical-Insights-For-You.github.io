@@ -21,6 +21,355 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# --- Custom CSS for Dark Theme ---
+st.markdown("""
+<style>
+    /* Main theme colors */
+    :root {
+        --primary-color: #000000;  /* Pure Black (for buttons, main accents) */
+        --bg-dark: #FFFFFF;       /* Pure White (for the main page background) */
+        --bg-darker: #FFFFFF;      /* Pure White (for other background layers) */
+        --bg-card: #F0F0F0;       /* Light Grey (This will fill your boxes) */
+        --text-primary: #000000;   /* Pure Black (for main text) */
+        --text-secondary: #333333; /* Dark Grey (for secondary text/labels for better contrast) */
+        --border-color: #C0C0C0;   /* Medium Grey (for visible borders) */
+    }
+    
+    /* Global background */
+    .stApp {
+        background-color: var(--bg-darker);
+    }
+    
+    /* Hide the top toolbar/header */
+    header[data-testid="stHeader"] {
+        display: none !important;
+    }
+    
+    /* Hide the main menu button */
+    #MainMenu {
+        display: none !important;
+    }
+    
+    /* Hide the footer */
+    footer {
+        display: none !important;
+    }
+    
+    /* Adjust main container padding since header is gone */
+    .main .block-container {
+        padding-top: 2rem;
+    }
+    
+    /* Sidebar styling */
+    [data-testid="stSidebar"] {
+        background-color: var(--bg-dark);
+        border-right: 1px solid var(--border-color);
+    }
+    
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3 {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+    
+    /* Main content area */
+    .main .block-container {
+        padding-top: 2rem;
+        max-width: 1400px;
+    }
+    
+    /* Title styling */
+    h1 {
+        color: var(--text-primary);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    h1 span:first-child {
+        color: var(--primary-color);
+    }
+    
+    /* Tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 1rem;
+        background-color: var(--bg-card);
+        padding: 0.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: var(--primary-color) !important;
+        color: var(--bg-darker) !important;
+        border: none;
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: rgba(45, 212, 191, 0.1);
+    }
+    
+    /* Remove red underline from active tab */
+    .stTabs [data-baseweb="tab-highlight"] {
+        background-color: transparent !important;
+        display: none !important;
+    }
+    
+    .stTabs [data-baseweb="tab-border"] {
+        background-color: transparent !important;
+        display: none !important;
+    }
+    
+    /* Card/Form styling */
+    [data-testid="stForm"] {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+    }
+    
+    /* Button styling - ALL BUTTONS TEAL */
+    .stButton > button,
+    .stDownloadButton > button,
+    .stFormSubmitButton > button {
+        background-color: var(--primary-color) !important;
+        color: var(--bg-darker) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 2rem !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stButton > button:hover,
+    .stDownloadButton > button:hover,
+    .stFormSubmitButton > button:hover {
+        background-color: #25B8A5 !important;
+        box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3) !important;
+        transform: translateY(-1px);
+    }
+    
+    .stButton > button:active,
+    .stDownloadButton > button:active,
+    .stFormSubmitButton > button:active {
+        transform: translateY(0);
+    }
+    
+    .stButton > button:focus,
+    .stDownloadButton > button:focus,
+    .stFormSubmitButton > button:focus,
+    .stButton > button:focus-visible,
+    .stDownloadButton > button:focus-visible,
+    .stFormSubmitButton > button:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        background-color: var(--primary-color) !important;
+    }
+    
+    /* Form submit buttons - extra teal emphasis */
+    button[kind="primaryFormSubmit"],
+    button[type="submit"] {
+        background-color: var(--primary-color) !important;
+        color: var(--bg-darker) !important;
+        border: none !important;
+    }
+    
+    button[kind="primaryFormSubmit"]:focus,
+    button[type="submit"]:focus,
+    button[kind="primaryFormSubmit"]:focus-visible,
+    button[type="submit"]:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        background-color: var(--primary-color) !important;
+    }
+    
+    /* Remove any Streamlit default focus styles */
+    button:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    
+    *:focus-visible {
+        outline: none !important;
+    }
+    
+    /* Input fields */
+    .stTextInput > div > div > input,
+    .stSelectbox > div > div > select,
+    .stTextArea textarea {
+        background-color: var(--bg-darker) !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px;
+        padding: 0.75rem;
+    }
+    
+    .stTextInput > div > div > input:focus,
+    .stSelectbox > div > div > select:focus,
+    .stTextArea textarea:focus {
+        border-color: var(--text-secondary) !important;
+        box-shadow: none !important;
+    }
+    
+    /* File uploader */
+    [data-testid="stFileUploader"] {
+        background-color: var(--bg-darker);
+        border: 2px dashed var(--border-color);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    [data-testid="stFileUploader"] section {
+        border: none;
+        background-color: transparent;
+    }
+    
+    [data-testid="stFileUploader"] section > div {
+        color: var(--text-secondary);
+    }
+    
+    [data-testid="stFileUploader"] button {
+        background-color: var(--primary-color) !important;
+        color: var(--bg-darker) !important;
+        border: none !important;
+        border-radius: 8px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+    }
+    
+    /* Info/warning boxes - all grey tones */
+    .stAlert {
+        background-color: var(--bg-card) !important;
+        border-left: 4px solid var(--text-secondary) !important;
+        border-radius: 8px;
+        color: var(--text-primary) !important;
+    }
+    
+    .stSuccess {
+        background-color: var(--bg-card) !important;
+        border-left: 4px solid var(--text-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .stWarning {
+        background-color: var(--bg-card) !important;
+        border-left: 4px solid var(--text-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .stError {
+        background-color: var(--bg-card) !important;
+        border-left: 4px solid var(--text-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .stInfo {
+        background-color: var(--bg-card) !important;
+        border-left: 4px solid var(--text-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    /* Remove any default Streamlit colored backgrounds */
+    div[data-testid="stNotificationContentSuccess"],
+    div[data-testid="stNotificationContentError"],
+    div[data-testid="stNotificationContentWarning"],
+    div[data-testid="stNotificationContentInfo"] {
+        background-color: var(--bg-card) !important;
+    }
+    
+    /* Metrics */
+    [data-testid="stMetricValue"] {
+        color: var(--primary-color);
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    
+    /* Subheaders */
+    .stSubheader {
+        color: var(--text-primary);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Template card in sidebar */
+    .template-card {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .template-card-title {
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .template-card-subtitle {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+    }
+    
+    /* Expander styling - grey tones only */
+    .streamlit-expanderHeader {
+        background-color: var(--bg-card) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px;
+        color: var(--text-primary) !important;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        background-color: var(--bg-card) !important;
+        border-color: var(--text-secondary) !important;
+    }
+    
+    /* Dataframe styling */
+    .stDataFrame {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    
+    /* Progress bars - teal only for actual progress */
+    .stProgress > div > div {
+        background-color: var(--primary-color) !important;
+    }
+    
+    /* Spinner - teal */
+    .stSpinner > div {
+        border-top-color: var(--primary-color) !important;
+    }
+    
+    /* Section headers in tabs */
+    .section-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--border-color);
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # --- Session State Initialization ---
 if "templates" not in st.session_state:
     st.session_state.templates = {}
@@ -37,24 +386,31 @@ if "final_file_name" not in st.session_state:
 
 # --- Sidebar: Template Library Manager ---
 with st.sidebar:
-    st.header("Template Library")
+    st.markdown("## Template Library")
+    
+    st.divider()
     
     with st.form("new_template_form", clear_on_submit=True):
-        st.subheader("Add a New Template")
-        new_template_name = st.text_input("Template Name (e.g., 'UCSF IRB')")
+        st.markdown("### Add New Template")
+        new_template_name = st.text_input("Template Name", placeholder="e.g., 'UCSF IRB'")
         
+        st.markdown("**1. DOCX Structure**")
         new_template_file = st.file_uploader(
-            "1. Upload .docx Template (Structure)", 
+            "Required section headings", 
             type="docx",
-            help="The .docx file with the section headings."
-        )
-        new_language_file = st.file_uploader(
-            "2. Upload Approved Language Doc (Optional)",
-            type=["pdf", "docx", "txt", "md"],
-            help="Optional: The doc with IRB-approved 'boilerplate' text."
+            help="The .docx file with the section headings.",
+            label_visibility="collapsed"
         )
         
-        submitted = st.form_submit_button("Save Template")
+        st.markdown("**2. Approved Language (Optional)**")
+        new_language_file = st.file_uploader(
+            "PDF, DOCX, TXT with boilerplate",
+            type=["pdf", "docx", "txt", "md"],
+            help="Optional: The doc with IRB-approved 'boilerplate' text.",
+            label_visibility="collapsed"
+        )
+        
+        submitted = st.form_submit_button("Save Template", use_container_width=True)
         
         if submitted:
             if new_template_name and new_template_file:
@@ -73,21 +429,30 @@ with st.sidebar:
                     template_data["language_bytes"] = language_bytes
                 
                 st.session_state.templates[new_template_name] = template_data
-                st.success(f"Saved template: '{new_template_name}'")
+                st.success(f"✓ Saved: {new_template_name}")
             else:
-                st.error("Please provide at least a Template Name and a .docx Template file.")
+                st.error("Please provide Template Name and DOCX file.")
     
     if st.session_state.templates:
         st.divider()
-        st.subheader("Saved Templates")
+        st.markdown("### Current Library")
         for t_name, data in st.session_state.templates.items():
-            caption = f"📄 {t_name} (Structure)"
+            structure = "plain language ICF template.docx"
+            language = ""
             if data.get("language_filename"):
-                caption += " + 🗣️ (Language)"
-            st.caption(caption)
+                language = f"<br><span style='color: #2DD4BF;'>Language:</span> {data['language_filename']}"
+            
+            st.markdown(f"""
+            <div class="template-card">
+                <div class="template-card-title">{t_name}</div>
+                <div class="template-card-subtitle">
+                    <span style='color: #737373;'>Structure:</span> {structure}{language}
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
 
 
-# --- REAL API FUNCTIONS ---
+# --- REAL API FUNCTIONS (keeping all original functions) ---
 
 def extract_text_from_pdf(pdf_bytes: bytes) -> str:
     """Extract text from PDF using PyPDF2"""
@@ -112,7 +477,7 @@ def extract_text_from_docx(docx_bytes: bytes) -> str:
         return ""
 
 def call_claude_api(prompt: str, system_prompt: str = "", max_tokens: int = 4096) -> str:
-    """Synchronous call to Claude API for text generation (used for structured parsing only)"""
+    """Call Claude API for text generation"""
     claude_api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not claude_api_key:
         return "" 
@@ -163,7 +528,6 @@ Return the information as a JSON object with the structure specified in the syst
         if not response:
             return None
         
-        # Try to parse JSON from response
         if "```json" in response:
             json_str = response.split("```json")[1].split("```")[0].strip()
         elif "```" in response:
@@ -174,8 +538,6 @@ Return the information as a JSON object with the structure specified in the syst
         return json.loads(json_str)
     except json.JSONDecodeError as e:
         st.error(f"Error parsing Claude response as JSON: {e}")
-        st.text("Response received:")
-        st.text(response[:500])
         return None
     except Exception as e:
         st.error(f"Error processing protocol: {e}")
@@ -213,38 +575,23 @@ Return as JSON with the keys specified."""
         st.warning(f"Could not parse approved language: {e}")
         return {}
 
-
-# --- CRITICAL FIX: STREAMING FUNCTION ---
-
-def generate_icf_content_with_claude_streaming(
+def generate_icf_content_with_claude(
     protocol_data: Dict, 
     approved_language: Dict, 
     template_headings: List[str]
 ) -> Dict[str, str]:
-    """
-    Uses Claude API streaming to generate ICF content for each section, updating the UI live.
-    This replaces the original blocking function.
-    """
+    """Use Claude to generate ICF content for each section"""
     
     system_prompt = """You are a clinical research professional creating an Informed Consent Form (ICF). 
+    
     Generate formal, compliant ICF text at a collegiate reading level. Use approved language when provided.
     Be thorough, accurate, and maintain appropriate medical/legal terminology.
-    Return ONLY the generated text for each section, no additional formatting, headers, or comments."""
+    
+    Return ONLY the generated text for each section, no additional formatting or comments."""
     
     generated_content = {}
-    claude_api_key = os.environ.get("ANTHROPIC_API_KEY")
-
-    if not claude_api_key:
-        st.error("Cannot generate content: Anthropic API key is missing.")
-        return {}
-
-    client = anthropic.Anthropic(api_key=claude_api_key)
     
-    # Use a container to hold the live-updated text areas, ensuring they don't jump around.
-    streaming_container = st.container()
-
     for heading in template_headings:
-        # Create the detailed prompt for the current section
         prompt = f"""Generate content for this ICF section: "{heading}"
 
 Protocol Information:
@@ -260,36 +607,13 @@ If this section relates to confidentiality, use the confidentiality template.
 Return ONLY the paragraph text for this section, no headers or additional formatting."""
         
         try:
-            # 1. Add a subheader for the section and a live placeholder
-            streaming_container.subheader(f"✍️ Drafting: {heading}")
-            placeholder = streaming_container.empty()
-            full_content = ""
-            
-            # 2. Use the STREAMING API call
-            with client.messages.stream(
-                model="claude-sonnet-4-20250514",
-                max_tokens=1500, # A high enough limit for a single section
-                system=system_prompt,
-                messages=[{"role": "user", "content": prompt}]
-            ) as stream:
-                for chunk in stream:
-                    # 3. Append and update the Streamlit placeholder with each text chunk
-                    if chunk.type == "content_block_delta" and chunk.delta.text is not None:
-                        full_content += chunk.delta.text
-                        # Display content with a pulsing cursor to show activity
-                        placeholder.markdown(full_content + "▌") 
-            
-            # 4. Final update without the cursor and store the full content
-            placeholder.markdown(full_content) 
-            generated_content[heading] = full_content
-            
+            content = call_claude_api(prompt, system_prompt, max_tokens=1500)
+            generated_content[heading] = content if content else f"Content for {heading} pending review."
         except Exception as e:
-            st.warning(f"Error generating content for {heading}. Please check API key/limits. Error: {e}")
-            generated_content[heading] = f"[Content for {heading} requires manual entry due to error]"
+            st.warning(f"Error generating content for {heading}: {e}")
+            generated_content[heading] = f"[Content for {heading} requires manual entry]"
     
     return generated_content
-    
-# NOTE: The old 'generate_icf_content_with_claude' is now replaced by the function above.
 
 def analyze_icf_with_claude(
     protocol_data: Dict,
@@ -339,7 +663,6 @@ Return as JSON."""
         
         analysis = json.loads(json_str)
         
-        # Calculate readability scores for sections
         sections = parse_docx_sections_from_text(icf_text)
         readability_report = []
         for section, text in sections.items():
@@ -414,8 +737,6 @@ def parse_docx_sections_from_text(text: str) -> Dict[str, str]:
         sections[current_heading] = '\n'.join(current_text)
     
     return sections if sections else {"Full Document": text}
-
-# --- HELPER FUNCTIONS FROM ORIGINAL (Updated to use real APIs) ---
 
 def parse_template_headings(docx_bytes):
     try:
@@ -522,46 +843,50 @@ def parse_docx_sections(docx_bytes):
 
 
 # --- Main Application UI ---
-st.title("🩺 ICF-GPT: AI-Powered Informed Consent Generator")
+st.markdown('<h1><span>ICF-GPT:</span> Clinical Consent AI</h1>', unsafe_allow_html=True)
 st.markdown("Generate compliant ICFs from protocols using **Claude 4 Sonnet API** for real-time analysis.")
 
-# Check API configuration and warn user if key is missing
+# Check API configuration
 if not os.environ.get("ANTHROPIC_API_KEY"):
-    st.error("⚠️ **Anthropic API Key Not Found.** Please set the `ANTHROPIC_API_KEY` environment variable in your deployment environment (e.g., your local `.env` file, Streamlit Secrets, or your cloud provider settings) to enable AI functionality.")
+    st.error("⚠️ **Anthropic API Key Not Found.** Set the `ANTHROPIC_API_KEY` environment variable to enable AI functionality.")
 
+# Custom styled tabs
 tab_generate, tab_review, tab_summarize = st.tabs([
-    "**1. Generate New ICF**", 
-    "**2. Review & Analyze ICF**", 
-    "**3. Patient Summarizer**"
+    "✨ Generate New ICF", 
+    "🔍 Review & Analyze", 
+    "👤 Patient Summarizer"
 ])
 
 # --- TAB 1: GENERATION MODE ---
 with tab_generate:
-    st.header("1. Generate AI Draft (Using Claude API)")
+    st.markdown('<div class="section-header">Generate New ICF</div>', unsafe_allow_html=True)
+    st.markdown("Upload your protocol and select a template to generate an AI-powered draft.")
     
     with st.form("generation_form"):
         col1, col2 = st.columns(2)
         
         with col1:
-            st.subheader("Inputs")
+            st.markdown("#### 📄 Upload Protocol")
             protocol_file = st.file_uploader(
-                "1. Upload the Protocol (PDF, DOCX, JSON, XML)", 
+                "Upload Protocol Document", 
                 type=["pdf", "docx", "json", "xml"], 
-                help="The source protocol document."
+                help="The source protocol document.",
+                label_visibility="collapsed"
             )
         
         with col2:
-            st.subheader("Template")
+            st.markdown("#### 📋 Select Template")
             template_options = list(st.session_state.templates.keys())
             selected_template_name = None
             
             if not template_options:
-                st.warning("No saved templates. Please add one in the sidebar to begin.")
+                st.warning("No saved templates. Add one in the sidebar.")
             else:
                 selected_template_name = st.selectbox(
-                    "2. Select an IRB Template",
+                    "Select IRB Template",
                     options=template_options,
-                    help="Select a saved template from your library."
+                    help="Choose from your saved templates.",
+                    label_visibility="collapsed"
                 )
         
         submitted = st.form_submit_button("✨ Generate AI Draft", type="primary", use_container_width=True)
@@ -576,10 +901,9 @@ with tab_generate:
         
         if protocol_file is not None and template_info is not None:
             if not os.environ.get("ANTHROPIC_API_KEY"):
-                st.error("Please set the `ANTHROPIC_API_KEY` environment variable to use the AI functionality.")
+                st.error("Please set the `ANTHROPIC_API_KEY` environment variable.")
             else:
                 with st.spinner("🤖 Claude is analyzing your protocol..."):
-                    # Extract text from protocol
                     protocol_bytes = protocol_file.getvalue()
                     file_ext = protocol_file.name.split('.')[-1].lower()
                     
@@ -594,15 +918,12 @@ with tab_generate:
                         protocol_text = None
                     
                     if protocol_text:
-                        # Parse protocol with Claude
                         protocol_data = parse_protocol_with_claude(protocol_text, file_ext)
                         
                         if protocol_data:
-                            # Get template headings
                             template_bytes = template_info["template_bytes"]
                             template_headings, _ = parse_template_headings(template_bytes)
                             
-                            # Parse approved language if exists
                             approved_language_data = {}
                             if "language_bytes" in template_info:
                                 lang_bytes = template_info["language_bytes"]
@@ -619,33 +940,30 @@ with tab_generate:
                                     lang_text, template_info["language_filename"]
                                 )
                             
-                            # Generate content with Claude - **UPDATED TO USE STREAMING**
-                            st.info("✍️ Drafting in progress. Content will appear below section-by-section...")
-                            
-                            generated_content = generate_icf_content_with_claude_streaming(
-                                protocol_data, 
-                                approved_language_data, 
-                                template_headings
-                            )
+                            with st.spinner("✍️ Claude is drafting your ICF sections..."):
+                                generated_content = generate_icf_content_with_claude(
+                                    protocol_data, 
+                                    approved_language_data, 
+                                    template_headings
+                                )
                                 
-                            st.session_state.generated_content = generated_content
-                            st.session_state.template_bytes_for_download = template_bytes
-                            st.session_state.file_name_info = f"Generated_ICF_{selected_template_name.replace(' ', '_')}.docx"
-                            st.success("✅ AI Draft Complete! Review and finalize below.")
+                                st.session_state.generated_content = generated_content
+                                st.session_state.template_bytes_for_download = template_bytes
+                                st.session_state.file_name_info = f"Generated_ICF_{selected_template_name.replace(' ', '_')}.docx"
+                                st.success("✅ AI Draft Complete!")
         else:
             st.error("🚫 Please upload a Protocol and select a Template.")
 
     # Editor UI
     if st.session_state.generated_content:
         st.divider()
-        st.header("2. Finalize and Download")
+        st.markdown('<div class="section-header">Review & Finalize</div>', unsafe_allow_html=True)
         st.info("Review and edit the AI-generated content before downloading.")
         
-        # NOTE: The content below here is the **generated** content displayed after the streaming is complete.
         with st.form("editor_form"):
             final_content_map = {}
             for heading, text in st.session_state.generated_content.items():
-                st.subheader(heading)
+                st.markdown(f"#### {heading}")
                 edited_text = st.text_area(
                     f"Edit {heading}", 
                     value=text, 
@@ -655,7 +973,7 @@ with tab_generate:
                 )
                 final_content_map[heading] = edited_text
 
-            download_submitted = st.form_submit_button("✨ Finalize Document", type="primary", use_container_width=True)
+            download_submitted = st.form_submit_button("✅ Finalize Document", type="primary", use_container_width=True)
 
             if download_submitted:
                 with st.spinner("Creating final DOCX..."):
@@ -668,7 +986,7 @@ with tab_generate:
                         st.session_state.generated_content = None
                         st.session_state.template_bytes_for_download = None
                         st.session_state.file_name_info = None
-                        st.success("Download ready!")
+                        st.success("✅ Document ready for download!")
                         st.rerun()
                         
     # Download button
@@ -686,33 +1004,37 @@ with tab_generate:
 
 # --- TAB 2: REVIEW MODE ---
 with tab_review:
-    st.header("Review Existing ICF (Using Claude API)")
+    st.markdown('<div class="section-header">Review & Analyze ICF</div>', unsafe_allow_html=True)
+    st.markdown("Upload your protocol, template, and existing ICF for comprehensive AI analysis.")
     
     with st.form("review_form"):
         col1, col2 = st.columns(2)
         
         with col1:
-            st.subheader("Source Documents")
+            st.markdown("#### 📄 Source Documents")
             protocol_file_review = st.file_uploader(
-                "1. Upload Protocol", 
+                "Upload Protocol", 
                 type=["pdf", "docx", "json", "xml"], 
-                key="protocol_rev"
+                key="protocol_rev",
+                label_visibility="collapsed"
             )
+            
             template_options_rev = list(st.session_state.templates.keys())
             selected_template_name_rev = None
             if template_options_rev:
                 selected_template_name_rev = st.selectbox(
-                    "2. Select IRB Template",
+                    "Select IRB Template",
                     options=template_options_rev,
                     key="template_rev"
                 )
 
         with col2:
-            st.subheader("ICF to Review")
+            st.markdown("#### 📋 ICF to Review")
             existing_icf_docx = st.file_uploader(
-                "3. Upload Existing ICF (DOCX)", 
+                "Upload Existing ICF (DOCX)", 
                 type="docx", 
-                key="docx_rev"
+                key="docx_rev",
+                label_visibility="collapsed"
             )
 
         review_submitted = st.form_submit_button("🔍 Analyze with Claude", type="primary", use_container_width=True)
@@ -724,10 +1046,9 @@ with tab_review:
             
         if protocol_file_review and existing_icf_docx and template_info_rev:
             if not os.environ.get("ANTHROPIC_API_KEY"):
-                st.error("Please set the `ANTHROPIC_API_KEY` environment variable to use the AI functionality.")
+                st.error("Please set the `ANTHROPIC_API_KEY` environment variable.")
             else:
                 with st.spinner("🤖 Claude is analyzing documents..."):
-                    # Extract protocol text
                     protocol_bytes = protocol_file_review.getvalue()
                     file_ext = protocol_file_review.name.split('.')[-1].lower()
                     
@@ -740,11 +1061,9 @@ with tab_review:
                     
                     protocol_data = parse_protocol_with_claude(protocol_text, file_ext)
 
-                    # Extract ICF text
                     icf_bytes = existing_icf_docx.getvalue()
                     icf_text = extract_text_from_docx(icf_bytes)
 
-                    # Parse approved language if exists
                     approved_language_data = {}
                     if "language_bytes" in template_info_rev:
                         lang_bytes = template_info_rev["language_bytes"]
@@ -761,7 +1080,6 @@ with tab_review:
                             lang_text, template_info_rev["language_filename"]
                         )
                     
-                    # Analyze
                     analysis_result = analyze_icf_with_claude(
                         protocol_data, 
                         approved_language_data, 
@@ -771,104 +1089,115 @@ with tab_review:
                     st.session_state.analysis_result = analysis_result
                     st.success("✅ Analysis Complete!")
         else:
-            st.error("🚫 Please upload a Protocol, select a Template, and upload the ICF for review.")
+            st.error("🚫 Please upload all required documents.")
 
     if "analysis_result" in st.session_state and st.session_state.analysis_result:
         analysis_result = st.session_state.analysis_result
         st.divider()
-        st.header("Analysis Report")
+        st.markdown('<div class="section-header">Analysis Report</div>', unsafe_allow_html=True)
 
         col_a1, col_a2 = st.columns(2)
         with col_a1:
-            st.metric("Estimated Readability (AI)", f"Grade Level {analysis_result.get('overall_score', 'N/A')}")
+            st.metric("AI Estimated Grade Level", f"{analysis_result.get('overall_score', 'N/A')}")
         with col_a2:
-            st.metric("Readability Tool Score (Flesch-Kincaid)", f"{textstat.flesch_kincaid_grade(icf_text) if icf_text and len(icf_text) > 50 else 'N/A'}")
+            icf_text_check = extract_text_from_docx(icf_bytes) if 'icf_bytes' in locals() else ""
+            fk_score = textstat.flesch_kincaid_grade(icf_text_check) if icf_text_check and len(icf_text_check) > 50 else "N/A"
+            st.metric("Flesch-Kincaid Grade", f"{fk_score}")
 
-        st.subheader("Gaps and Missing Information")
+        st.markdown("#### 🔍 Gaps & Missing Information")
         if analysis_result.get("gaps"):
             for gap in analysis_result["gaps"]:
                 st.warning(f"• {gap}")
         else:
-            st.success("No significant gaps or missing protocol information identified by the AI.")
+            st.success("✓ No significant gaps identified")
             
-        st.subheader("Improvement Suggestions")
+        st.markdown("#### 💡 Improvement Suggestions")
         suggestions = analysis_result.get("suggestions", [])
         if suggestions:
             for s in suggestions:
-                st.info(f"**Section: {s.get('section', 'General')}**\n- **Issue:** {s.get('issue', 'N/A')}\n- **Suggestion:** {s.get('suggestion', 'N/A')}")
+                with st.expander(f"**{s.get('section', 'General')}**"):
+                    st.write(f"**Issue:** {s.get('issue', 'N/A')}")
+                    st.write(f"**Suggestion:** {s.get('suggestion', 'N/A')}")
         else:
-            st.success("No critical improvement suggestions identified.")
+            st.success("✓ No critical improvements needed")
 
-        st.subheader("Section Readability Breakdown")
+        st.markdown("#### 📊 Section Readability Breakdown")
         readability_report = analysis_result.get("readability_report", [])
         if readability_report:
             df = pd.DataFrame(readability_report)
-            st.dataframe(df.style.highlight_max(axis=0, subset=['score'], color='#ff9999').highlight_min(axis=0, subset=['score'], color='#ccffcc'), use_container_width=True)
+            st.dataframe(
+                df.style.highlight_max(axis=0, subset=['score'], color='#ff9999')
+                       .highlight_min(axis=0, subset=['score'], color='#ccffcc'), 
+                use_container_width=True
+            )
 
 
-# --- TAB 3: SUMMARIZER MODE (CORRECTED) ---
+# --- TAB 3: SUMMARIZER MODE ---
 with tab_summarize:
-    st.header("Patient-Friendly Summarizer (Using Claude API)")
-
-    # 1. Clear session state variables related to summarization on fresh tab load (optional, but good)
-    if "summaries" not in st.session_state:
-        st.session_state.summaries = None
-    if "icf_text_for_summarize" not in st.session_state:
-        st.session_state.icf_text_for_summarize = ""
+    st.markdown('<div class="section-header">Patient Summarizer</div>', unsafe_allow_html=True)
+    st.markdown("Improve readability by generating plain-language summaries of an ICF.")
+    
+    st.markdown("### Step 1: Upload and Configure")
 
     with st.form("summarize_form"):
-        col_s1, col_s2 = st.columns(2)
+        st.markdown("#### Upload Completed ICF")
+        icf_file_summarize = st.file_uploader(
+            "Upload ICF Document", 
+            type="docx", 
+            key="icf_sum",
+            label_visibility="collapsed"
+        )
         
-        with col_s1:
-            icf_file_summarize = st.file_uploader(
-                "1. Upload Completed ICF (DOCX)", 
-                type="docx", 
-                key="icf_sum"
-            )
+        # Fixed to 6th grade level
+        target_grade = "6th Grade"
         
-        with col_s2:
-            target_grade = st.selectbox(
-                "2. Select Target Reading Level",
-                options=["6th Grade", "8th Grade"],
-                key="target_grade_sum"
-            )
-            
-        summarize_submitted = st.form_submit_button("✍️ Generate Summaries", type="primary", use_container_width=True)
+        summarize_submitted = st.form_submit_button("📝 Generate Summaries", type="primary", use_container_width=True)
         
     if summarize_submitted:
         if icf_file_summarize:
             if not os.environ.get("ANTHROPIC_API_KEY"):
-                st.error("Please set the `ANTHROPIC_API_KEY` environment variable to use the AI functionality.")
+                st.error("Please set the `ANTHROPIC_API_KEY` environment variable.")
             else:
-                with st.spinner("🤖 Creating patient summaries..."):
+                with st.spinner(f"✍️ Claude is summarizing to {target_grade} level..."):
                     icf_bytes = icf_file_summarize.getvalue()
-                    icf_text = extract_text_from_docx(icf_bytes)
+                    icf_sections = parse_docx_sections(icf_bytes)
                     
-                    if icf_text:
-                        # 🔑 FIX 1: Store extracted text in session state
-                        st.session_state.icf_text_for_summarize = icf_text
-                        
-                        sections_to_summarize = parse_docx_sections_from_text(icf_text)
-                        
-                        summaries = summarize_icf_with_claude(sections_to_summarize, st.session_state.target_grade_sum)
-                        st.session_state.summaries = summaries
-                        st.success("✅ Summaries Complete!")
+                    if "error" in icf_sections:
+                        st.error(icf_sections["error"])
                     else:
-                        st.error("Could not extract text from the ICF file.")
+                        summaries = summarize_icf_with_claude(icf_sections, target_grade)
+                        st.session_state.summaries = summaries
+                        st.session_state.file_name_summarize = f"Summary_{icf_file_summarize.name}"
+                        st.success("✅ Summary Complete!")
         else:
-            st.error("Please upload an ICF document.")
+            st.error("🚫 Please upload an ICF document.")
 
-    # 🔑 FIX 2: Safely access summaries from session state
-    if st.session_state.summaries:
+    if "summaries" in st.session_state and st.session_state.summaries:
         st.divider()
-        st.header(f"Patient Summary (Target: {st.session_state.target_grade_sum})")
+        st.markdown('<div class="section-header">Patient Summary Review</div>', unsafe_allow_html=True)
         
-        # Display the summaries
-        for heading, summary in st.session_state.summaries.items():
-            st.markdown(f"**{heading} Summary:**")
-            st.write(summary)
+        summarized_doc = Document()
+        
+        for heading, summary_text in st.session_state.summaries.items():
+            h = summarized_doc.add_heading(heading, level=1)
+            h.runs[0].bold = True
+            h.runs[0].font.size = Pt(14)
+            p = summarized_doc.add_paragraph(summary_text, style='Normal')
+            p.paragraph_format.space_after = Pt(12)
             
-        # Optional: Add a text area display of the full original ICF text used for the summary
+            with st.expander(f"**{heading}**", expanded=True):
+                st.write(summary_text)
+
+        file_stream = io.BytesIO()
+        summarized_doc.save(file_stream)
+        file_stream.seek(0)
+        summary_docx_bytes = file_stream.getvalue()
+        
         st.divider()
-        with st.expander("Review Original ICF Text (for reference)"):
-            st.text_area("Original ICF Content", st.session_state.icf_text_for_summarize, height=300, label_visibility="collapsed")
+        st.download_button(
+            label="📥 Download Patient Summary (.docx)",
+            data=summary_docx_bytes,
+            file_name=f"Patient_Summary_{st.session_state.file_name_summarize}",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            use_container_width=True
+        )
