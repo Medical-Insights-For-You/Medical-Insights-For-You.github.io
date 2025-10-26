@@ -111,6 +111,136 @@ body {
 /* ============================================
    HERO SECTION
 ============================================= */
+.hackathon-badge {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: var(--primary);
+    color: var(--bg-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+}
+
+/* ============================================
+   PROBLEM & SOLUTIONS SECTION
+============================================= */
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.problem-card {
+    background: var(--bg-card);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.problem-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.problem-icon {
+    font-size: 3rem;
+    color: #ff6b6b;
+    margin-bottom: var(--space-sm);
+}
+
+.problem-card h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.problem-card p {
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.solutions-section {
+    margin-top: var(--space-xl);
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.solution-card {
+    background: var(--bg-card);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.solution-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+}
+
+.solution-card h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.solution-card p {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+}
+
+.solution-card ul {
+    list-style: none;
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+.solution-card li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.solution-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
 .hero {
     padding: calc(80px + var(--space-xl)) 0 var(--space-xl);
     text-align: center;
@@ -799,6 +929,24 @@ body {
     margin: 0.5rem 0;
 }
 
+.flow-image {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.postman-svg {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+.flow-description {
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
 .postman-tech {
     background: var(--bg-card);
     padding: var(--space-lg);
@@ -843,6 +991,79 @@ body {
 }
 
 /* ============================================
+   PATIENT RECRUITMENT DEMO
+============================================= */
+.recruitment-demo {
+    margin-top: var(--space-lg);
+    background: var(--bg-card);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+}
+
+.recruitment-demo h3 {
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+.recruitment-demo p {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.recruitment-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+}
+
+.recruitment-card {
+    background: rgba(0, 0, 0, 0.05);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    transition: var(--transition);
+}
+
+.recruitment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.recruitment-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.recruitment-content h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.recruitment-content p {
+    color: var(--text-secondary);
+    text-align: left;
+    margin-bottom: var(--space-sm);
+    font-size: 0.9rem;
+}
+
+.match-score {
+    background: var(--primary);
+    color: var(--bg-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* ============================================
    TEAM SECTION
 ============================================= */
 .team-grid {
@@ -864,6 +1085,22 @@ body {
 .team-member:hover {
     transform: translateY(-5px);
     border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--space-sm);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+}
+
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .team-member h3 {
@@ -873,6 +1110,14 @@ body {
 
 .team-member p {
     color: var(--primary);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
 }
