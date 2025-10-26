@@ -630,6 +630,30 @@ body {
     font-size: 0.875rem;
 }
 
+.footer-hero {
+    margin-top: var(--space-2xl);
+    text-align: center;
+    padding: var(--space-xl) 0;
+    background: var(--gradient-card);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-subtle);
+}
+
+.hero-svg {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    opacity: 0.8;
+    transition: var(--transition-smooth);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.hero-svg:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+}
+
 /* ============================================
    ANIMATIONS
 ============================================= */
@@ -1267,5 +1291,14 @@ body {
 
     .flow-diagram {
         padding: var(--space-md);
+    }
+
+    .footer-hero {
+        margin-top: var(--space-lg);
+        padding: var(--space-lg) 0;
+    }
+
+    .hero-svg {
+        max-height: 200px;
     }
 }
