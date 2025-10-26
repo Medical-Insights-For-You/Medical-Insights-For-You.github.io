@@ -869,6 +869,393 @@ body {
 }
 
 /* ============================================
+   ARDUINO HEALTH MONITORING STYLES
+============================================= */
+
+/* Accessibility Note */
+.accessibility-note {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    margin: var(--space-2xl) 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+}
+
+.note-icon {
+    background: var(--primary-blue);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.note-icon ion-icon {
+    font-size: 24px;
+}
+
+.note-content h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+}
+
+.note-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Arduino Setup */
+.arduino-setup {
+    margin: var(--space-2xl) 0;
+}
+
+.arduino-setup h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.setup-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.setup-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+}
+
+.setup-icon {
+    background: var(--primary-blue);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+}
+
+.setup-icon ion-icon {
+    font-size: 28px;
+}
+
+.setup-item h4 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-sm);
+}
+
+.setup-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Arduino Dashboard */
+.arduino-dashboard {
+    margin: var(--space-2xl) 0;
+    background: var(--gradient-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-2xl);
+}
+
+.arduino-dashboard h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.dashboard-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-lg);
+    background: var(--bg-dark);
+    border-radius: var(--border-radius);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-subtle);
+}
+
+.status-indicator.connected {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+}
+
+.status-indicator.disconnected {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.data-interval {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.data-interval label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.data-interval select {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Live Data Grid */
+.live-data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.data-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    transition: var(--transition-smooth);
+}
+
+.data-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.data-icon {
+    background: var(--primary-blue);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.data-icon ion-icon {
+    font-size: 24px;
+}
+
+.data-content {
+    flex: 1;
+}
+
+.data-content h4 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+}
+
+.data-value {
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.data-trend {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.trend-indicator {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.trend-indicator.up {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.trend-indicator.down {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.trend-indicator.stable {
+    background: rgba(156, 163, 175, 0.1);
+    color: #9ca3af;
+}
+
+.circuit-indicator {
+    font-size: 1.2rem;
+    color: #ef4444;
+}
+
+.circuit-indicator.active {
+    color: #22c55e;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* AI Insights Section */
+.ai-insights-section {
+    margin: var(--space-2xl) 0;
+}
+
+.ai-insights-section h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.insights-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.insight-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    transition: var(--transition-smooth);
+}
+
+.insight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.insight-icon {
+    background: var(--primary-blue);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insight-icon ion-icon {
+    font-size: 20px;
+}
+
+.insight-content h4 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+}
+
+.insight-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Data Log Section */
+.data-log-section {
+    margin: var(--space-2xl) 0;
+}
+
+.data-log-section h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.log-container {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.log-entry {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-time {
+    color: var(--primary-blue);
+    font-weight: 600;
+    min-width: 80px;
+}
+
+.log-message {
+    color: var(--text-secondary);
+    flex: 1;
+}
+
+/* ============================================
    FITNESS DASHBOARD STYLES
 ============================================= */
 
@@ -1309,5 +1696,27 @@ body {
 
     .hero-svg {
         max-height: 200px;
+    }
+
+    .accessibility-note {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .setup-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .live-data-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .insights-container {
+        grid-template-columns: 1fr;
     }
 }

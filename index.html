@@ -47,6 +47,7 @@
                 <li><a href="#team">Team</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#fitness-dashboard">Fitness Dashboard</a></li>
+        <li><a href="#arduino-health">Arduino Health</a></li>
                 <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
                     <ion-icon name="logo-github"></ion-icon>
                     GitHub
@@ -458,6 +459,177 @@
     </section>
 
     <!-- ============================================
+         ARDUINO HEALTH MONITORING SECTION
+    ============================================= -->
+    <section id="arduino-health" class="section">
+        <div class="container">
+            <h2 class="section-title">Arduino Health Monitoring</h2>
+            <p class="section-description">
+                Affordable health monitoring using Arduino, IR sensors, and smart lighting. 
+                A cost-effective alternative for communities with limited access to expensive wearables.
+            </p>
+
+            <!-- Accessibility Note -->
+            <div class="accessibility-note">
+                <div class="note-icon">
+                    <ion-icon name="heart-outline"></ion-icon>
+                </div>
+                <div class="note-content">
+                    <h3>Democratizing Healthcare Access</h3>
+                    <p>
+                        While Apple Watches and premium wearables offer advanced health monitoring, 
+                        this Arduino-based solution provides essential health markers at a fraction of the cost. 
+                        Perfect for lower-income communities and developing countries where access to 
+                        expensive health technology is limited.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Arduino Setup -->
+            <div class="arduino-setup">
+                <h3>Hardware Setup</h3>
+                <div class="setup-grid">
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="hardware-chip-outline"></ion-icon>
+                        </div>
+                        <h4>Arduino Board</h4>
+                        <p>Main processing unit for data collection and transmission</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="radio-outline"></ion-icon>
+                        </div>
+                        <h4>IR Sensor</h4>
+                        <p>Detects proximity and movement for health parameter measurement</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="bulb-outline"></ion-icon>
+                        </div>
+                        <h4>Hue Light Indicator</h4>
+                        <p>Visual feedback system that activates when placed on conductive surfaces</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <h4>Metal Tin Plate</h4>
+                        <p>Conductive surface that completes the circuit for light activation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Dashboard -->
+            <div class="arduino-dashboard">
+                <h3>Real-time Health Monitoring</h3>
+                <div class="dashboard-controls">
+                    <div class="connection-status">
+                        <div id="arduino-status" class="status-indicator">
+                            <ion-icon name="radio-outline"></ion-icon>
+                            <span>Disconnected</span>
+                        </div>
+                        <button id="connect-arduino" class="btn btn-primary">
+                            <ion-icon name="link-outline"></ion-icon>
+                            Connect Arduino
+                        </button>
+                    </div>
+                    <div class="data-interval">
+                        <label for="data-interval">Update Interval:</label>
+                        <select id="data-interval">
+                            <option value="1000">1 second</option>
+                            <option value="5000">5 seconds</option>
+                            <option value="10000">10 seconds</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Live Data Display -->
+                <div class="live-data-grid">
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="pulse-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Heart Rate</h4>
+                            <div id="heart-rate" class="data-value">-- BPM</div>
+                            <div class="data-trend">
+                                <span id="heart-rate-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="walk-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Movement</h4>
+                            <div id="movement-level" class="data-value">--</div>
+                            <div class="data-trend">
+                                <span id="movement-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="thermometer-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Proximity</h4>
+                            <div id="proximity-level" class="data-value">-- cm</div>
+                            <div class="data-trend">
+                                <span id="proximity-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Circuit Status</h4>
+                            <div id="circuit-status" class="data-value">Open</div>
+                            <div class="data-trend">
+                                <span id="circuit-indicator" class="circuit-indicator">●</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Health Insights -->
+                <div class="ai-insights-section">
+                    <h3>AI Health Analysis</h3>
+                    <div id="ai-insights" class="insights-container">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>System Status</h4>
+                                <p>Waiting for Arduino connection to begin health analysis...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Log -->
+                <div class="data-log-section">
+                    <h3>Data Log</h3>
+                    <div id="data-log" class="log-container">
+                        <div class="log-entry">
+                            <span class="log-time">--:--:--</span>
+                            <span class="log-message">System initialized. Ready to receive Arduino data.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
          FOOTER
     ============================================= -->
     <footer class="footer">
@@ -469,6 +641,7 @@
                     <a href="#team">Team</a>
                     <a href="#how-it-works">How It Works</a>
                     <a href="#fitness-dashboard">Fitness Dashboard</a>
+                    <a href="#arduino-health">Arduino Health</a>
                     <a href="https://github.com/GeneticAlgorithms/Mify" target="_blank" rel="noopener">GitHub</a>
                 </div>
                 <div class="footer-copyright">
@@ -488,5 +661,6 @@
     ============================================= -->
     <script src="js/main.js"></script>
     <script src="js/fitness-api.js"></script>
+    <script src="js/arduino-health.js"></script>
 </body>
 </html>
