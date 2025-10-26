@@ -14,6 +14,9 @@ class ArduinoHealthMonitor {
         this.initializeElements();
         this.setupEventListeners();
         this.startSimulation(); // For demo purposes
+        
+        // Make Arduino monitor globally accessible for AI chat
+        window.arduinoMonitor = this;
     }
 
     initializeElements() {
@@ -271,12 +274,21 @@ class AIHealthAgent {
             movement: { min: 0, max: 100, optimal: 50 },
             proximity: { min: 5, max: 20, optimal: 10 }
         };
+        
+        // Initialize the advanced AI agent
+        this.advancedAgent = new AdvancedAIHealthAgent();
     }
 
     analyzeData(data) {
-        // This would integrate with a real AI service
-        // For now, we'll provide simulated analysis
-        return this.generateInsights(data);
+        // Use the advanced AI agent for comprehensive analysis
+        const analysis = this.advancedAgent.processData(data);
+        
+        if (analysis) {
+            return analysis.insights;
+        } else {
+            // Fallback to simple analysis
+            return this.generateInsights(data);
+        }
     }
 
     generateInsights(data) {

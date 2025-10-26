@@ -48,6 +48,7 @@
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#fitness-dashboard">Fitness Dashboard</a></li>
         <li><a href="#arduino-health">Arduino Health</a></li>
+        <li><a href="#ai-chat">AI Assistant</a></li>
                 <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
                     <ion-icon name="logo-github"></ion-icon>
                     GitHub
@@ -599,6 +600,130 @@
     </section>
 
     <!-- ============================================
+         AI CHAT ASSISTANT
+    ============================================= -->
+    <section id="ai-chat" class="section">
+        <div class="container">
+            <h2 class="section-title">AI Health Assistant</h2>
+            <p class="section-description">
+                Chat with our AI agent to get personalized health insights, ask questions about your data, 
+                and receive recommendations based on your Arduino health monitoring.
+            </p>
+
+            <div class="ai-chat-container">
+                <!-- Chat Interface -->
+                <div class="chat-interface">
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                            <h3>Health AI Assistant</h3>
+                        </div>
+                        <div class="chat-status">
+                            <div id="ai-status" class="status-indicator">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                <span>Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <ion-icon name="medical-outline"></ion-icon>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Hello! I'm your AI Health Assistant. I can help you understand your health data, 
+                                    provide insights about your Arduino monitoring, and answer health-related questions. 
+                                    How can I assist you today?
+                                </div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                id="chat-input" 
+                                placeholder="Ask me about your health data, Arduino readings, or any health questions..."
+                                maxlength="500"
+                            >
+                            <button id="send-message" class="send-button">
+                                <ion-icon name="send-outline"></ion-icon>
+                            </button>
+                        </div>
+                        <div class="input-actions">
+                            <button class="quick-action" data-prompt="What do my current health readings mean?">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                                Current Readings
+                            </button>
+                            <button class="quick-action" data-prompt="Are there any health concerns I should know about?">
+                                <ion-icon name="warning-outline"></ion-icon>
+                                Health Concerns
+                            </button>
+                            <button class="quick-action" data-prompt="Give me recommendations for improving my health">
+                                <ion-icon name="bulb-outline"></ion-icon>
+                                Recommendations
+                            </button>
+                            <button class="quick-action" data-prompt="Explain my Arduino device setup">
+                                <ion-icon name="hardware-chip-outline"></ion-icon>
+                                Device Help
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights Panel -->
+                <div class="ai-insights-panel">
+                    <h3>AI Analysis</h3>
+                    <div id="ai-analysis" class="analysis-content">
+                        <div class="analysis-item">
+                            <div class="analysis-icon">
+                                <ion-icon name="trending-up-outline"></ion-icon>
+                            </div>
+                            <div class="analysis-text">
+                                <h4>Data Quality</h4>
+                                <p>Monitoring your health metrics in real-time</p>
+                            </div>
+                        </div>
+                        <div class="analysis-item">
+                            <div class="analysis-icon">
+                                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                            </div>
+                            <div class="analysis-text">
+                                <h4>Health Status</h4>
+                                <p>All systems functioning normally</p>
+                            </div>
+                        </div>
+                        <div class="analysis-item">
+                            <div class="analysis-icon">
+                                <ion-icon name="bulb-outline"></ion-icon>
+                            </div>
+                            <div class="analysis-text">
+                                <h4>Insights</h4>
+                                <p>Ready to provide personalized recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ai-capabilities">
+                        <h4>I can help with:</h4>
+                        <ul>
+                            <li><ion-icon name="checkmark-outline"></ion-icon> Health data interpretation</li>
+                            <li><ion-icon name="checkmark-outline"></ion-icon> Arduino device troubleshooting</li>
+                            <li><ion-icon name="checkmark-outline"></ion-icon> Lifestyle recommendations</li>
+                            <li><ion-icon name="checkmark-outline"></ion-icon> Health trend analysis</li>
+                            <li><ion-icon name="checkmark-outline"></ion-icon> Medical guidance (general)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
          FOOTER
     ============================================= -->
     <footer class="footer">
@@ -630,6 +755,8 @@
     ============================================= -->
     <script src="js/main.js"></script>
     <script src="js/fitness-api.js"></script>
+    <script src="js/ai-health-agent.js"></script>
     <script src="js/arduino-health.js"></script>
+    <script src="js/ai-chat.js"></script>
 </body>
 </html>
