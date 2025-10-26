@@ -510,10 +510,171 @@
                         <div id="activity-summary" class="chart-content">
                             <!-- Activity summary will be populated by JavaScript -->
                         </div>
+                </div>
+            </div>
+
+            <!-- Demo Health Analytics -->
+            <div class="demo-analytics">
+                <h3>Demo: Health Analytics Dashboard</h3>
+                <p class="section-description">
+                    See what your Arduino health data looks like when processed by our AI system. 
+                    These are sample visualizations generated from simulated sensor data.
+                </p>
+                
+                <div class="analytics-grid">
+                    <!-- Heart Rate Trend Chart -->
+                    <div class="chart-container">
+                        <h4>Heart Rate Trend (24h)</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="heartRateChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat">
+                                <span class="stat-label">Average:</span>
+                                <span class="stat-value">72 BPM</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Peak:</span>
+                                <span class="stat-value">95 BPM</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Resting:</span>
+                                <span class="stat-value">65 BPM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Movement Activity Chart -->
+                    <div class="chart-container">
+                        <h4>Movement Activity</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="movementChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat">
+                                <span class="stat-label">Active Time:</span>
+                                <span class="stat-value">4.2h</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Peak Activity:</span>
+                                <span class="stat-value">High</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Rest Periods:</span>
+                                <span class="stat-value">8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proximity Detection Chart -->
+                    <div class="chart-container">
+                        <h4>Proximity Detection</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="proximityChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat">
+                                <span class="stat-label">Avg Distance:</span>
+                                <span class="stat-value">15.3 cm</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Close Events:</span>
+                                <span class="stat-value">12</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Posture Score:</span>
+                                <span class="stat-value">Good</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Score Overview -->
+                    <div class="chart-container">
+                        <h4>Overall Health Score</h4>
+                        <div class="health-score-display">
+                            <div class="score-circle">
+                                <div class="score-value">87</div>
+                                <div class="score-label">Health Score</div>
+                            </div>
+                            <div class="score-breakdown">
+                                <div class="score-item">
+                                    <span class="score-category">Heart Rate</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span class="score-percentage">85%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-category">Activity</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 92%"></div>
+                                    </div>
+                                    <span class="score-percentage">92%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-category">Posture</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 78%"></div>
+                                    </div>
+                                    <span class="score-percentage">78%</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-category">Consistency</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 90%"></div>
+                                    </div>
+                                    <span class="score-percentage">90%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- AI Insights Section -->
+                <!-- AI Insights from Demo Data -->
+                <div class="demo-insights">
+                    <h4>AI-Generated Insights</h4>
+                    <div class="insights-grid">
+                        <div class="insight-card positive">
+                            <div class="insight-icon">
+                                <ion-icon name="trending-up-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Excellent Activity Pattern</h5>
+                                <p>Your movement data shows consistent activity throughout the day with good rest periods.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card warning">
+                            <div class="insight-icon">
+                                <ion-icon name="warning-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Posture Improvement Needed</h5>
+                                <p>Consider adjusting your workspace setup - proximity sensor detected frequent close-range readings.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card positive">
+                            <div class="insight-icon">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Stable Heart Rate</h5>
+                                <p>Your heart rate shows healthy variability with good recovery patterns after activity.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card info">
+                            <div class="insight-icon">
+                                <ion-icon name="bulb-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Recommendation</h5>
+                                <p>Try taking a 5-minute break every hour to improve posture and reduce eye strain.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Insights Section -->
                 <div class="ai-insights-section">
                     <h3>AI Health Insights</h3>
                     <div class="insights-grid">
@@ -600,10 +761,28 @@
                 <div class="wiring-guide-section">
                     <h3>Wiring Guide</h3>
                     <p class="section-description">
-                        Follow this visual guide to properly connect your Arduino UNO R4 WiFi with the health monitoring sensors.
+                        Follow the official Arduino guide to properly connect your Arduino UNO R4 WiFi with the HC-SR04 ultrasonic sensor and other components.
                     </p>
                     <div class="wiring-guide-container">
-                        <img src="assets/images/arduino-wiring-guide.svg" alt="Arduino UNO R4 WiFi Wiring Guide" class="wiring-guide-image">
+                        <div class="wiring-guide-content">
+                            <h4>HC-SR04 Ultrasonic Sensor Connections:</h4>
+                            <ul class="wiring-list">
+                                <li><strong>VCC</strong> → Arduino 5V</li>
+                                <li><strong>GND</strong> → Arduino GND</li>
+                                <li><strong>Trig</strong> → Arduino Digital Pin 9</li>
+                                <li><strong>Echo</strong> → Arduino Digital Pin 10</li>
+                            </ul>
+                            <div class="guide-links">
+                                <a href="https://www.arduino.cc/en/Guide/ArduinoUnoR4WiFi" target="_blank" rel="noopener" class="btn btn-primary">
+                                    <ion-icon name="link-outline"></ion-icon>
+                                    Official Arduino UNO R4 WiFi Guide
+                                </a>
+                                <a href="https://create.arduino.cc/projecthub/abdularbi17/ultrasonic-sensor-hc-sr04-with-arduino-tutorial-327ff6" target="_blank" rel="noopener" class="btn btn-secondary">
+                                    <ion-icon name="hardware-chip-outline"></ion-icon>
+                                    HC-SR04 Tutorial
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1240,5 +1419,7 @@
     <script src="js/arduino-health.js"></script>
     <!-- AI Chat Interface Script with ASI:One Integration -->
     <script src="js/ai-chat-asi-one.js"></script>
+    <!-- Demo Analytics Script -->
+    <script src="js/demo-analytics.js"></script>
 </body>
 </html>

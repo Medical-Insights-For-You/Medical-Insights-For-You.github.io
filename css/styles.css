@@ -2103,6 +2103,306 @@ body {
 }
 
 /* ============================================
+   DEMO ANALYTICS STYLES
+============================================= */
+.demo-analytics {
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl);
+    background: var(--bg-overlay);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-subtle);
+}
+
+.demo-analytics h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.chart-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    transition: var(--transition-smooth);
+}
+
+.chart-container:hover {
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary-blue);
+}
+
+.chart-container h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.chart-wrapper {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--border-subtle);
+}
+
+.chart-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
+.stat {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-value {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.health-score-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary-blue) 0deg 313deg, var(--bg-overlay) 313deg 360deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.score-circle::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--bg-card);
+    border-radius: 50%;
+}
+
+.score-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    z-index: 1;
+}
+
+.score-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    z-index: 1;
+}
+
+.score-breakdown {
+    width: 100%;
+}
+
+.score-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.score-category {
+    min-width: 80px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.score-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-overlay);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.score-percentage {
+    min-width: 40px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: right;
+}
+
+.demo-insights {
+    margin-top: var(--space-xl);
+}
+
+.demo-insights h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+}
+
+.insight-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    transition: var(--transition-smooth);
+}
+
+.insight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.insight-card.positive {
+    border-left: 4px solid var(--medical-green);
+}
+
+.insight-card.warning {
+    border-left: 4px solid #f39c12;
+}
+
+.insight-card.info {
+    border-left: 4px solid var(--primary-blue);
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insight-card.positive .insight-icon {
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--medical-green);
+}
+
+.insight-card.warning .insight-icon {
+    background: rgba(243, 156, 18, 0.1);
+    color: #f39c12;
+}
+
+.insight-card.info .insight-icon {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--primary-blue);
+}
+
+.insight-content h5 {
+    color: var(--text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.insight-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Responsive Design for Demo Analytics */
+@media (max-width: 768px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-stats {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .stat {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .stat-label {
+        margin-bottom: 0;
+    }
+    
+    .health-score-display {
+        gap: var(--space-md);
+    }
+    
+    .score-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .score-circle::before {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .score-value {
+        font-size: 1.5rem;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insight-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ============================================
    WIRING GUIDE STYLES
 ============================================= */
 .wiring-guide-section {
@@ -2133,16 +2433,79 @@ body {
     overflow-x: auto;
 }
 
-.wiring-guide-image {
-    max-width: 100%;
-    height: auto;
+.wiring-guide-content {
+    background: var(--bg-card);
+    padding: var(--space-lg);
     border-radius: var(--border-radius);
+    border: 1px solid var(--border-subtle);
+}
+
+.wiring-guide-content h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.wiring-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+}
+
+.wiring-list li {
+    background: var(--bg-overlay);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-blue);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+}
+
+.wiring-list strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.guide-links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.guide-links .btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--border-radius);
+    font-weight: 500;
     transition: var(--transition-smooth);
 }
 
-.wiring-guide-image:hover {
-    transform: scale(1.02);
+.guide-links .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.guide-links .btn-primary:hover {
+    transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
+}
+
+.guide-links .btn-secondary {
+    background: var(--bg-overlay);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+}
+
+.guide-links .btn-secondary:hover {
+    background: var(--bg-card);
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
 }
 
 /* Responsive Wiring Guide */
