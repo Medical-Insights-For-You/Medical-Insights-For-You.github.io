@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mify - Debug Console</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 2rem;
+        }
+        .debug-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .debug-section {
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .debug-button {
+            background: #00d4ff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+        .debug-button:hover {
+            background: #00b4d8;
+        }
+        .debug-result {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            border-color: rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+        }
+        .error {
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        .warning {
+            border-color: rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+        }
+        .info {
+            border-color: rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🔧 Mify Fitness Dashboard Debug Console</h1>
+        
+        <div class="debug-section">
+            <h2>1. Environment Check</h2>
+            <p>Check if the basic environment is working correctly.</p>
+            <button class="debug-button" onclick="checkEnvironment()">Check Environment</button>
+            <div id="env-result" class="debug-result" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h2>2. File Loading Check</h2>
+            <p>Verify that all required files are loading properly.</p>
+            <button class="debug-button" onclick="checkFileLoading()">Check File Loading</button>
+            <div id="files-result" class="debug-result" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h2>3. API Configuration Check</h2>
+            <p>Verify the Google Fitness API configuration.</p>
+            <button class="debug-button" onclick="checkAPIConfig()">Check API Config</button>
+            <div id="api-result" class="debug-result" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h2>4. OAuth Flow Test</h2>
+            <p>Test the OAuth authentication flow.</p>
+            <button class="debug-button" onclick="testOAuthFlow()">Test OAuth Flow</button>
+            <div id="oauth-result" class="debug-result" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h2>5. DOM Elements Check</h2>
+            <p>Verify that all required DOM elements exist.</p>
+            <button class="debug-button" onclick="checkDOMElements()">Check DOM Elements</button>
+            <div id="dom-result" class="debug-result" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h2>6. JavaScript Errors</h2>
+            <p>Check for any JavaScript errors in the console.</p>
+            <button class="debug-button" onclick="checkJSErrors()">Check JS Errors</button>
+            <div id="js-result" class="debug-result" style="display: none;"></div>
+        </div>
+
+        <div class="debug-section">
+            <h2>7. Network Requests</h2>
+            <p>Test network connectivity and API endpoints.</p>
+            <button class="debug-button" onclick="testNetworkRequests()">Test Network</button>
+            <div id="network-result" class="debug-result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        let debugResults = [];
+        
+        function showResult(elementId, content, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.textContent = content;
+            element.className = `debug-result ${type}`;
+        }
+
+        function checkEnvironment() {
+            const results = {
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                protocol: window.location.protocol,
+                host: window.location.host,
+                localStorage: typeof(Storage) !== "undefined",
+                fetch: typeof(fetch) !== "undefined",
+                es6Support: (() => {
+                    try {
+                        new Function("(a = 0) => a");
+                        return true;
+                    } catch (err) {
+                        return false;
+                    }
+                })(),
+                https: window.location.protocol === 'https:',
+                timestamp: new Date().toISOString()
+            };
+
+            const issues = [];
+            if (!results.https) issues.push("⚠️ Not using HTTPS - OAuth may not work");
+            if (!results.localStorage) issues.push("❌ localStorage not supported");
+            if (!results.fetch) issues.push("❌ Fetch API not supported");
+            if (!results.es6Support) issues.push("❌ ES6 not supported");
+
+            let output = "Environment Check Results:\n\n";
+            output += `✅ User Agent: ${results.userAgent}\n`;
+            output += `✅ URL: ${results.url}\n`;
+            output += `✅ Protocol: ${results.protocol}\n`;
+            output += `✅ Host: ${results.host}\n`;
+            output += `✅ localStorage: ${results.localStorage ? 'Supported' : 'Not Supported'}\n`;
+            output += `✅ Fetch API: ${results.fetch ? 'Supported' : 'Not Supported'}\n`;
+            output += `✅ ES6 Support: ${results.es6Support ? 'Supported' : 'Not Supported'}\n`;
+            output += `✅ HTTPS: ${results.https ? 'Yes' : 'No'}\n`;
+            output += `✅ Timestamp: ${results.timestamp}\n\n`;
+
+            if (issues.length > 0) {
+                output += "Issues Found:\n";
+                issues.forEach(issue => output += `${issue}\n`);
+                showResult('env-result', output, 'warning');
+            } else {
+                output += "✅ All environment checks passed!";
+                showResult('env-result', output, 'success');
+            }
+        }
+
+        function checkFileLoading() {
+            const files = [
+                'css/styles.css',
+                'js/main.js',
+                'js/fitness-api.js',
+                'auth/callback.html'
+            ];
+
+            let output = "File Loading Check:\n\n";
+            let allLoaded = true;
+
+            files.forEach(file => {
+                const link = document.querySelector(`link[href="${file}"]`) || 
+                           document.querySelector(`script[src="${file}"]`);
+                if (link) {
+                    output += `✅ ${file} - Found in DOM\n`;
+                } else {
+                    output += `❌ ${file} - Not found in DOM\n`;
+                    allLoaded = false;
+                }
+            });
+
+            // Check if fitness-api.js is loaded
+            if (typeof GoogleFitnessAPI !== 'undefined') {
+                output += `✅ GoogleFitnessAPI class - Loaded\n`;
+            } else {
+                output += `❌ GoogleFitnessAPI class - Not loaded\n`;
+                allLoaded = false;
+            }
+
+            if (typeof FitnessDashboard !== 'undefined') {
+                output += `✅ FitnessDashboard class - Loaded\n`;
+            } else {
+                output += `❌ FitnessDashboard class - Not loaded\n`;
+                allLoaded = false;
+            }
+
+            showResult('files-result', output, allLoaded ? 'success' : 'error');
+        }
+
+        function checkAPIConfig() {
+            try {
+                if (typeof GoogleFitnessAPI === 'undefined') {
+                    showResult('api-result', '❌ GoogleFitnessAPI class not loaded. Check if js/fitness-api.js is loading correctly.', 'error');
+                    return;
+                }
+
+                const api = new GoogleFitnessAPI();
+                const config = {
+                    clientId: api.clientId,
+                    redirectUri: api.redirectUri,
+                    scope: api.scope,
+                    baseURL: api.baseURL,
+                    hasAccessToken: !!api.accessToken,
+                    tokenExpiry: api.tokenExpiry,
+                    isAuthenticated: api.isAuthenticated()
+                };
+
+                let output = "API Configuration:\n\n";
+                output += `✅ Client ID: ${config.clientId}\n`;
+                output += `✅ Redirect URI: ${config.redirectUri}\n`;
+                output += `✅ Scope: ${config.scope}\n`;
+                output += `✅ Base URL: ${config.baseURL}\n`;
+                output += `✅ Has Access Token: ${config.hasAccessToken}\n`;
+                output += `✅ Token Expiry: ${config.tokenExpiry || 'None'}\n`;
+                output += `✅ Is Authenticated: ${config.isAuthenticated}\n\n`;
+
+                // Check for common issues
+                const issues = [];
+                if (!config.clientId) issues.push("❌ Client ID is missing");
+                if (!config.redirectUri.includes('https://')) issues.push("⚠️ Redirect URI should use HTTPS");
+                if (!config.scope.includes('fitness')) issues.push("❌ Fitness scope is missing");
+
+                if (issues.length > 0) {
+                    output += "Issues Found:\n";
+                    issues.forEach(issue => output += `${issue}\n`);
+                    showResult('api-result', output, 'warning');
+                } else {
+                    output += "✅ API configuration looks good!";
+                    showResult('api-result', output, 'success');
+                }
+            } catch (error) {
+                showResult('api-result', `❌ Error checking API config: ${error.message}`, 'error');
+            }
+        }
+
+        function testOAuthFlow() {
+            try {
+                if (typeof GoogleFitnessAPI === 'undefined') {
+                    showResult('oauth-result', '❌ GoogleFitnessAPI class not loaded.', 'error');
+                    return;
+                }
+
+                const api = new GoogleFitnessAPI();
+                
+                let output = "OAuth Flow Test:\n\n";
+                
+                // Test OAuth URL generation
+                const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
+                authUrl.searchParams.set('client_id', api.clientId);
+                authUrl.searchParams.set('redirect_uri', api.redirectUri);
+                authUrl.searchParams.set('response_type', 'code');
+                authUrl.searchParams.set('scope', api.scope);
+                authUrl.searchParams.set('access_type', 'offline');
+                authUrl.searchParams.set('prompt', 'consent');
+
+                output += `✅ OAuth URL Generated: ${authUrl.toString()}\n\n`;
+                
+                // Check for stored auth codes
+                const authCode = localStorage.getItem('google_auth_code');
+                const authState = localStorage.getItem('google_auth_state');
+                
+                output += `✅ Stored Auth Code: ${authCode ? 'Found' : 'None'}\n`;
+                output += `✅ Stored Auth State: ${authState ? 'Found' : 'None'}\n\n`;
+
+                // Check current authentication status
+                output += `✅ Current Auth Status: ${api.isAuthenticated() ? 'Authenticated' : 'Not Authenticated'}\n`;
+
+                if (api.isAuthenticated()) {
+                    output += `✅ Access Token: ${api.accessToken.substring(0, 20)}...\n`;
+                    output += `✅ Token Expiry: ${new Date(Number.parseInt(api.tokenExpiry)).toISOString()}\n`;
+                }
+
+                showResult('oauth-result', output, 'success');
+            } catch (error) {
+                showResult('oauth-result', `❌ OAuth test error: ${error.message}`, 'error');
+            }
+        }
+
+        function checkDOMElements() {
+            const elements = [
+                'fitness-login-section',
+                'fitness-dashboard-section',
+                'fitness-login-btn',
+                'fitness-logout-btn',
+                'fitness-refresh-btn',
+                'fitness-date-range',
+                'fitness-stats',
+                'steps-chart',
+                'calories-chart',
+                'activity-summary'
+            ];
+
+            let output = "DOM Elements Check:\n\n";
+            let allFound = true;
+
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    output += `✅ #${id} - Found\n`;
+                } else {
+                    output += `❌ #${id} - Not found\n`;
+                    allFound = false;
+                }
+            });
+
+            showResult('dom-result', output, allFound ? 'success' : 'error');
+        }
+
+        function checkJSErrors() {
+            let output = "JavaScript Errors Check:\n\n";
+            
+            // Override console.error to capture errors
+            const originalError = console.error;
+            const errors = [];
+            
+            console.error = function(...args) {
+                errors.push(args.join(' '));
+                originalError.apply(console, args);
+            };
+
+            // Try to initialize the fitness dashboard
+            try {
+                if (typeof FitnessDashboard !== 'undefined') {
+                    const dashboard = new FitnessDashboard();
+                    output += `✅ FitnessDashboard initialized successfully\n`;
+                } else {
+                    output += `❌ FitnessDashboard class not available\n`;
+                }
+            } catch (error) {
+                output += `❌ Error initializing FitnessDashboard: ${error.message}\n`;
+            }
+
+            // Restore original console.error
+            console.error = originalError;
+
+            if (errors.length > 0) {
+                output += `\nErrors captured:\n`;
+                errors.forEach(error => output += `❌ ${error}\n`);
+                showResult('js-result', output, 'error');
+            } else {
+                output += `✅ No JavaScript errors detected`;
+                showResult('js-result', output, 'success');
+            }
+        }
+
+        async function testNetworkRequests() {
+            let output = "Network Requests Test:\n\n";
+            
+            try {
+                // Test basic connectivity
+                const response = await fetch('https://www.googleapis.com/fitness/v1/users/me/dataSources', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer test-token'
+                    }
+                });
+                
+                output += `✅ Google Fitness API endpoint reachable\n`;
+                output += `✅ Response status: ${response.status}\n`;
+                
+                if (response.status === 401) {
+                    output += `✅ Expected 401 (unauthorized) - API is working\n`;
+                }
+                
+            } catch (error) {
+                output += `❌ Network error: ${error.message}\n`;
+            }
+
+            // Test OAuth endpoints
+            try {
+                const oauthResponse = await fetch('https://accounts.google.com/o/oauth2/v2/auth');
+                output += `✅ Google OAuth endpoint reachable\n`;
+            } catch (error) {
+                output += `❌ OAuth endpoint error: ${error.message}\n`;
+            }
+
+            showResult('network-result', output, 'info');
+        }
+
+        // Auto-run environment check on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(checkEnvironment, 1000);
+        });
+    </script>
+</body>
+</html>
