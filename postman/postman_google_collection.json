@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "6920c59f-fbb5-4f80-908d-462d6ede8669",
+		"name": "MIFY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17620155",
+		"_collection_link": "https://warped-spaceship-629026.postman.co/workspace/ChatApp~85759660-5fdd-4c8a-9c7b-3cff2d16d6ba/collection/17620155-6920c59f-fbb5-4f80-908d-462d6ede8669?action=share&source=collection_link&creator=17620155"
+	},
+	"item": [
+		{
+			"name": "Test Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ya29.a0ATi6K2u6ZwZ5bPRJimav0Ya2z7F65pPxZ6qBEDs_AEnItEtOlqsz4tdDlnHM5rVPdK4WEgcc8GHR7tDdzKjzP8saAEQlVVexBZOkq8zjIfFoif6-_saIS64lw4JPbyVZXY0yWC53jQRwqgmvtkAgC2MZ5TpiPNKpZKffKTua3xYxaKP9V0C3oAcBmtUcdru5ksWeUFMaCgYKAc8SARESFQHGX2MiMvmNkHpdpSkZJsEpQcOwtg0206",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.googleapis.com/fitness/v1/users/me/dataSources",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fitness",
+						"v1",
+						"users",
+						"me",
+						"dataSources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Google Fit Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ya29.a0ATi6K2u6ZwZ5bPRJimav0Ya2z7F65pPxZ6qBEDs_AEnItEtOlqsz4tdDlnHM5rVPdK4WEgcc8GHR7tDdzKjzP8saAEQlVVexBZOkq8zjIfFoif6-_saIS64lw4JPbyVZXY0yWC53jQRwqgmvtkAgC2MZ5TpiPNKpZKffKTua3xYxaKP9V0C3oAcBmtUcdru5ksWeUFMaCgYKAc8SARESFQHGX2MiMvmNkHpdpSkZJsEpQcOwtg0206",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/fitness/v1/users/me/dataSources",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"fitness",
+						"v1",
+						"users",
+						"me",
+						"dataSources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Google Fit Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ya29.a0ATi6K2u6ZwZ5bPRJimav0Ya2z7F65pPxZ6qBEDs_AEnItEtOlqsz4tdDlnHM5rVPdK4WEgcc8GHR7tDdzKjzP8saAEQlVVexBZOkq8zjIfFoif6-_saIS64lw4JPbyVZXY0yWC53jQRwqgmvtkAgC2MZ5TpiPNKpZKffKTua3xYxaKP9V0C3oAcBmtUcdru5ksWeUFMaCgYKAc8SARESFQHGX2MiMvmNkHpdpSkZJsEpQcOwtg0206",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"aggregateBy\": [\r\n    {\r\n      \"dataTypeName\": \"com.google.step_count.delta\"\r\n    },\r\n    {\r\n      \"dataTypeName\": \"com.google.calories.expended\"\r\n    },\r\n    {\r\n      \"dataTypeName\": \"com.google.activity.segment\"\r\n    }\r\n  ],\r\n  \"bucketByTime\": {\r\n    \"durationMillis\": 86400000\r\n  },\r\n  \"startTimeMillis\": 1727481600000,\r\n  \"endTimeMillis\": 1730246400000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fitness",
+						"v1",
+						"users",
+						"me",
+						"dataset:aggregate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessTokenUrl",
+				"value": "https://oauth2.googleapis.com/token",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "santhusha",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "https://www.googleapis.com/auth/fitness.activity.read",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "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",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "1059140530421-kbdp5vbd6ef9nrqlrskdnholmr5fu935.apps.googleusercontent.com",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.google.com/o/oauth2/v2/auth",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://oauth.pstmn.io/v1/callback",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

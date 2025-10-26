@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mify - Fitness API Test</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 2rem;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .test-button {
+            background: #00d4ff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+        .test-button:hover {
+            background: #00b4d8;
+        }
+        .test-result {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+        }
+        .success {
+            border-color: rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+        }
+        .error {
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Mify Fitness API Integration Test</h1>
+        
+        <div class="test-section">
+            <h2>API Configuration Test</h2>
+            <p>Test the Google Fitness API configuration and authentication setup.</p>
+            <button class="test-button" onclick="testAPIConfig()">Test API Config</button>
+            <button class="test-button" onclick="testAuthentication()">Test Authentication</button>
+            <div id="config-result" class="test-result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Data Sources Test</h2>
+            <p>Test fetching available data sources from Google Fit.</p>
+            <button class="test-button" onclick="testDataSources()">Get Data Sources</button>
+            <div id="sources-result" class="test-result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Fitness Data Test</h2>
+            <p>Test fetching actual fitness data (requires authentication).</p>
+            <button class="test-button" onclick="testFitnessData()">Get Fitness Data</button>
+            <div id="fitness-result" class="test-result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Dashboard Integration Test</h2>
+            <p>Test the dashboard components and data visualization.</p>
+            <button class="test-button" onclick="testDashboard()">Test Dashboard</button>
+            <div id="dashboard-result" class="test-result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="js/fitness-api.js"></script>
+    <script>
+        let api;
+        
+        // Initialize API when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            api = new GoogleFitnessAPI();
+            console.log('Fitness API initialized');
+        });
+
+        function showResult(elementId, content, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.textContent = content;
+            element.className = `test-result ${isSuccess ? 'success' : 'error'}`;
+        }
+
+        function testAPIConfig() {
+            try {
+                const config = {
+                    clientId: api.clientId,
+                    redirectUri: api.redirectUri,
+                    scope: api.scope,
+                    baseURL: api.baseURL,
+                    isAuthenticated: api.isAuthenticated()
+                };
+                
+                showResult('config-result', JSON.stringify(config, null, 2), true);
+            } catch (error) {
+                showResult('config-result', `Error: ${error.message}`, false);
+            }
+        }
+
+        async function testAuthentication() {
+            try {
+                if (api.isAuthenticated()) {
+                    showResult('config-result', '✅ Already authenticated with valid token', true);
+                } else {
+                    showResult('config-result', '❌ Not authenticated. Click "Connect Google Fit" to authenticate.', false);
+                }
+            } catch (error) {
+                showResult('config-result', `Authentication error: ${error.message}`, false);
+            }
+        }
+
+        async function testDataSources() {
+            try {
+                if (!api.isAuthenticated()) {
+                    showResult('sources-result', '❌ Not authenticated. Please authenticate first.', false);
+                    return;
+                }
+
+                const dataSources = await api.getDataSources();
+                showResult('sources-result', JSON.stringify(dataSources, null, 2), true);
+            } catch (error) {
+                showResult('sources-result', `Error fetching data sources: ${error.message}`, false);
+            }
+        }
+
+        async function testFitnessData() {
+            try {
+                if (!api.isAuthenticated()) {
+                    showResult('fitness-result', '❌ Not authenticated. Please authenticate first.', false);
+                    return;
+                }
+
+                const fitnessData = await api.getRecentFitnessData(7);
+                const parsedData = api.parseFitnessData(fitnessData);
+                showResult('fitness-result', JSON.stringify(parsedData, null, 2), true);
+            } catch (error) {
+                showResult('fitness-result', `Error fetching fitness data: ${error.message}`, false);
+            }
+        }
+
+        function testDashboard() {
+            try {
+                // Test if dashboard elements exist
+                const dashboard = document.getElementById('fitness-dashboard-section');
+                const loginSection = document.getElementById('fitness-login-section');
+                const stats = document.getElementById('fitness-stats');
+                
+                const results = {
+                    dashboardExists: !!dashboard,
+                    loginSectionExists: !!loginSection,
+                    statsExists: !!stats,
+                    apiInitialized: !!api,
+                    isAuthenticated: api ? api.isAuthenticated() : false
+                };
+
+                showResult('dashboard-result', JSON.stringify(results, null, 2), true);
+            } catch (error) {
+                showResult('dashboard-result', `Dashboard test error: ${error.message}`, false);
+            }
+        }
+
+        // Add some mock data for testing visualization
+        function createMockData() {
+            const mockData = {
+                steps: [
+                    { date: new Date('2024-01-01'), value: 8500 },
+                    { date: new Date('2024-01-02'), value: 9200 },
+                    { date: new Date('2024-01-03'), value: 7800 },
+                    { date: new Date('2024-01-04'), value: 10500 },
+                    { date: new Date('2024-01-05'), value: 8800 },
+                    { date: new Date('2024-01-06'), value: 9600 },
+                    { date: new Date('2024-01-07'), value: 11200 }
+                ],
+                calories: [
+                    { date: new Date('2024-01-01'), value: 2100 },
+                    { date: new Date('2024-01-02'), value: 2350 },
+                    { date: new Date('2024-01-03'), value: 1980 },
+                    { date: new Date('2024-01-04'), value: 2650 },
+                    { date: new Date('2024-01-05'), value: 2200 },
+                    { date: new Date('2024-01-06'), value: 2400 },
+                    { date: new Date('2024-01-07'), value: 2800 }
+                ],
+                activities: [
+                    { date: new Date('2024-01-01'), activity: 5, duration: 3600000000000 }, // Walking
+                    { date: new Date('2024-01-02'), activity: 6, duration: 1800000000000 }, // Running
+                    { date: new Date('2024-01-03'), activity: 1, duration: 7200000000000 }  // Biking
+                ]
+            };
+            return mockData;
+        }
+    </script>
+</body>
+</html>

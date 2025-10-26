@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ============================================
+         META TAGS & BASIC SETUP
+    ============================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mify - Medical Insights for You</title>
+    <meta name="description" content="Mify is an AI Agent that transforms health data from wearables into actionable medical insights for both physicians and patients. Get personalized health analytics from your Apple Watch and fitness trackers.">
+    <meta name="author" content="Mify Team">
+    <meta name="keywords" content="Mify, medical insights, AI agent, health data, wearables, Apple Watch, fitness trackers, physician insights, patient insights, health analytics">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9InN0YXJHbG93IiB4PSItNTAlIiB5PSItNTAlIiB3aWR0aD0iMjAwJSIgaGVpZ2h0PSIyMDAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjIiIHJlc3VsdD0iYmx1ciIvPgogICAgICA8ZmVGbG9vZCBmbG9vZC1jb2xvcj0iIzAwZDRmZiIgZmxvb2Qtb3BhY2l0eT0iMC44IiByZXN1bHQ9ImNvbG9yIi8+CiAgICAgIDxmZUNvbXBvc2l0ZSBpbj0iY29sb3IiIGluMj0iYmx1ciIgb3BlcmF0b3I9ImluIiByZXN1bHQ9Imdsb3ciLz4KICAgICAgPGZlTWVyZ2U+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJnbG93Ii8+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+CiAgICAgIDwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8cGF0aCBkPSJNMjAgMkwyMi41IDZMMjYuNSA2TDIzLjUgOC41TDI1IDEyLjVMMjAgMTAuNUwxNSAxMi41TDE2LjUgOC41TDEzLjUgNkwxNy41IDZMMjAgMloiIGZpbGw9IndoaXRlIiBmaWx0ZXI9InVybCgjc3Rhckdsb3cpIi8+CiAgPHBhdGggZD0iTTIwIDRMMjEuNSA3TDI0IDdMMjIuNSA4LjVMMjMuNSAxMUwyMCA5LjVMMTYuNSAxMUwxNy41IDguNUwxNiA3TDE4LjUgN0wyMCA0WiIgZmlsbD0iIzAwZDRmZiIgZmlsdGVyPSJ1cmwoI3N0YXJHbG93KSIvPgogIDxwYXRoIGQ9Ik0yMCA2TDIxIDhMMjMgOEwyMiA5TDIyLjUgMTAuNUwyMCA5LjVMMTcuNSAxMC41TDE4IDlMMTcgOEwxOSA4TDIwIDZaIiBmaWxsPSJ3aGl0ZSIgZmlsdGVyPSJ1cmwoI3N0YXJHbG93KSIvPgogIDxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEuNSIgZmlsbD0iIzAwZDRmZiIgZmlsdGVyPSJ1cmwoI3N0YXJHbG93KSIvPgo8L3N2Zz4K" type="image/svg+xml">
+    
+    <!-- ============================================
+         EXTERNAL DEPENDENCIES
+    ============================================= -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Ion Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- ============================================
+         CSS STYLES
+    ============================================= -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- ============================================
+         NAVIGATION
+    ============================================= -->
+    <nav class="nav">
+        <div class="nav-content">
+        <a href="#home" class="logo">
+            <span class="logo-text">Mify</span>
+        </a>
+        
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#fitness-dashboard">Fitness Dashboard</a></li>
+                <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
+                    <ion-icon name="logo-github"></ion-icon>
+                    GitHub
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION
+    ============================================= -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-subtitle">AI-Powered Health Analytics</p>
+                <h1>Transform Your <span class="highlight">Health Data</span> Into Medical Insights</h1>
+                <p class="hero-description">
+                    Mify bridges the gap between wearable health data and meaningful medical insights, 
+                    empowering both healthcare providers and patients with actionable information.
+                </p>
+                <div class="hero-cta">
+                    <a href="#about" class="btn btn-primary">
+                        <ion-icon name="arrow-down-outline"></ion-icon>
+                        Learn More
+                    </a>
+                    <a href="https://github.com/GeneticAlgorithms/Mify" class="btn btn-secondary" target="_blank" rel="noopener">
+                        <ion-icon name="logo-github"></ion-icon>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+    ============================================= -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Mify</h2>
+            <p class="section-description">
+                Mify bridges the gap between wearable health data and meaningful medical insights, 
+                empowering both healthcare providers and patients with actionable information.
+            </p>
+            
+            <div class="about-content">
+                    <div class="about-text">
+                    <h3>Revolutionizing Healthcare Analytics</h3>
+                    <p>
+                        In today's digital health landscape, patients generate vast amounts of data through 
+                        wearables and fitness trackers. However, this valuable information often remains 
+                        underutilized due to the complexity of analysis and interpretation.
+                    </p>
+                    <p>
+                        Mify solves this challenge by leveraging advanced AI algorithms to process, analyze, 
+                        and present health data in formats that are meaningful for both medical professionals 
+                        and patients. Our platform transforms raw sensor data into actionable insights that 
+                        can inform treatment decisions and improve health outcomes.
+                    </p>
+                    <h3>Dual-Perspective Insights</h3>
+                    <p>
+                        Our AI Agent provides specialized views for different users:
+                    </p>
+                    <ul style="color: var(--text-secondary); margin-left: var(--space-lg);">
+                        <li><strong>Provider View:</strong> Clinical-grade analytics for healthcare professionals</li>
+                        <li><strong>Patient View:</strong> User-friendly insights for personal health management</li>
+                    </ul>
+                        </div>
+                        
+                <div class="about-visual">
+                    <h4>Data Flow Process</h4>
+                    <div class="data-flow">
+                        <div class="data-step">
+                            <div class="data-step-icon">
+                                <ion-icon name="watch-outline"></ion-icon>
+                        </div>
+                            <div class="data-step-text">Wearable Data</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="data-step">
+                            <div class="data-step-icon">
+                                <ion-icon name="document-text-outline"></ion-icon>
+                        </div>
+                            <div class="data-step-text">JSON Conversion</div>
+                    </div>
+                        <div class="arrow">→</div>
+                        <div class="data-step">
+                            <div class="data-step-icon">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                </div>
+                            <div class="data-step-text">AI Analysis</div>
+                            </div>
+                        <div class="arrow">→</div>
+                        <div class="data-step">
+                            <div class="data-step-icon">
+                                <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+                            <div class="data-step-text">Insights</div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <!-- Statistical Graph Section -->
+            <div class="stats-section">
+                <h3 class="stats-title">AI vs Traditional Healthcare Diagnostics</h3>
+                <p class="stats-subtitle">Data-driven comparison of diagnostic performance and efficiency</p>
+                
+                <div class="graph-container">
+                    <!-- Trend Line Graph - Diagnostic Accuracy Over Time -->
+                    <div class="metric-card">
+                        <h4 class="metric-title">Diagnostic Accuracy Trend (2019-2024)</h4>
+                        <div class="trend-chart">
+                            <div class="chart-axis">
+                                <div class="axis-label x" style="left: 10%;">2019</div>
+                                <div class="axis-label x" style="left: 30%;">2020</div>
+                                <div class="axis-label x" style="left: 50%;">2021</div>
+                                <div class="axis-label x" style="left: 70%;">2022</div>
+                                <div class="axis-label x" style="left: 90%;">2023</div>
+                                <div class="axis-label y" style="top: 10%;">100%</div>
+                                <div class="axis-label y" style="top: 30%;">80%</div>
+                                <div class="axis-label y" style="top: 50%;">60%</div>
+                                <div class="axis-label y" style="top: 70%;">40%</div>
+                                <div class="axis-label y" style="top: 90%;">20%</div>
+                                
+                                <!-- Traditional Method Trend Line -->
+                                <div class="trend-line traditional" style="bottom: 25%; left: 10%; width: 80%; transform: rotate(-2deg);"></div>
+                                
+                                <!-- AI Method Trend Line -->
+                                <div class="trend-line ai" style="bottom: 15%; left: 10%; width: 80%; transform: rotate(-5deg);"></div>
+                                
+                                <!-- Traditional Data Points -->
+                                <div class="data-point traditional" style="bottom: 25%; left: 10%;">
+                                    <span class="data-point-value">72%</span>
+                                </div>
+                                <div class="data-point traditional" style="bottom: 28%; left: 30%;">
+                                    <span class="data-point-value">74%</span>
+                                </div>
+                                <div class="data-point traditional" style="bottom: 26%; left: 50%;">
+                                    <span class="data-point-value">75%</span>
+                                </div>
+                                <div class="data-point traditional" style="bottom: 27%; left: 70%;">
+                                    <span class="data-point-value">76%</span>
+                                </div>
+                                <div class="data-point traditional" style="bottom: 25%; left: 90%;">
+                                    <span class="data-point-value">77%</span>
+                                </div>
+                                
+                                <!-- AI Data Points -->
+                                <div class="data-point ai" style="bottom: 15%; left: 10%;">
+                                    <span class="data-point-value">65%</span>
+                                </div>
+                                <div class="data-point ai" style="bottom: 12%; left: 30%;">
+                                    <span class="data-point-value">72%</span>
+                                </div>
+                                <div class="data-point ai" style="bottom: 10%; left: 50%;">
+                                    <span class="data-point-value">78%</span>
+                                </div>
+                                <div class="data-point ai" style="bottom: 8%; left: 70%;">
+                                    <span class="data-point-value">82%</span>
+                                </div>
+                                <div class="data-point ai" style="bottom: 5%; left: 90%;">
+                                    <span class="data-point-value">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pie Chart - Market Share -->
+                    <div class="metric-card">
+                        <h4 class="metric-title">Healthcare AI Adoption (2024)</h4>
+                        <div class="pie-chart">
+                            <div class="pie-slice ai"></div>
+                            <div class="pie-slice traditional"></div>
+                            <div class="pie-center">65%<br>AI</div>
+                        </div>
+                        <div style="margin-top: var(--space-md); font-size: 0.875rem; color: var(--text-secondary);">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-sm); margin-bottom: var(--space-xs);">
+                                <div style="width: 12px; height: 12px; background: var(--primary-blue); border-radius: 2px;"></div>
+                                <span>AI-Powered Diagnostics: 65%</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-sm);">
+                                <div style="width: 12px; height: 12px; background: #64748b; border-radius: 2px;"></div>
+                                <span>Traditional Methods: 35%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Histogram - Cost Distribution -->
+                    <div class="metric-card">
+                        <h4 class="metric-title">Cost Distribution Analysis</h4>
+                        <div class="histogram">
+                            <div class="histogram-bar traditional" style="height: 100%;">
+                                <span class="histogram-value">$120</span>
+                                <div class="histogram-label">Traditional</div>
+                            </div>
+                            <div class="histogram-bar ai" style="height: 37.5%;">
+                                <span class="histogram-value">$45</span>
+                                <div class="histogram-label">AI Agent</div>
+                            </div>
+                            <div class="histogram-bar traditional" style="height: 83%;">
+                                <span class="histogram-value">$100</span>
+                                <div class="histogram-label">Hybrid</div>
+                            </div>
+                            <div class="histogram-bar ai" style="height: 25%;">
+                                <span class="histogram-value">$30</span>
+                                <div class="histogram-label">AI+</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Histogram -->
+                    <div class="metric-card">
+                        <h4 class="metric-title">Processing Speed Distribution</h4>
+                        <div class="histogram">
+                            <div class="histogram-bar traditional" style="height: 90%;">
+                                <span class="histogram-value">45min</span>
+                                <div class="histogram-label">Traditional</div>
+                            </div>
+                            <div class="histogram-bar ai" style="height: 20%;">
+                                <span class="histogram-value">10min</span>
+                                <div class="histogram-label">AI Agent</div>
+                            </div>
+                            <div class="histogram-bar traditional" style="height: 60%;">
+                                <span class="histogram-value">30min</span>
+                                <div class="histogram-label">Hybrid</div>
+                            </div>
+                            <div class="histogram-bar ai" style="height: 15%;">
+                                <span class="histogram-value">7min</span>
+                                <div class="histogram-label">AI+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-sources">
+                    <h4>Data Sources & References</h4>
+                    <ul>
+                        <li>
+                            <strong>Diagnostic Accuracy:</strong> 
+                            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11929846/" target="_blank" rel="noopener">
+                                Systematic Review of AI vs Physician Diagnostic Performance (2024)
+                            </a>
+                        </li>
+                        <li>
+                            <strong>Processing Time & Cost:</strong> 
+                            <a href="https://www.linkedin.com/pulse/why-ai-agents-outperforming-traditional-healthcare-assistants-skw6c" target="_blank" rel="noopener">
+                                AI Healthcare Cost Analysis - Early Adopter Study
+                            </a>
+                        </li>
+                        <li>
+                            <strong>Sensitivity Data:</strong> 
+                            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11368160/" target="_blank" rel="noopener">
+                                AI vs Traditional Methods in Disease Detection (2024)
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="view-data-btn" onclick="toggleDataSources()">View Detailed Data Sources</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TEAM SECTION
+    ============================================= -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-description">
+                A diverse group of healthcare professionals, data scientists, and AI researchers 
+                working together to revolutionize medical insights.
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="assets/images/team/Alexander Le.jpg" alt="Alexander Le">
+                    </div>
+                    <h3 class="team-name">Alexander Le</h3>
+                    <p class="team-role">Lead AI Engineer</p>
+                    <p class="team-bio">
+                        Specializes in machine learning algorithms for health data analysis 
+                        and wearable device integration.
+                    </p>
+                    <div class="team-links">
+                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="assets/images/team/Nikita Gounder.jpg" alt="Nikita Gounder">
+                    </div>
+                    <h3 class="team-name">Nikita Gounder</h3>
+                    <p class="team-role">Healthcare Data Scientist</p>
+                    <p class="team-bio">
+                        Expert in clinical data interpretation and statistical analysis 
+                        for medical decision support systems.
+                    </p>
+                    <div class="team-links">
+                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="assets/images/team/Santhusha.jpg" alt="Santhusha">
+                    </div>
+                    <h3 class="team-name">Santhusha</h3>
+                    <p class="team-role">Frontend Developer</p>
+                    <p class="team-bio">
+                        Creates intuitive user interfaces for both healthcare providers 
+                        and patients to access health insights.
+                    </p>
+                    <div class="team-links">
+                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="assets/images/team/TeshomeHaile.jpg" alt="Teshome Haile">
+                    </div>
+                    <h3 class="team-name">Teshome Haile</h3>
+                    <p class="team-role">Medical Informatics Specialist</p>
+                    <p class="team-bio">
+                        Bridges the gap between clinical practice and technology, 
+                        ensuring our solutions meet real-world healthcare needs.
+                    </p>
+                    <div class="team-links">
+                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS SECTION
+    ============================================= -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-description">
+                Our AI-powered platform transforms raw health data into actionable medical insights 
+                through a streamlined, secure process.
+            </p>
+            
+            <div class="how-it-works">
+                <div class="steps-grid">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Data Collection</h3>
+                        <p class="step-description">
+                            Seamlessly connect your Apple Watch, Fitbit, or other wearable devices 
+                            to automatically collect health metrics and activity data.
+                        </p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">AI Processing</h3>
+                        <p class="step-description">
+                            Our advanced algorithms analyze patterns, detect anomalies, and identify 
+                            trends in your health data using machine learning models.
+                        </p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Insight Generation</h3>
+                        <p class="step-description">
+                            Generate personalized health reports with actionable recommendations 
+                            tailored for both patients and healthcare providers.
+                        </p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Action & Monitoring</h3>
+                        <p class="step-description">
+                            Track progress, set health goals, and receive continuous monitoring 
+                            with real-time alerts and updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FITNESS DASHBOARD SECTION
+    ============================================= -->
+    <section id="fitness-dashboard" class="section">
+        <div class="container">
+            <h2 class="section-title">Fitness Dashboard</h2>
+            <p class="section-description">
+                Connect your Google Fit account to view personalized health insights and track your fitness progress.
+            </p>
+
+            <!-- Login Section -->
+            <div id="fitness-login-section" class="fitness-login-section">
+                <div class="login-card">
+                    <div class="login-icon">
+                        <ion-icon name="fitness-outline"></ion-icon>
+                    </div>
+                    <h3>Connect Google Fit</h3>
+                    <p>Sign in with your Google account to access your fitness data and get personalized health insights.</p>
+                    <button id="fitness-login-btn" class="btn btn-primary">
+                        <ion-icon name="logo-google"></ion-icon>
+                        Connect Google Fit
+                    </button>
+                    <div class="login-features">
+                        <div class="feature">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Secure OAuth 2.0 authentication</span>
+                        </div>
+                        <div class="feature">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>View steps, calories, and activity data</span>
+                        </div>
+                        <div class="feature">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>AI-powered health insights</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="fitness-dashboard-section" class="fitness-dashboard-section" style="display: none;">
+                <!-- Dashboard Controls -->
+                <div class="dashboard-controls">
+                    <div class="date-range-selector">
+                        <label for="fitness-date-range">Time Range:</label>
+                        <select id="fitness-date-range">
+                            <option value="7">Last 7 days</option>
+                            <option value="14">Last 14 days</option>
+                            <option value="30">Last 30 days</option>
+                        </select>
+                    </div>
+                    <div class="dashboard-actions">
+                        <button id="fitness-refresh-btn" class="btn btn-secondary">
+                            <ion-icon name="refresh-outline"></ion-icon>
+                            Refresh Data
+                        </button>
+                        <button id="fitness-logout-btn" class="btn btn-outline">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            Disconnect
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading and Error Messages -->
+                <div id="fitness-loading" class="fitness-message loading" style="display: none;">
+                    <ion-icon name="hourglass-outline"></ion-icon>
+                    <span>Loading...</span>
+                </div>
+                <div id="fitness-error" class="fitness-message error" style="display: none;">
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                    <span></span>
+                </div>
+                <div id="fitness-success" class="fitness-message success" style="display: none;">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    <span></span>
+                </div>
+
+                <!-- Stats Overview -->
+                <div id="fitness-stats" class="fitness-stats">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+
+                <!-- Charts Section -->
+                <div class="fitness-charts">
+                    <div class="chart-card">
+                        <div id="steps-chart" class="chart-content">
+                            <!-- Steps chart will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div id="calories-chart" class="chart-content">
+                            <!-- Calories chart will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Summary -->
+                <div class="activity-section">
+                    <div class="chart-card">
+                        <div id="activity-summary" class="chart-content">
+                            <!-- Activity summary will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights Section -->
+                <div class="ai-insights-section">
+                    <h3>AI Health Insights</h3>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="trending-up-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>Activity Trend</h4>
+                                <p>Your activity levels show a positive trend over the past week. Keep up the great work!</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>Health Score</h4>
+                                <p>Based on your fitness data, your overall health score is excellent. Continue maintaining your current routine.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="bulb-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>Recommendation</h4>
+                                <p>Consider adding 15 minutes of moderate exercise to reach your daily activity goals more consistently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+    ============================================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Mify</div>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#team">Team</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#fitness-dashboard">Fitness Dashboard</a>
+                    <a href="https://github.com/GeneticAlgorithms/Mify" target="_blank" rel="noopener">GitHub</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2024 Mify. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+    ============================================= -->
+    <script src="js/main.js"></script>
+    <script src="js/fitness-api.js"></script>
+</body>
+</html>
