@@ -4,8 +4,8 @@
 
 class GoogleFitnessAPI {
     constructor() {
-        this.clientId = '1059140530421-kbdp5vbd6ef9nrqlrskdnholmr5fu935.apps.googleusercontent.com';
-        this.clientSecret = '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';
+        this.clientId = '40359737596-07dvjuh9kkcf7g9bsu7kia4k4idb7pci.apps.googleusercontent.com';
+        this.clientSecret = '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';
         this.redirectUri = `${window.location.origin}/auth/callback.html`;
         this.scope = 'https://www.googleapis.com/auth/fitness.activity.read';
         this.baseURL = 'https://www.googleapis.com/fitness/v1';
