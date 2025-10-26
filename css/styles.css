@@ -1387,6 +1387,32 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    border: 1px solid var(--border);
+}
+
+.social-link:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--accent);
+}
+
+.social-link ion-icon {
+    font-size: 1rem;
 }
 
 /* ============================================
