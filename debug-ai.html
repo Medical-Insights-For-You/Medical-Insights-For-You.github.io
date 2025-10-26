@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .error { color: red; }
+        .success { color: green; }
+        .info { color: blue; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        #console-output { background: #f5f5f5; padding: 10px; height: 200px; overflow-y: auto; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>AI Assistant Debug Console</h1>
+    
+    <div class="debug-section">
+        <h3>Element Detection</h3>
+        <div id="element-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>JavaScript Errors</h3>
+        <div id="error-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>AI Agent Status</h3>
+        <div id="ai-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Test Functions</h3>
+        <button onclick="testBasicFunctionality()">Test Basic Functionality</button>
+        <button onclick="testAIAgent()">Test AI Agent</button>
+        <button onclick="testArduinoConnection()">Test Arduino Connection</button>
+        <button onclick="clearConsole()">Clear Console</button>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Console Output</h3>
+        <div id="console-output"></div>
+    </div>
+
+    <script>
+        // Override console.log to capture output
+        const originalLog = console.log;
+        const originalError = console.error;
+        const consoleOutput = document.getElementById('console-output');
+        
+        function addToConsole(message, type = 'log') {
+            const timestamp = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.className = type;
+            div.textContent = `[${timestamp}] ${message}`;
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole(args.join(' '), 'error');
+        };
+        
+        // Test functions
+        function testBasicFunctionality() {
+            console.log('Testing basic functionality...');
+            
+            // Check if elements exist
+            const elements = {
+                'chat-messages': document.getElementById('chat-messages'),
+                'chat-input': document.getElementById('chat-input'),
+                'send-message': document.getElementById('send-message'),
+                'ai-status': document.getElementById('ai-status'),
+                'ai-analysis': document.getElementById('ai-analysis')
+            };
+            
+            let elementStatus = document.getElementById('element-status');
+            elementStatus.innerHTML = '';
+            
+            for (const [id, element] of Object.entries(elements)) {
+                const status = element ? 'success' : 'error';
+                const text = element ? 'Found' : 'Missing';
+                elementStatus.innerHTML += `<div class="${status}">${id}: ${text}</div>`;
+            }
+            
+            // Check if AI chat class exists
+            if (typeof AIChatInterface !== 'undefined') {
+                console.log('AIChatInterface class found');
+                try {
+                    const aiChat = new AIChatInterface();
+                    console.log('AIChatInterface instantiated successfully');
+                } catch (error) {
+                    console.error('Error instantiating AIChatInterface:', error);
+                }
+            } else {
+                console.error('AIChatInterface class not found');
+            }
+        }
+        
+        function testAIAgent() {
+            console.log('Testing AI Agent...');
+            
+            if (typeof AIHealthAgent !== 'undefined') {
+                console.log('AIHealthAgent class found');
+                try {
+                    const aiAgent = new AIHealthAgent();
+                    console.log('AIHealthAgent instantiated successfully');
+                    
+                    // Test data processing
+                    const testData = {
+                        heartRate: 75,
+                        movement: 'Medium',
+                        proximity: 15,
+                        circuit: 'Closed'
+                    };
+                    
+                    const analysis = aiAgent.processData(testData);
+                    console.log('AI analysis result:', analysis);
+                } catch (error) {
+                    console.error('Error with AIHealthAgent:', error);
+                }
+            } else {
+                console.error('AIHealthAgent class not found');
+            }
+        }
+        
+        function testArduinoConnection() {
+            console.log('Testing Arduino connection...');
+            
+            if (window.arduinoMonitor) {
+                console.log('Arduino monitor found:', window.arduinoMonitor);
+                console.log('Connection status:', window.arduinoMonitor.isConnected);
+            } else {
+                console.log('Arduino monitor not found');
+            }
+        }
+        
+        function clearConsole() {
+            document.getElementById('console-output').innerHTML = '';
+        }
+        
+        // Auto-run basic tests on load
+        window.addEventListener('load', () => {
+            console.log('Debug page loaded');
+            testBasicFunctionality();
+        });
+        
+        // Catch any unhandled errors
+        window.addEventListener('error', (event) => {
+            console.error('Unhandled error:', event.error);
+        });
+    </script>
+    
+    <!-- Load the actual scripts -->
+    <script src="js/ai-health-agent.js"></script>
+    <script src="js/arduino-health.js"></script>
+    <script src="js/ai-chat.js"></script>
+</body>
+</html>

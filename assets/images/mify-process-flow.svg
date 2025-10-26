@@ -1,0 +1,254 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="medicalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FF88;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00CC6A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="arduinoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="icfGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#F8FAFC"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1E293B">Mify Platform - Complete Health Data Ecosystem</text>
+  
+  <!-- Data Sources Section -->
+  <g id="data-sources">
+    <rect x="50" y="80" width="200" height="120" rx="10" fill="url(#primaryGradient)" filter="url(#shadow)"/>
+    <text x="150" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Data Sources</text>
+    
+    <!-- Google Fit -->
+    <rect x="70" y="120" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="110" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Google Fit</text>
+    
+    <!-- Arduino -->
+    <rect x="160" y="120" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="200" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Arduino</text>
+    
+    <!-- Clinical Data -->
+    <rect x="70" y="160" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="110" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Clinical</text>
+    
+    <!-- Manual Input -->
+    <rect x="160" y="160" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="200" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Manual</text>
+  </g>
+  
+  <!-- Data Processing Hub -->
+  <g id="processing-hub">
+    <circle cx="400" cy="140" r="60" fill="url(#medicalGradient)" filter="url(#shadow)"/>
+    <text x="400" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">AI Processing</text>
+    <text x="400" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">Hub</text>
+    <text x="400" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">ML & Analytics</text>
+  </g>
+  
+  <!-- Applications Section -->
+  <g id="applications">
+    <rect x="550" y="80" width="200" height="120" rx="10" fill="url(#arduinoGradient)" filter="url(#shadow)"/>
+    <text x="650" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Applications</text>
+    
+    <!-- Fitness Dashboard -->
+    <rect x="570" y="120" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="610" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Fitness</text>
+    
+    <!-- Health Monitoring -->
+    <rect x="660" y="120" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="700" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Monitoring</text>
+    
+    <!-- ICF Generator -->
+    <rect x="570" y="160" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="610" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">ICF Gen</text>
+    
+    <!-- AI Chat -->
+    <rect x="660" y="160" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="700" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">AI Chat</text>
+  </g>
+  
+  <!-- Output Section -->
+  <g id="outputs">
+    <rect x="850" y="80" width="200" height="120" rx="10" fill="url(#icfGradient)" filter="url(#shadow)"/>
+    <text x="950" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Outputs</text>
+    
+    <!-- Health Insights -->
+    <rect x="870" y="120" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="910" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Insights</text>
+    
+    <!-- Reports -->
+    <rect x="960" y="120" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="1000" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Reports</text>
+    
+    <!-- Consent Forms -->
+    <rect x="870" y="160" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="910" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">ICF Forms</text>
+    
+    <!-- Recommendations -->
+    <rect x="960" y="160" width="80" height="30" rx="5" fill="white" opacity="0.9"/>
+    <text x="1000" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1E293B">Advice</text>
+  </g>
+  
+  <!-- Arrows showing data flow -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748B"/>
+    </marker>
+  </defs>
+  
+  <!-- Data flow arrows -->
+  <line x1="250" y1="140" x2="340" y2="140" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="460" y1="140" x2="550" y2="140" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="750" y1="140" x2="850" y2="140" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Detailed Process Flow -->
+  <g id="detailed-flow">
+    <text x="600" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E293B">Detailed Process Flow</text>
+    
+    <!-- Step 1: Data Collection -->
+    <g id="step1">
+      <rect x="50" y="280" width="150" height="80" rx="8" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+      <text x="125" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0C4A6E">1. Data Collection</text>
+      <text x="125" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">• Google Fit API</text>
+      <text x="125" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">• Arduino Sensors</text>
+      <text x="125" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#0C4A6E">• Clinical Input</text>
+    </g>
+    
+    <!-- Step 2: Data Processing -->
+    <g id="step2">
+      <rect x="250" y="280" width="150" height="80" rx="8" fill="#F0FDF4" stroke="#22C55E" stroke-width="2"/>
+      <text x="325" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#14532D">2. AI Processing</text>
+      <text x="325" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#14532D">• Pattern Recognition</text>
+      <text x="325" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#14532D">• Anomaly Detection</text>
+      <text x="325" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#14532D">• Trend Analysis</text>
+    </g>
+    
+    <!-- Step 3: Application Layer -->
+    <g id="step3">
+      <rect x="450" y="280" width="150" height="80" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+      <text x="525" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#92400E">3. Applications</text>
+      <text x="525" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#92400E">• Fitness Dashboard</text>
+      <text x="525" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#92400E">• Health Monitoring</text>
+      <text x="525" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#92400E">• ICF Generator</text>
+    </g>
+    
+    <!-- Step 4: User Interaction -->
+    <g id="step4">
+      <rect x="650" y="280" width="150" height="80" rx="8" fill="#F3E8FF" stroke="#8B5CF6" stroke-width="2"/>
+      <text x="725" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#581C87">4. User Interface</text>
+      <text x="725" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#581C87">• AI Chat Assistant</text>
+      <text x="725" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#581C87">• Interactive Dashboards</text>
+      <text x="725" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#581C87">• Real-time Updates</text>
+    </g>
+    
+    <!-- Step 5: Output Generation -->
+    <g id="step5">
+      <rect x="850" y="280" width="150" height="80" rx="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="2"/>
+      <text x="925" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#991B1B">5. Output Generation</text>
+      <text x="925" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#991B1B">• Health Reports</text>
+      <text x="925" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#991B1B">• Consent Forms</text>
+      <text x="925" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#991B1B">• Recommendations</text>
+    </g>
+    
+    <!-- Flow arrows between steps -->
+    <line x1="200" y1="320" x2="250" y2="320" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="400" y1="320" x2="450" y2="320" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="600" y1="320" x2="650" y2="320" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="800" y1="320" x2="850" y2="320" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- Integration Points -->
+  <g id="integration-points">
+    <text x="600" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E293B">Key Integration Points</text>
+    
+    <!-- Integration 1: Fitness + Arduino -->
+    <g id="integration1">
+      <rect x="100" y="450" width="200" height="100" rx="8" fill="#F8FAFC" stroke="#64748B" stroke-width="1" stroke-dasharray="5,5"/>
+      <text x="200" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">Fitness + Arduino</text>
+      <text x="200" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Combined health data from</text>
+      <text x="200" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">wearables and sensors</text>
+      <text x="200" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">for comprehensive analysis</text>
+      <text x="200" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">→ Enhanced AI insights</text>
+    </g>
+    
+    <!-- Integration 2: AI Chat + All Data -->
+    <g id="integration2">
+      <rect x="350" y="450" width="200" height="100" rx="8" fill="#F8FAFC" stroke="#64748B" stroke-width="1" stroke-dasharray="5,5"/>
+      <text x="450" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">AI Chat + All Data</text>
+      <text x="450" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Conversational interface</text>
+      <text x="450" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">accessing all health data</text>
+      <text x="450" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">and providing insights</text>
+      <text x="450" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">→ Personalized guidance</text>
+    </g>
+    
+    <!-- Integration 3: ICF + Clinical Data -->
+    <g id="integration3">
+      <rect x="600" y="450" width="200" height="100" rx="8" fill="#F8FAFC" stroke="#64748B" stroke-width="1" stroke-dasharray="5,5"/>
+      <text x="700" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">ICF + Clinical Data</text>
+      <text x="700" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Automated consent form</text>
+      <text x="700" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">generation using patient</text>
+      <text x="700" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">health data and protocols</text>
+      <text x="700" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">→ Compliant documentation</text>
+    </g>
+    
+    <!-- Integration 4: Real-time Monitoring -->
+    <g id="integration4">
+      <rect x="850" y="450" width="200" height="100" rx="8" fill="#F8FAFC" stroke="#64748B" stroke-width="1" stroke-dasharray="5,5"/>
+      <text x="950" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E293B">Real-time Monitoring</text>
+      <text x="950" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">Continuous data collection</text>
+      <text x="950" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">and analysis with instant</text>
+      <text x="950" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">alerts and notifications</text>
+      <text x="950" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748B">→ Proactive healthcare</text>
+    </g>
+  </g>
+  
+  <!-- Benefits Section -->
+  <g id="benefits">
+    <text x="600" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E293B">Platform Benefits</text>
+    
+    <g id="benefit1">
+      <circle cx="200" cy="650" r="40" fill="url(#primaryGradient)" filter="url(#shadow)"/>
+      <text x="200" y="645" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Comprehensive</text>
+      <text x="200" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Data View</text>
+    </g>
+    
+    <g id="benefit2">
+      <circle cx="400" cy="650" r="40" fill="url(#medicalGradient)" filter="url(#shadow)"/>
+      <text x="400" y="645" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">AI-Powered</text>
+      <text x="400" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Insights</text>
+    </g>
+    
+    <g id="benefit3">
+      <circle cx="600" cy="650" r="40" fill="url(#arduinoGradient)" filter="url(#shadow)"/>
+      <text x="600" y="645" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Real-time</text>
+      <text x="600" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Monitoring</text>
+    </g>
+    
+    <g id="benefit4">
+      <circle cx="800" cy="650" r="40" fill="url(#icfGradient)" filter="url(#shadow)"/>
+      <text x="800" y="645" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Automated</text>
+      <text x="800" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Documentation</text>
+    </g>
+    
+    <g id="benefit5">
+      <circle cx="1000" cy="650" r="40" fill="#EF4444" filter="url(#shadow)"/>
+      <text x="1000" y="645" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Cost</text>
+      <text x="1000" y="655" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">Effective</text>
+    </g>
+  </g>
+  
+  <!-- Footer -->
+  <text x="600" y="750" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748B">Mify Platform - Transforming Healthcare Through Integrated Data Analytics</text>
+</svg>
