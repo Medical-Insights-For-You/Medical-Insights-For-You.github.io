@@ -68,8 +68,8 @@
                     <div class="problem-icon">
                         <ion-icon name="pulse-outline"></ion-icon>
                     </div>
-                    <h3>Patient Monitoring Gaps</h3>
-                    <p>Limited real-time vital monitoring leads to missed adverse events and poor data quality</p>
+                    <h3>Patient Screening Bottleneck</h3>
+                    <p>Manual eligibility screening is time-consuming and misses potential participants</p>
                 </div>
                 
                 <div class="problem-card">
@@ -101,12 +101,12 @@
                         <div class="solution-icon">
                             <ion-icon name="hardware-chip-outline"></ion-icon>
                         </div>
-                        <h3>Real-Time Vital Monitoring</h3>
-                        <p>Arduino sensors provide continuous health data for better trial outcomes</p>
+                        <h3>Hardware Patient Screening</h3>
+                        <p>Arduino sensors detect health changes like Apple Watch for clinical trial eligibility</p>
                         <ul>
+                            <li>Real-time health warnings</li>
+                            <li>Patient eligibility screening</li>
                             <li>Cost-effective monitoring</li>
-                            <li>Real-time alerts</li>
-                            <li>Better data quality</li>
                         </ul>
                     </div>
                     
@@ -133,17 +133,89 @@
             <h2>Live Demo: Real-Time Health Monitoring</h2>
             <p>See our Arduino sensors in action with AI-powered analysis and patient recruitment recommendations</p>
             
+            <!-- Hardware Screening Component -->
+            <div class="screening-section">
+                <h3>Hardware Patient Screening System</h3>
+                <p>Our Arduino-based screening device detects health changes similar to Apple Watch, providing early warnings for clinical trial eligibility assessment</p>
+                
+                <!-- Hardware Demo Video -->
+                <div class="hardware-demo">
+                    <div class="video-container">
+                        <video controls poster="assets/images/arduino-wiring-guide.svg" class="demo-video">
+                            <source src="IMG_3229.MOV.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <ion-icon name="play-circle-outline"></ion-icon>
+                            </div>
+                            <p>Watch our hardware screening system in action</p>
+                        </div>
+                    </div>
+                    <div class="video-description">
+                        <h4>Live Hardware Demonstration</h4>
+                        <p>See our Arduino-based patient screening device detecting health changes and providing real-time eligibility assessments for clinical trials. The system monitors vital signs and movement patterns to identify potential health warnings.</p>
+                        <div class="demo-features">
+                            <div class="demo-feature">
+                                <ion-icon name="pulse-outline"></ion-icon>
+                                <span>Real-time vital monitoring</span>
+                            </div>
+                            <div class="demo-feature">
+                                <ion-icon name="warning-outline"></ion-icon>
+                                <span>Health warning detection</span>
+                            </div>
+                            <div class="demo-feature">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                <span>Eligibility assessment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screening-features">
+                    <div class="screening-feature">
+                        <div class="feature-icon">
+                            <ion-icon name="warning-outline"></ion-icon>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Health Warning Detection</h4>
+                            <p>Identifies potential health issues that may affect trial eligibility</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screening-feature">
+                        <div class="feature-icon">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Eligibility Pre-screening</h4>
+                            <p>Automatically assesses if patients meet basic health criteria for trials</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screening-feature">
+                        <div class="feature-icon">
+                            <ion-icon name="trending-up-outline"></ion-icon>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Continuous Monitoring</h4>
+                            <p>Real-time tracking of vital signs and health parameters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Arduino Setup -->
             <div class="setup-section">
-                <h3>Arduino Setup</h3>
+                <h3>Arduino Hardware Setup</h3>
                 <div class="setup-info">
                     <div class="setup-item">
                         <h4>Arduino UNO R4 WiFi</h4>
-                        <p>Advanced IoT board with ESP32-S3 and 12x8 LED matrix</p>
+                        <p>Advanced IoT board with ESP32-S3 and 12x8 LED matrix for health monitoring</p>
                     </div>
                     <div class="setup-item">
                         <h4>HC-SR04 Ultrasonic Sensor</h4>
-                        <p>Measures distance and detects movement for health monitoring</p>
+                        <p>Measures distance and detects movement patterns for health assessment</p>
                     </div>
                 </div>
                 
@@ -196,6 +268,55 @@
                         <div class="data-content">
                             <h4>Proximity</h4>
                             <div id="proximity-level" class="data-value">-- cm</div>
+                        </div>
+                    </div>
+
+                    <div class="data-card warning-card">
+                        <div class="data-icon">
+                            <ion-icon name="warning-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Health Warnings</h4>
+                            <div id="health-warnings" class="data-value">None</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Screening Results -->
+                <div class="screening-results">
+                    <h3>Patient Screening Results</h3>
+                    <div class="screening-cards">
+                        <div class="screening-result-card">
+                            <div class="result-icon">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            </div>
+                            <div class="result-content">
+                                <h4>Heart Rate: Normal</h4>
+                                <p>Within acceptable range for most clinical trials</p>
+                                <div class="result-status normal">Eligible</div>
+                            </div>
+                        </div>
+                        
+                        <div class="screening-result-card">
+                            <div class="result-icon">
+                                <ion-icon name="warning-outline"></ion-icon>
+                            </div>
+                            <div class="result-content">
+                                <h4>Movement Pattern: Irregular</h4>
+                                <p>May indicate fatigue or health concerns</p>
+                                <div class="result-status warning">Monitor</div>
+                            </div>
+                        </div>
+                        
+                        <div class="screening-result-card">
+                            <div class="result-icon">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            </div>
+                            <div class="result-content">
+                                <h4>Overall Assessment</h4>
+                                <p>Patient meets basic eligibility criteria</p>
+                                <div class="result-status normal">Suitable</div>
+                            </div>
                         </div>
                     </div>
                 </div>

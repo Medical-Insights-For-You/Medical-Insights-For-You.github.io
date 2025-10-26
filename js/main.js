@@ -95,14 +95,38 @@ class MifyApp {
         const heartRate = Math.floor(Math.random() * 40) + 60; // 60-100 BPM
         const movement = Math.random() > 0.5 ? 'Active' : 'Resting';
         const proximity = (Math.random() * 50 + 10).toFixed(1); // 10-60 cm
+        
+        // Generate health warnings based on data
+        const warnings = this.generateHealthWarnings(heartRate, movement, proximity);
 
         // Update UI
         this.updateDataDisplay('heart-rate', `${heartRate} BPM`);
         this.updateDataDisplay('movement-level', movement);
         this.updateDataDisplay('proximity-level', `${proximity} cm`);
+        this.updateDataDisplay('health-warnings', warnings);
 
         // Update charts
         this.updateCharts(heartRate, movement, proximity);
+    }
+
+    generateHealthWarnings(heartRate, movement, proximity) {
+        const warnings = [];
+        
+        if (heartRate > 90) {
+            warnings.push('High Heart Rate');
+        } else if (heartRate < 65) {
+            warnings.push('Low Heart Rate');
+        }
+        
+        if (movement === 'Resting' && Math.random() > 0.7) {
+            warnings.push('Low Activity');
+        }
+        
+        if (parseFloat(proximity) < 15) {
+            warnings.push('Close Proximity');
+        }
+        
+        return warnings.length > 0 ? warnings.join(', ') : 'None';
     }
 
     updateDataDisplay(elementId, value) {
@@ -291,6 +315,7 @@ class MifyApp {
         this.updateDataDisplay('heart-rate', '72 BPM');
         this.updateDataDisplay('movement-level', 'Active');
         this.updateDataDisplay('proximity-level', '15.3 cm');
+        this.updateDataDisplay('health-warnings', 'None');
     }
 
     // AI Chat functionality
