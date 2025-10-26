@@ -819,9 +819,14 @@ body {
 .flow-image {
     max-width: 100%;
     height: auto;
+    max-height: 600px;
+    width: auto;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-lg);
     transition: var(--transition-smooth);
+    display: block;
+    margin: 0 auto;
+    background: transparent;
 }
 
 .flow-image:hover {
@@ -1291,6 +1296,10 @@ body {
 
     .flow-diagram {
         padding: var(--space-md);
+    }
+
+    .flow-image {
+        max-height: 400px;
     }
 
     .footer-hero {
