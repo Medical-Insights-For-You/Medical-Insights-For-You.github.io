@@ -1,96 +1,346 @@
 // ============================================
-// MAIN JAVASCRIPT FOR MIFY WEBSITE
+// MIFY - SIMPLIFIED MAIN JAVASCRIPT
 // ============================================
 
-function initLogoAnimation() {
-    const logo = document.querySelector('.logo');
-    
-    // Add initial animation class after a short delay
-    setTimeout(() => {
-        logo.classList.add('initial-animation');
+class MifyApp {
+    constructor() {
+        this.arduinoConnected = false;
+        this.dataInterval = null;
+        this.charts = {};
+        this.init();
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.initializeCharts();
+        this.setupArduinoSimulation();
+    }
+
+    setupEventListeners() {
+        // Arduino connection
+        const connectBtn = document.getElementById('connect-arduino');
+        if (connectBtn) {
+            connectBtn.addEventListener('click', () => this.toggleArduinoConnection());
+        }
+
+        // AI Chat
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-message');
         
-        // Remove the class after animation completes to return to normal state
-        setTimeout(() => {
-            logo.classList.remove('initial-animation');
-        }, 1200); // 1.2 seconds - slightly longer than the 0.6s transition
-    }, 500); // Small delay to ensure page is loaded
-}
+        if (chatInput && sendBtn) {
+            sendBtn.addEventListener('click', () => this.sendMessage());
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.sendMessage();
+                }
+            });
+        }
 
-// Initialize stats animation
-function initStatsAnimation() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                console.log('Stats section is visible, starting animations');
-                
-                // Animate trend lines first
-                const trendLines = entry.target.querySelectorAll('.trend-line');
-                console.log('Found trend lines:', trendLines.length);
-                trendLines.forEach((line, index) => {
-                    setTimeout(() => {
-                        line.classList.add('animate');
-                        console.log('Animated trend line', index);
-                    }, index * 300);
-                });
+        // Smooth scrolling for navigation links
+        for (const anchor of document.querySelectorAll('a[href^="#"]')) {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+    }
 
-                // Animate data points
-                const dataPoints = entry.target.querySelectorAll('.data-point');
-                console.log('Found data points:', dataPoints.length);
-                dataPoints.forEach((point, index) => {
-                    setTimeout(() => {
-                        point.classList.add('animate');
-                        console.log('Animated data point', index);
-                    }, 600 + (index * 150));
-                });
+    toggleArduinoConnection() {
+        const connectBtn = document.getElementById('connect-arduino');
+        const statusEl = document.getElementById('connection-status');
+        
+        if (!this.arduinoConnected) {
+            this.arduinoConnected = true;
+            connectBtn.innerHTML = '<ion-icon name="close-outline"></ion-icon> Disconnect';
+            statusEl.textContent = 'Connected';
+            statusEl.className = 'status connected';
+            
+            // Start data simulation
+            this.startDataSimulation();
+        } else {
+            this.arduinoConnected = false;
+            connectBtn.innerHTML = '<ion-icon name="link-outline"></ion-icon> Connect Arduino';
+            statusEl.textContent = 'Disconnected';
+            statusEl.className = 'status';
+            
+            // Stop data simulation
+            this.stopDataSimulation();
+        }
+    }
 
-                // Animate pie charts
-                const pieSlices = entry.target.querySelectorAll('.pie-slice');
-                console.log('Found pie slices:', pieSlices.length);
-                pieSlices.forEach((slice, index) => {
-                    setTimeout(() => {
-                        slice.classList.add('animate');
-                        console.log('Animated pie slice', index);
-                    }, 1000 + (index * 200));
-                });
+    startDataSimulation() {
+        this.dataInterval = setInterval(() => {
+            this.updateArduinoData();
+        }, 2000);
+    }
 
-                // Animate histogram bars
-                const histogramBars = entry.target.querySelectorAll('.histogram-bar');
-                console.log('Found histogram bars:', histogramBars.length);
-                histogramBars.forEach((bar, index) => {
-                    setTimeout(() => {
-                        bar.classList.add('animate');
-                        console.log('Animated histogram bar', index);
-                    }, 1500 + (index * 100));
-                });
+    stopDataSimulation() {
+        if (this.dataInterval) {
+            clearInterval(this.dataInterval);
+            this.dataInterval = null;
+        }
+    }
+
+    updateArduinoData() {
+        // Simulate Arduino data
+        const heartRate = Math.floor(Math.random() * 40) + 60; // 60-100 BPM
+        const movement = Math.random() > 0.5 ? 'Active' : 'Resting';
+        const proximity = (Math.random() * 50 + 10).toFixed(1); // 10-60 cm
+
+        // Update UI
+        this.updateDataDisplay('heart-rate', `${heartRate} BPM`);
+        this.updateDataDisplay('movement-level', movement);
+        this.updateDataDisplay('proximity-level', `${proximity} cm`);
+
+        // Update charts
+        this.updateCharts(heartRate, movement, proximity);
+    }
+
+    updateDataDisplay(elementId, value) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = value;
+        }
+    }
+
+    initializeCharts() {
+        // Heart Rate Chart
+        const heartRateCtx = document.getElementById('heartRateChart');
+        if (heartRateCtx) {
+            this.charts.heartRate = new Chart(heartRateCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Heart Rate (BPM)',
+                        data: [],
+                        borderColor: '#00d4ff',
+                        backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#b8b8b8' },
+                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#b8b8b8' },
+                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Movement Chart
+        const movementCtx = document.getElementById('movementChart');
+        if (movementCtx) {
+            this.charts.movement = new Chart(movementCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Active', 'Resting', 'Walking', 'Running'],
+                    datasets: [{
+                        label: 'Activity Level',
+                        data: [0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgba(0, 212, 255, 0.8)',
+                            'rgba(0, 180, 216, 0.8)',
+                            'rgba(0, 255, 136, 0.8)',
+                            'rgba(139, 92, 246, 0.8)'
+                        ],
+                        borderColor: [
+                            '#00d4ff',
+                            '#00b4d8',
+                            '#00ff88',
+                            '#8b5cf6'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#b8b8b8' },
+                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#b8b8b8' },
+                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    updateCharts(heartRate, movement, proximity) {
+        const now = new Date().toLocaleTimeString();
+        
+        // Update Heart Rate Chart
+        if (this.charts.heartRate) {
+            const chart = this.charts.heartRate;
+            chart.data.labels.push(now);
+            chart.data.datasets[0].data.push(heartRate);
+            
+            // Keep only last 10 data points
+            if (chart.data.labels.length > 10) {
+                chart.data.labels.shift();
+                chart.data.datasets[0].data.shift();
             }
-        });
-    }, { threshold: 0.1 });
+            
+            chart.update('none');
+        }
 
-    const statsSection = document.querySelector('.stats-section');
-    if (statsSection) {
-        console.log('Observing stats section');
-        observer.observe(statsSection);
+        // Update Movement Chart
+        if (this.charts.movement) {
+            const chart = this.charts.movement;
+            const activityData = [0, 0, 0, 0];
+            
+            // Simulate activity distribution
+            if (movement === 'Active') {
+                activityData[0] = Math.random() * 100;
+                activityData[2] = Math.random() * 50;
     } else {
-        console.log('Stats section not found');
+                activityData[1] = Math.random() * 100;
+            }
+            
+            chart.data.datasets[0].data = activityData;
+            chart.update('none');
+        }
+    }
+
+    setupArduinoSimulation() {
+        // Initialize with default values
+        this.updateDataDisplay('heart-rate', '-- BPM');
+        this.updateDataDisplay('movement-level', '--');
+        this.updateDataDisplay('proximity-level', '-- cm');
+    }
+
+    // AI Chat functionality
+    sendMessage() {
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+        
+        if (!chatInput || !chatMessages) return;
+        
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Add user message
+        this.addMessage('user', message);
+        chatInput.value = '';
+
+        // Simulate AI response
+        setTimeout(() => {
+            const response = this.generateAIResponse(message);
+            this.addMessage('ai', response);
+        }, 1000);
+    }
+
+    addMessage(type, content) {
+        const chatMessages = document.getElementById('chat-messages');
+        if (!chatMessages) return;
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}-message`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+        
+        if (type === 'user') {
+            avatar.innerHTML = '<ion-icon name="person-outline"></ion-icon>';
+            messageContent.innerHTML = `<p>${content}</p>`;
+    } else {
+            avatar.innerHTML = '<ion-icon name="medical-outline"></ion-icon>';
+            messageContent.innerHTML = `<p>${content}</p>`;
+        }
+        
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(messageContent);
+        chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    generateAIResponse(userMessage) {
+        const responses = {
+            'health': "Based on your current readings, your health metrics appear to be within normal ranges. Continue monitoring and maintain your current lifestyle habits.",
+            'arduino': "Your Arduino setup looks good! Make sure the ultrasonic sensor is properly connected to pins 9 and 10, and the device is powered correctly.",
+            'data': "I'm analyzing your health data in real-time. Your heart rate shows good variability, and your movement patterns indicate healthy activity levels.",
+            'recommendation': "I recommend taking regular breaks every hour, staying hydrated, and maintaining consistent sleep patterns for optimal health.",
+            'default': "I'm here to help with your health monitoring! I can analyze your Arduino data, provide health insights, and answer questions about your setup. What would you like to know?"
+        };
+
+        const message = userMessage.toLowerCase();
+        
+        if (message.includes('health') || message.includes('reading')) {
+            return responses.health;
+        }
+        if (message.includes('arduino') || message.includes('sensor') || message.includes('setup')) {
+            return responses.arduino;
+        }
+        if (message.includes('data') || message.includes('analysis')) {
+            return responses.data;
+        }
+        if (message.includes('recommend') || message.includes('advice')) {
+            return responses.recommendation;
+        }
+        return responses.default;
     }
 }
 
-// Toggle data sources visibility
-function toggleDataSources() {
-    const dataSources = document.querySelector('.data-sources');
-    const button = document.querySelector('.view-data-btn');
-    
-    if (dataSources.style.display === 'none') {
-        dataSources.style.display = 'block';
-        button.textContent = 'Hide Data Sources';
-    } else {
-        dataSources.style.display = 'none';
-        button.textContent = 'View Detailed Data Sources';
-    }
-}
-
-// Initialize everything when page loads
+// Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initLogoAnimation();
-    initStatsAnimation();
+    new MifyApp();
 });
+
+// Add some utility functions
+window.MifyUtils = {
+    // Format time
+    formatTime: (date) => {
+        return date.toLocaleTimeString();
+    },
+    
+    // Generate random health data
+    generateHealthData: () => {
+        return {
+            heartRate: Math.floor(Math.random() * 40) + 60,
+            movement: Math.random() > 0.5 ? 'Active' : 'Resting',
+            proximity: (Math.random() * 50 + 10).toFixed(1)
+        };
+    },
+    
+    // Validate Arduino connection
+    validateArduinoConnection: () => {
+        // This would normally check actual Arduino connection
+        return Math.random() > 0.1; // 90% success rate for demo
+    }
+};

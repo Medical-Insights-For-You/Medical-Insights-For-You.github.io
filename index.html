@@ -1,838 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ============================================
-         META TAGS & BASIC SETUP
-    ============================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mify - Medical Insights for You</title>
-    <!-- Updated: AI vs Traditional section removed -->
-    <meta name="description" content="Mify is an AI Agent that transforms health data from wearables into actionable medical insights for both physicians and patients. Get personalized health analytics from your Apple Watch and fitness trackers.">
-    <meta name="author" content="Mify Team">
-    <meta name="keywords" content="Mify, medical insights, AI agent, health data, wearables, Apple Watch, fitness trackers, physician insights, patient insights, health analytics">
+    <title>Mify - AI Health Monitoring</title>
+    <meta name="description" content="AI-powered health monitoring with Arduino sensors and intelligent insights">
     
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9InN0YXJHbG93IiB4PSItNTAlIiB5PSItNTAlIiB3aWR0aD0iMjAwJSIgaGVpZ2h0PSIyMDAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjIiIHJlc3VsdD0iYmx1ciIvPgogICAgICA8ZmVGbG9vZCBmbG9vZC1jb2xvcj0iIzAwZDRmZiIgZmxvb2Qtb3BhY2l0eT0iMC44IiByZXN1bHQ9ImNvbG9yIi8+CiAgICAgIDxmZUNvbXBvc2l0ZSBpbj0iY29sb3IiIGluMj0iYmx1ciIgb3BlcmF0b3I9ImluIiByZXN1bHQ9Imdsb3ciLz4KICAgICAgPGZlTWVyZ2U+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJnbG93Ii8+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+CiAgICAgIDwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8cGF0aCBkPSJNMjAgMkwyMi41IDZMMjYuNSA2TDIzLjUgOC41TDI1IDEyLjVMMjAgMTAuNUwxNSAxMi41TDE2LjUgOC41TDEzLjUgNkwxNy41IDZMMjAgMloiIGZpbGw9IndoaXRlIiBmaWx0ZXI9InVybCgjc3Rhckdsb3cpIi8+CiAgPHBhdGggZD0iTTIwIDRMMjEuNSA3TDI0IDdMMjIuNSA4LjVMMjMuNSAxMUwyMCA5LjVMMTYuNSAxMUwxNy41IDguNUwxNiA3TDE4LjUgN0wyMCA0WiIgZmlsbD0iIzAwZDRmZiIgZmlsdGVyPSJ1cmwoI3N0YXJHbG93KSIvPgogIDxwYXRoIGQ9Ik0yMCA2TDIxIDhMMjMgOEwyMiA5TDIyLjUgMTAuNUwyMCA5LjVMMTcuNSAxMC41TDE4IDlMMTcgOEwxOSA4TDIwIDZaIiBmaWxsPSJ3aGl0ZSIgZmlsdGVyPSJ1cmwoI3N0YXJHbG93KSIvPgogIDxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEuNSIgZmlsbD0iIzAwZDRmZiIgZmlsdGVyPSJ1cmwoI3N0YXJHbG93KSIvPgo8L3N2Zz4K" type="image/svg+xml">
-    
-    <!-- ============================================
-         EXTERNAL DEPENDENCIES
-    ============================================= -->
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Ion Icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-    <!-- ============================================
-         CSS STYLES
-    ============================================= -->
+    
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- ============================================
-         NAVIGATION
-    ============================================= -->
+    <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-        <a href="#home" class="logo">
-            <span class="logo-text">Mify</span>
-        </a>
-        
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#fitness-dashboard">Fitness</a></li>
-                    <li><a href="#ai-chat">AI Chat</a></li>
-                    <li><a href="#team">Team</a></li>
-                <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
-                    <ion-icon name="logo-github"></ion-icon>
-                    GitHub
-                </a></li>
+            <a href="#home" class="logo">Mify</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#monitor">Monitor</a></li>
+                <li><a href="#ai">AI Chat</a></li>
+                <li><a href="#team">Team</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO SECTION
-    ============================================= -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <div class="hero-content">
-                <p class="hero-subtitle">AI-Powered Health Intelligence Platform</p>
-                <h1>Transform Your <span class="highlight">Health Data</span> Into Actionable Medical Insights</h1>
-                <p class="hero-description">
-                    From Google Fit integration to affordable Arduino monitoring, Mify democratizes health analytics 
-                    with AI-powered insights. Get personalized recommendations, discover health patterns, 
-                    and access intelligent agents for comprehensive care.
-                </p>
-                <div class="hero-cta">
-                    <a href="#about" class="btn btn-primary">
-                        <ion-icon name="arrow-down-outline"></ion-icon>
-                        Learn More
-                    </a>
-                    <a href="https://github.com/GeneticAlgorithms/Mify" class="btn btn-secondary" target="_blank" rel="noopener">
-                        <ion-icon name="logo-github"></ion-icon>
-                        View on GitHub
-                    </a>
-                </div>
+            <h1>AI-Powered Health Monitoring</h1>
+            <p>Transform your Arduino sensors into intelligent health insights with AI analysis</p>
+            <div class="hero-actions">
+                <a href="#monitor" class="btn btn-primary">Start Monitoring</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         ABOUT SECTION
-    ============================================= -->
+    <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Mify</h2>
-            <p class="section-description">
-                Mify is an integrated health intelligence platform that connects data collection, AI analysis, 
-                and intelligent agents to solve critical healthcare bottlenecks. From affordable Arduino monitoring 
-                to advanced AI insights, we create a seamless ecosystem that democratizes health analytics.
-            </p>
+            <h2>About Mify</h2>
+            <p>Mify combines affordable Arduino health monitoring with AI-powered insights to democratize healthcare analytics.</p>
             
-            <div class="about-content">
-                    <div class="about-text">
-                    <h3>Solving Healthcare's Biggest Challenges</h3>
-                    <p>
-                        Healthcare faces critical bottlenecks: fragmented data across devices, expensive monitoring 
-                        solutions, complex analysis requirements, and time-constrained providers. These barriers 
-                        prevent effective health monitoring and personalized care delivery.
-                    </p>
-                    <p>
-                        Mify's integrated ecosystem addresses these challenges through a connected platform that 
-                        combines affordable Arduino monitoring, Google Fit integration, AI-powered analysis with 
-                        Fetch.ai's ASI:One, and intelligent agents. This creates a seamless workflow from data 
-                        collection to actionable insights, democratizing health analytics for all communities.
-                    </p>
-                    <h3>Dual-Perspective Insights</h3>
-                    <p>
-                        Our AI Agent provides specialized views for different users:
-                    </p>
-                    <ul style="color: var(--text-secondary); margin-left: var(--space-lg);">
-                        <li><strong>Provider View:</strong> Clinical-grade analytics for healthcare professionals</li>
-                        <li><strong>Patient View:</strong> User-friendly insights for personal health management</li>
-                    </ul>
-                        </div>
-                        
-                <div class="about-visual">
-                    <h4>Data Flow Process</h4>
-                    <div class="data-flow">
-                        <div class="data-step">
-                            <div class="data-step-icon">
-                                <ion-icon name="watch-outline"></ion-icon>
-                        </div>
-                            <div class="data-step-text">Wearable Data</div>
-                        </div>
-                        <div class="arrow">→</div>
-                        <div class="data-step">
-                            <div class="data-step-icon">
-                                <ion-icon name="document-text-outline"></ion-icon>
-                        </div>
-                            <div class="data-step-text">JSON Conversion</div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <ion-icon name="hardware-chip-outline"></ion-icon>
                     </div>
-                        <div class="arrow">→</div>
-                        <div class="data-step">
-                            <div class="data-step-icon">
-                                <ion-icon name="analytics-outline"></ion-icon>
-                </div>
-                            <div class="data-step-text">AI Analysis</div>
-                            </div>
-                        <div class="arrow">→</div>
-                        <div class="data-step">
-                            <div class="data-step-icon">
-                                <ion-icon name="eye-outline"></ion-icon>
-                        </div>
-                            <div class="data-step-text">Insights</div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         HOW IT WORKS SECTION
-    ============================================= -->
-    <section id="how-it-works" class="section">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-description">
-                Our AI-powered platform transforms raw health data into actionable medical insights 
-                through a streamlined, secure process.
-            </p>
-            
-            <div class="how-it-works">
-                <div class="steps-grid">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3 class="step-title">Data Collection</h3>
-                        <p class="step-description">
-                            Seamlessly connect your Apple Watch, Fitbit, or other wearable devices 
-                            to automatically collect health metrics and activity data.
-                        </p>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3 class="step-title">AI Processing</h3>
-                        <p class="step-description">
-                            Our advanced algorithms analyze patterns, detect anomalies, and identify 
-                            trends in your health data using machine learning models.
-                        </p>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3 class="step-title">Insight Generation</h3>
-                        <p class="step-description">
-                            Generate personalized health reports with actionable recommendations 
-                            tailored for both patients and healthcare providers.
-                        </p>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3 class="step-title">Action & Monitoring</h3>
-                        <p class="step-description">
-                            Track progress, set health goals, and receive continuous monitoring 
-                            with real-time alerts and updates.
-                        </p>
-                                </div>
-                                </div>
-                                </div>
-            
-            <!-- Postman Flow Diagram -->
-            <div class="postman-flow-section">
-                <h3 class="flow-title">Google Fit Data Integration Flow</h3>
-                <p class="flow-description">
-                    Our backend process seamlessly integrates with Google Fit API to fetch, process, and analyze your health data.
-                    The diagram below shows how we transform raw fitness data into actionable insights using AI.
-                </p>
-                <div class="flow-diagram">
-                    <img src="assets/images/PostmanFlowMify.svg" alt="Google Fit Data Integration Flow" class="flow-image">
-                                </div>
-                <div class="flow-explanation">
-                    <div class="flow-step">
-                        <h4>1. Data Retrieval</h4>
-                        <p>Secure API calls to Google Fit to fetch your health data including steps, calories, and activity segments.</p>
-                                </div>
-                    <div class="flow-step">
-                        <h4>2. Data Processing</h4>
-                        <p>Advanced algorithms parse and structure the raw data for analysis and visualization.</p>
-                    </div>
-                    <div class="flow-step">
-                        <h4>3. AI Analysis</h4>
-                        <p>Our AI agent analyzes patterns and generates personalized health insights and recommendations.</p>
-                    </div>
-                    <div class="flow-step">
-                        <h4>4. Insight Delivery</h4>
-                        <p>Transformed data and AI insights are presented through our intuitive dashboard interface.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         INTEGRATED HEALTH ECOSYSTEM
-    ============================================= -->
-    <section id="integrated-ecosystem" class="section">
-        <div class="container">
-            <h2 class="section-title">Solving Healthcare Bottlenecks Through Integration</h2>
-            <p class="section-description">
-                Mify's integrated ecosystem addresses critical healthcare bottlenecks by connecting data collection, 
-                AI analysis, and intelligent agents into a seamless workflow that benefits both patients and providers.
-            </p>
-
-            <!-- Healthcare Bottlenecks Overview -->
-            <div class="bottlenecks-overview">
-                <h3>Key Healthcare Bottlenecks We Solve</h3>
-                <div class="bottlenecks-grid">
-                    <div class="bottleneck-item">
-                        <div class="bottleneck-icon">
-                            <ion-icon name="pulse-outline"></ion-icon>
-                                </div>
-                        <h4>Data Fragmentation</h4>
-                        <p>Health data scattered across devices and platforms</p>
-                                </div>
-                    <div class="bottleneck-item">
-                        <div class="bottleneck-icon">
-                            <ion-icon name="analytics-outline"></ion-icon>
-                                </div>
-                        <h4>Analysis Complexity</h4>
-                        <p>Raw data requires expert interpretation</p>
-                                </div>
-                    <div class="bottleneck-item">
-                        <div class="bottleneck-icon">
-                            <ion-icon name="cash-outline"></ion-icon>
-                                </div>
-                        <h4>Cost Barriers</h4>
-                        <p>Expensive monitoring solutions limit access</p>
-                            </div>
-                    <div class="bottleneck-item">
-                        <div class="bottleneck-icon">
-                            <ion-icon name="time-outline"></ion-icon>
-                        </div>
-                        <h4>Time Constraints</h4>
-                        <p>Providers lack time for comprehensive analysis</p>
-                    </div>
-                        </div>
-                    </div>
-                    
-            <!-- Integrated Solution Workflow -->
-            <div class="integrated-workflow">
-                <h3>How Our Components Work Together</h3>
-                <div class="workflow-diagram">
-                    <div class="workflow-step">
-                        <div class="step-header">
-                            <div class="step-number">1</div>
-                            <h4>Data Collection</h4>
-                        </div>
-                        <div class="step-content">
-                            <div class="component-card">
-                                <h5>Smart Fitness Analytics</h5>
-                                <p>Google Fit integration for comprehensive health data</p>
-                            </div>
-                            <div class="component-card">
-                                <h5>Affordable Health Monitoring</h5>
-                                <p>Arduino sensors for cost-effective data collection</p>
-                            </div>
-                        </div>
-                        <div class="bottleneck-solved">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>Solves: Data Fragmentation & Cost Barriers</span>
-                        </div>
-                    </div>
-                    
-                    <div class="workflow-arrow">
-                        <ion-icon name="arrow-down-outline"></ion-icon>
-                            </div>
-
-                    <div class="workflow-step">
-                        <div class="step-header">
-                            <div class="step-number">2</div>
-                            <h4>AI Processing</h4>
-                            </div>
-                        <div class="step-content">
-                            <div class="component-card">
-                                <h5>Intelligent Health Assistant</h5>
-                                <p>ASI:One powered analysis and pattern recognition</p>
-                            </div>
-                            <div class="component-card">
-                                <h5>Advanced Health Agent</h5>
-                                <p>Multi-agent collaboration for comprehensive insights</p>
-                            </div>
-                        </div>
-                        <div class="bottleneck-solved">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>Solves: Analysis Complexity & Time Constraints</span>
-                        </div>
-                    </div>
-                    
-                    <div class="workflow-arrow">
-                        <ion-icon name="arrow-down-outline"></ion-icon>
-                            </div>
-
-                    <div class="workflow-step">
-                        <div class="step-header">
-                            <div class="step-number">3</div>
-                            <h4>Actionable Output</h4>
-                            </div>
-                        <div class="step-content">
-                            <div class="component-card">
-                                <h5>Clinical Trial ICF Generator</h5>
-                                <p>Streamlined research documentation</p>
-                            </div>
-                            <div class="component-card">
-                                <h5>Personalized Insights</h5>
-                                <p>Provider and patient-specific recommendations</p>
-                            </div>
-                        </div>
-                        <div class="bottleneck-solved">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>Solves: Time Constraints & Workflow Efficiency</span>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>Arduino Monitoring</h3>
+                    <p>Cost-effective health sensors using Arduino UNO R4 WiFi and ultrasonic sensors</p>
                 </div>
                 
-            <!-- Integration Benefits -->
-            <div class="integration-benefits">
-                <h3>Integrated Benefits</h3>
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </div>
-                        <h4>For Patients</h4>
-                        <ul>
-                            <li>Affordable health monitoring with Arduino</li>
-                            <li>Intelligent insights from AI assistant</li>
-                            <li>Personalized recommendations</li>
-                            <li>Accessible health analytics</li>
-                    </ul>
-                </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <ion-icon name="medical-outline"></ion-icon>
-                        </div>
-                        <h4>For Providers</h4>
-                        <ul>
-                            <li>Comprehensive patient data integration</li>
-                            <li>AI-powered analysis and insights</li>
-                            <li>Streamlined clinical documentation</li>
-                            <li>Time-efficient patient monitoring</li>
-                        </ul>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <ion-icon name="analytics-outline"></ion-icon>
                     </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <ion-icon name="globe-outline"></ion-icon>
-                        </div>
-                        <h4>For Healthcare Systems</h4>
-                        <ul>
-                            <li>Democratized health monitoring</li>
-                            <li>Reduced healthcare costs</li>
-                            <li>Improved patient outcomes</li>
-                            <li>Scalable AI-powered solutions</li>
-                        </ul>
-                    </div>
+                    <h3>AI Analysis</h3>
+                    <p>Intelligent health insights powered by Fetch.ai's ASI:One agentic LLM</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         FITNESS DASHBOARD SECTION
-    ============================================= -->
-    <section id="fitness-dashboard" class="section">
-        <div class="container">
-            <h2 class="section-title">Smart Fitness Analytics</h2>
-            <p class="section-description">
-                Transform your Google Fit data into actionable health insights. Get personalized recommendations, 
-                track progress, and discover patterns in your fitness journey with AI-powered analysis.
-            </p>
-
-            <!-- Login Section -->
-            <div id="fitness-login-section" class="fitness-login-section">
-                <div class="login-card">
-                    <div class="login-icon">
-                        <ion-icon name="fitness-outline"></ion-icon>
-                    </div>
-                    <h3>Connect Google Fit</h3>
-                    <p>Sign in with your Google account to access your fitness data and get personalized health insights.</p>
-                    <button id="fitness-login-btn" class="btn btn-primary">
-                        <ion-icon name="logo-google"></ion-icon>
-                        Connect Google Fit
-                    </button>
-                    <div class="login-features">
-                        <div class="feature">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>Secure OAuth 2.0 authentication</span>
-                        </div>
-                        <div class="feature">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>View steps, calories, and activity data</span>
-                        </div>
-                        <div class="feature">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>AI-powered health insights</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dashboard Section -->
-            <div id="fitness-dashboard-section" class="fitness-dashboard-section" style="display: none;">
-                <!-- Dashboard Controls -->
-                <div class="dashboard-controls">
-                    <div class="date-range-selector">
-                        <label for="fitness-date-range">Time Range:</label>
-                        <select id="fitness-date-range">
-                            <option value="7">Last 7 days</option>
-                            <option value="14">Last 14 days</option>
-                            <option value="30">Last 30 days</option>
-                        </select>
-                    </div>
-                    <div class="dashboard-actions">
-                        <button id="fitness-refresh-btn" class="btn btn-secondary">
-                            <ion-icon name="refresh-outline"></ion-icon>
-                            Refresh Data
-                        </button>
-                        <button id="fitness-logout-btn" class="btn btn-outline">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                            Disconnect
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Loading and Error Messages -->
-                <div id="fitness-loading" class="fitness-message loading" style="display: none;">
-                    <ion-icon name="hourglass-outline"></ion-icon>
-                    <span>Loading...</span>
-                </div>
-                <div id="fitness-error" class="fitness-message error" style="display: none;">
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                    <span></span>
-                </div>
-                <div id="fitness-success" class="fitness-message success" style="display: none;">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    <span></span>
-                </div>
-
-                <!-- Stats Overview -->
-                <div id="fitness-stats" class="fitness-stats">
-                    <!-- Stats will be populated by JavaScript -->
-                </div>
-
-                <!-- Charts Section -->
-                <div class="fitness-charts">
-                    <div class="chart-card">
-                        <div id="steps-chart" class="chart-content">
-                            <!-- Steps chart will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <div class="chart-card">
-                        <div id="calories-chart" class="chart-content">
-                            <!-- Calories chart will be populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Activity Summary -->
-                <div class="activity-section">
-                    <div class="chart-card">
-                        <div id="activity-summary" class="chart-content">
-                            <!-- Activity summary will be populated by JavaScript -->
-                        </div>
-                </div>
-            </div>
-
-            <!-- Demo Health Analytics -->
-            <div class="demo-analytics">
-                <h3>Demo: Health Analytics Dashboard</h3>
-                <p class="section-description">
-                    See what your Arduino health data looks like when processed by our AI system. 
-                    These are sample visualizations generated from simulated sensor data.
-                </p>
                 
-                <div class="analytics-grid">
-                    <!-- Heart Rate Trend Chart -->
-                    <div class="chart-container">
-                        <h4>Heart Rate Trend (24h)</h4>
-                        <div class="chart-wrapper">
-                            <canvas id="heartRateChart" width="400" height="200"></canvas>
-                        </div>
-                        <div class="chart-stats">
-                            <div class="stat">
-                                <span class="stat-label">Average:</span>
-                                <span class="stat-value">72 BPM</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Peak:</span>
-                                <span class="stat-value">95 BPM</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Resting:</span>
-                                <span class="stat-value">65 BPM</span>
-                            </div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <ion-icon name="people-outline"></ion-icon>
                     </div>
-
-                    <!-- Movement Activity Chart -->
-                    <div class="chart-container">
-                        <h4>Movement Activity</h4>
-                        <div class="chart-wrapper">
-                            <canvas id="movementChart" width="400" height="200"></canvas>
-                        </div>
-                        <div class="chart-stats">
-                            <div class="stat">
-                                <span class="stat-label">Active Time:</span>
-                                <span class="stat-value">4.2h</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Peak Activity:</span>
-                                <span class="stat-value">High</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Rest Periods:</span>
-                                <span class="stat-value">8</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Proximity Detection Chart -->
-                    <div class="chart-container">
-                        <h4>Proximity Detection</h4>
-                        <div class="chart-wrapper">
-                            <canvas id="proximityChart" width="400" height="200"></canvas>
-                        </div>
-                        <div class="chart-stats">
-                            <div class="stat">
-                                <span class="stat-label">Avg Distance:</span>
-                                <span class="stat-value">15.3 cm</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Close Events:</span>
-                                <span class="stat-value">12</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Posture Score:</span>
-                                <span class="stat-value">Good</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Health Score Overview -->
-                    <div class="chart-container">
-                        <h4>Overall Health Score</h4>
-                        <div class="health-score-display">
-                            <div class="score-circle">
-                                <div class="score-value">87</div>
-                                <div class="score-label">Health Score</div>
-                            </div>
-                            <div class="score-breakdown">
-                                <div class="score-item">
-                                    <span class="score-category">Heart Rate</span>
-                                    <div class="score-bar">
-                                        <div class="score-fill" style="width: 85%"></div>
-                                    </div>
-                                    <span class="score-percentage">85%</span>
-                                </div>
-                                <div class="score-item">
-                                    <span class="score-category">Activity</span>
-                                    <div class="score-bar">
-                                        <div class="score-fill" style="width: 92%"></div>
-                                    </div>
-                                    <span class="score-percentage">92%</span>
-                                </div>
-                                <div class="score-item">
-                                    <span class="score-category">Posture</span>
-                                    <div class="score-bar">
-                                        <div class="score-fill" style="width: 78%"></div>
-                                    </div>
-                                    <span class="score-percentage">78%</span>
-                                </div>
-                                <div class="score-item">
-                                    <span class="score-category">Consistency</span>
-                                    <div class="score-bar">
-                                        <div class="score-fill" style="width: 90%"></div>
-                                    </div>
-                                    <span class="score-percentage">90%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Insights from Demo Data -->
-                <div class="demo-insights">
-                    <h4>AI-Generated Insights</h4>
-                    <div class="insights-grid">
-                        <div class="insight-card positive">
-                            <div class="insight-icon">
-                                <ion-icon name="trending-up-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h5>Excellent Activity Pattern</h5>
-                                <p>Your movement data shows consistent activity throughout the day with good rest periods.</p>
-                            </div>
-                        </div>
-                        <div class="insight-card warning">
-                            <div class="insight-icon">
-                                <ion-icon name="warning-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h5>Posture Improvement Needed</h5>
-                                <p>Consider adjusting your workspace setup - proximity sensor detected frequent close-range readings.</p>
-                            </div>
-                        </div>
-                        <div class="insight-card positive">
-                            <div class="insight-icon">
-                                <ion-icon name="heart-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h5>Stable Heart Rate</h5>
-                                <p>Your heart rate shows healthy variability with good recovery patterns after activity.</p>
-                            </div>
-                        </div>
-                        <div class="insight-card info">
-                            <div class="insight-icon">
-                                <ion-icon name="bulb-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h5>Recommendation</h5>
-                                <p>Try taking a 5-minute break every hour to improve posture and reduce eye strain.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Insights Section -->
-                <div class="ai-insights-section">
-                    <h3>AI Health Insights</h3>
-                    <div class="insights-grid">
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="trending-up-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>Activity Trend</h4>
-                                <p>Your activity levels show a positive trend over the past week. Keep up the great work!</p>
-                            </div>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="heart-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>Health Score</h4>
-                                <p>Based on your fitness data, your overall health score is excellent. Continue maintaining your current routine.</p>
-                            </div>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="bulb-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>Recommendation</h4>
-                                <p>Consider adding 15 minutes of moderate exercise to reach your daily activity goals more consistently.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>Accessible Healthcare</h3>
+                    <p>Democratizing health monitoring for communities worldwide</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         ARDUINO HEALTH MONITORING SECTION
-    ============================================= -->
-    <section id="arduino-health" class="section">
+    <!-- Health Monitoring Section -->
+    <section id="monitor" class="section">
         <div class="container">
-            <h2 class="section-title">Affordable Health Monitoring</h2>
-            <p class="section-description">
-                Build your own health monitoring system with Arduino and ultrasonic sensors. 
-                A cost-effective solution that democratizes health tracking for communities worldwide, 
-                powered by AI analysis and real-time insights.
-            </p>
-
+            <h2>Health Monitoring Dashboard</h2>
+            <p>Real-time health data from your Arduino sensors with AI-powered analysis</p>
+            
             <!-- Arduino Setup -->
-            <div class="arduino-setup">
-                <h3>Hardware Setup</h3>
-                <div class="setup-grid">
+            <div class="setup-section">
+                <h3>Arduino Setup</h3>
+                <div class="setup-info">
                     <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="hardware-chip-outline"></ion-icon>
-                        </div>
                         <h4>Arduino UNO R4 WiFi</h4>
-                        <p>Advanced IoT board with ESP32-S3, 12x8 LED matrix, Qwiic connector, and WiFi/Bluetooth</p>
+                        <p>Advanced IoT board with ESP32-S3 and 12x8 LED matrix</p>
                     </div>
                     <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="radio-outline"></ion-icon>
-                        </div>
-                        <h4>Ultrasonic Sensor (HC-SR04)</h4>
-                        <p>Measures distance and detects movement for health parameter monitoring</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="bulb-outline"></ion-icon>
-                        </div>
-                        <h4>Hue Light Indicator</h4>
-                        <p>Visual feedback system that activates when placed on conductive surfaces</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="flash-outline"></ion-icon>
-                        </div>
-                        <h4>Metal Tin Plate</h4>
-                        <p>Conductive surface that completes the circuit for light activation</p>
+                        <h4>HC-SR04 Ultrasonic Sensor</h4>
+                        <p>Measures distance and detects movement for health monitoring</p>
                     </div>
                 </div>
                 
-                <!-- Wiring Guide -->
-                <div class="wiring-guide-section">
-                    <h3>Wiring Guide</h3>
-                    <p class="section-description">
-                        Follow the official Arduino guide to properly connect your Arduino UNO R4 WiFi with the HC-SR04 ultrasonic sensor and other components.
-                    </p>
-                    <div class="wiring-guide-container">
-                        <div class="wiring-guide-content">
-                            <div class="wiring-steps">
-                                <h4>HC-SR04 Ultrasonic Sensor Connections:</h4>
-                                <ul>
-                                    <li><strong>VCC</strong> → Arduino 5V</li>
-                                    <li><strong>GND</strong> → Arduino GND</li>
-                                    <li><strong>Trig</strong> → Arduino Digital Pin 9</li>
-                                    <li><strong>Echo</strong> → Arduino Digital Pin 10</li>
-                                </ul>
-                                
-                                <h4>LED Indicator:</h4>
-                                <ul>
-                                    <li><strong>LED Anode</strong> → Arduino Digital Pin 13</li>
-                                    <li><strong>LED Cathode</strong> → 220Ω Resistor → Arduino GND</li>
-                                </ul>
-                                
-                                <h4>Circuit Detection:</h4>
-                                <ul>
-                                    <li><strong>Metal Plate</strong> → Arduino Digital Pin 12</li>
-                                    <li><strong>Pull-up Resistor</strong> → 10kΩ between Pin 12 and 5V</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="wiring-resources">
-                                <h4>Official Resources:</h4>
-                                <a href="https://www.arduino.cc/en/Guide/ArduinoUnoR4WiFi" target="_blank" rel="noopener" class="resource-link">
-                                    <ion-icon name="link-outline"></ion-icon>
-                                    Arduino UNO R4 WiFi Official Guide
-                                </a>
-                                <a href="https://create.arduino.cc/projecthub/abdularbi17/ultrasonic-sensor-hc-sr04-with-arduino-tutorial-327ff6" target="_blank" rel="noopener" class="resource-link">
-                                    <ion-icon name="link-outline"></ion-icon>
-                                    HC-SR04 Sensor Tutorial
-                                </a>
-                                <a href="https://docs.arduino.cc/hardware/uno-r4-wifi" target="_blank" rel="noopener" class="resource-link">
-                                    <ion-icon name="link-outline"></ion-icon>
-                                    Arduino UNO R4 WiFi Documentation
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="wiring-guide">
+                    <h4>Wiring Guide</h4>
+                    <ul>
+                        <li><strong>VCC</strong> → Arduino 5V</li>
+                        <li><strong>GND</strong> → Arduino GND</li>
+                        <li><strong>Trig</strong> → Arduino Pin 9</li>
+                        <li><strong>Echo</strong> → Arduino Pin 10</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Real-time Dashboard -->
-            <div class="arduino-dashboard">
-                <h3>Real-time Health Monitoring</h3>
+            <!-- Live Dashboard -->
+            <div class="dashboard">
                 <div class="dashboard-controls">
-                    <div class="connection-status">
-                        <div id="arduino-status" class="status-indicator">
-                            <ion-icon name="radio-outline"></ion-icon>
-                            <span>Disconnected</span>
-                        </div>
-                        <button id="connect-arduino" class="btn btn-primary">
-                            <ion-icon name="link-outline"></ion-icon>
-                            Connect Arduino
-                        </button>
-                    </div>
-                    <div class="data-interval">
-                        <label for="data-interval">Update Interval:</label>
-                        <select id="data-interval">
-                            <option value="1000">1 second</option>
-                            <option value="5000">5 seconds</option>
-                            <option value="10000">10 seconds</option>
-                        </select>
-                    </div>
+                    <button id="connect-arduino" class="btn btn-primary">
+                        <ion-icon name="link-outline"></ion-icon>
+                        Connect Arduino
+                    </button>
+                    <div id="connection-status" class="status">Disconnected</div>
                 </div>
 
-                <!-- Live Data Display -->
-                <div class="live-data-grid">
+                <div class="data-grid">
                     <div class="data-card">
                         <div class="data-icon">
                             <ion-icon name="pulse-outline"></ion-icon>
@@ -840,9 +126,6 @@
                         <div class="data-content">
                             <h4>Heart Rate</h4>
                             <div id="heart-rate" class="data-value">-- BPM</div>
-                            <div class="data-trend">
-                                <span id="heart-rate-trend" class="trend-indicator">--</span>
-                            </div>
                         </div>
                     </div>
 
@@ -853,9 +136,6 @@
                         <div class="data-content">
                             <h4>Movement</h4>
                             <div id="movement-level" class="data-value">--</div>
-                            <div class="data-trend">
-                                <span id="movement-trend" class="trend-indicator">--</span>
-                            </div>
                         </div>
                     </div>
 
@@ -866,49 +146,21 @@
                         <div class="data-content">
                             <h4>Proximity</h4>
                             <div id="proximity-level" class="data-value">-- cm</div>
-                            <div class="data-trend">
-                                <span id="proximity-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="flash-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Circuit Status</h4>
-                            <div id="circuit-status" class="data-value">Open</div>
-                            <div class="data-trend">
-                                <span id="circuit-indicator" class="circuit-indicator">●</span>
-                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- AI Health Insights -->
-                <div class="ai-insights-section">
-                    <h3>AI Health Analysis</h3>
-                    <div id="ai-insights" class="insights-container">
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="analytics-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>System Status</h4>
-                                <p>Waiting for Arduino connection to begin health analysis...</p>
-                            </div>
+                <!-- Demo Charts -->
+                <div class="demo-charts">
+                    <h3>Health Analytics</h3>
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h4>Heart Rate Trend</h4>
+                            <canvas id="heartRateChart" width="400" height="200"></canvas>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Data Log -->
-                <div class="data-log-section">
-                    <h3>Data Log</h3>
-                    <div id="data-log" class="log-container">
-                        <div class="log-entry">
-                            <span class="log-time">--:--:--</span>
-                            <span class="log-message">System initialized. Ready to receive Arduino data.</span>
+                        <div class="chart-container">
+                            <h4>Movement Activity</h4>
+                            <canvas id="movementChart" width="400" height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -916,391 +168,17 @@
         </div>
     </section>
 
-    <!-- ============================================
-         ICF GENERATOR SECTION
-    ============================================= -->
-    <section id="icf-generator" class="section">
+    <!-- AI Chat Section -->
+    <section id="ai" class="section">
         <div class="container">
-            <h2 class="section-title">Clinical Trial ICF Generator</h2>
-            <p class="section-description">
-                Accelerate clinical research with our AI-powered Informed Consent Form generator. 
-                Create FDA-compliant, patient-friendly consent forms in minutes, not hours. 
-                Streamline your research workflow with intelligent document generation.
-            </p>
-
-            <div class="icf-generator-container">
-                <!-- ICF Generator Card -->
-                <div class="icf-generator-card">
-                    <div class="generator-header">
-                        <div class="generator-icon">
-                            <ion-icon name="document-text-outline"></ion-icon>
-                        </div>
-                        <div class="generator-info">
-                            <h3>Clinical Trial ICF Generator</h3>
-                            <p>Generate comprehensive informed consent forms for your clinical research studies</p>
-                        </div>
-                    </div>
-
-                    <div class="generator-features">
-                        <div class="feature-grid">
-                            <div class="feature-item">
-                                <ion-icon name="shield-checkmark-outline"></ion-icon>
-                                <h4>Regulatory Compliance</h4>
-                                <p>FDA, ICH-GCP, and IRB compliant templates</p>
-                            </div>
-                            <div class="feature-item">
-                                <ion-icon name="language-outline"></ion-icon>
-                                <h4>Multi-language Support</h4>
-                                <p>Generate forms in multiple languages for diverse populations</p>
-                            </div>
-                            <div class="feature-item">
-                                <ion-icon name="people-outline"></ion-icon>
-                                <h4>Patient-Friendly</h4>
-                                <p>Clear, understandable language for all education levels</p>
-                            </div>
-                            <div class="feature-item">
-                                <ion-icon name="settings-outline"></ion-icon>
-                                <h4>Customizable</h4>
-                                <p>Tailor forms to specific study protocols and requirements</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="generator-actions">
-                        <button id="try-icf-generator" class="btn btn-primary btn-large">
-                            <ion-icon name="create-outline"></ion-icon>
-                            Try ICF Generator
-                        </button>
-                        <div class="coming-soon-note">
-                            <ion-icon name="information-circle-outline"></ion-icon>
-                            <span>Integration in progress - Full functionality coming soon</span>
-                        </div>
-                    </div>
-
-                    <!-- Integration Status -->
-                    <div class="integration-status">
-                        <h4>Integration Status</h4>
-                        <div class="status-timeline">
-                            <div class="timeline-item completed">
-                                <div class="timeline-icon">
-                                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                </div>
-                                <div class="timeline-content">
-                                    <h5>ICF Generator Built</h5>
-                                    <p>Core functionality developed by team member</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item in-progress">
-                                <div class="timeline-icon">
-                                    <ion-icon name="time-outline"></ion-icon>
-                                </div>
-                                <div class="timeline-content">
-                                    <h5>Integration in Progress</h5>
-                                    <p>Connecting to Mify platform</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item pending">
-                                <div class="timeline-icon">
-                                    <ion-icon name="ellipse-outline"></ion-icon>
-                                </div>
-                                <div class="timeline-content">
-                                    <h5>Full Integration</h5>
-                                    <p>Complete platform integration</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ICF Process Overview -->
-                <div class="icf-process-overview">
-                    <h3>How ICF Generation Works</h3>
-                    <div class="process-steps">
-                        <div class="process-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Study Protocol Input</h4>
-                                <p>Enter your clinical trial details, objectives, and procedures</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>AI Analysis</h4>
-                                <p>Our AI analyzes requirements and generates compliant content</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Form Generation</h4>
-                                <p>Receive a complete, formatted ICF ready for IRB submission</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <h4>Review & Customize</h4>
-                                <p>Review, edit, and customize the generated form as needed</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         TEAM SECTION
-    ============================================= -->
-    <section id="team" class="section">
-        <div class="container">
-            <h2 class="section-title">Meet Our Team</h2>
-            <p class="section-description">
-                A diverse group of healthcare professionals, data scientists, and AI researchers 
-                working together to revolutionize medical insights.
-            </p>
+            <h2>AI Health Assistant</h2>
+            <p>Powered by Fetch.ai's ASI:One - Get intelligent health insights and recommendations</p>
             
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-photo">
-                        <img src="assets/images/team/Alexander Le.jpg" alt="Alexander Le">
-                    </div>
-                    <h3 class="team-name">Alexander Le</h3>
-                    <p class="team-role">UC Berkeley</p>
-                    <div class="team-links">
-                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="team-photo">
-                        <img src="assets/images/team/Nikita Gounder.jpg" alt="Nikita Gounder">
-                    </div>
-                    <h3 class="team-name">Nikita Gounder</h3>
-                    <p class="team-role">UCSF</p>
-                    <div class="team-links">
-                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="team-photo">
-                        <img src="assets/images/team/Santhusha.jpg" alt="Santhusha">
-                    </div>
-                    <h3 class="team-name">Santhusha</h3>
-                    <p class="team-role">UC Berkeley</p>
-                    <div class="team-links">
-                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="team-photo">
-                        <img src="assets/images/team/TeshomeHaile.jpg" alt="Teshome Haile">
-                    </div>
-                    <h3 class="team-name">Teshome Haile</h3>
-                    <p class="team-role">UCSF</p>
-                    <div class="team-links">
-                        <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        <a href="#" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         HOW WE BUILT IT SECTION
-    ============================================= -->
-    <section id="how-we-built-it" class="section">
-        <div class="container">
-            <h2 class="section-title">How We Built It</h2>
-            <p class="section-description">
-                Mify leverages cutting-edge technologies and platforms to create a comprehensive health monitoring ecosystem. 
-                Built with Postman for API development and Fetch.ai for intelligent agent orchestration.
-            </p>
-
-            <!-- Technology Stack -->
-            <div class="tech-stack">
-                <h3>Core Technologies</h3>
-                <div class="tech-grid">
-                    <div class="tech-card">
-                        <div class="tech-icon">
-                            <ion-icon name="logo-google"></ion-icon>
-                        </div>
-                        <h4>Google Fit API</h4>
-                        <p>Seamless integration with Google Fit for comprehensive health data collection and analysis</p>
-                        <div class="tech-badge">Data Collection</div>
-                    </div>
-                    
-                    <div class="tech-card">
-                        <div class="tech-icon">
-                            <ion-icon name="hardware-chip-outline"></ion-icon>
-                        </div>
-                        <h4>Arduino UNO R4 WiFi</h4>
-                        <p>Advanced IoT board with ESP32-S3, 12x8 LED matrix, and ultrasonic sensors for affordable health monitoring</p>
-                        <div class="tech-badge">Hardware</div>
-                    </div>
-                    
-                    <div class="tech-card">
-                        <div class="tech-icon">
-                            <ion-icon name="sparkles-outline"></ion-icon>
-                        </div>
-                        <h4>Fetch.ai ASI:One</h4>
-                        <p>World's first agentic LLM for intelligent health analysis and agent discovery</p>
-                        <div class="tech-badge">AI Engine</div>
-                    </div>
-                    
-                    <div class="tech-card">
-                        <div class="tech-icon">
-                            <ion-icon name="code-outline"></ion-icon>
-                        </div>
-                        <h4>Postman API Platform</h4>
-                        <p>Complete API development lifecycle with automated testing and documentation</p>
-                        <div class="tech-badge">API Development</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Development Process -->
-            <div class="development-process">
-                <h3>Development Process</h3>
-                <div class="process-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-number">1</div>
-                        <div class="timeline-content">
-                            <h4>API Design with Postman</h4>
-                            <p>Designed and tested Google Fit API integration using Postman collections. Created comprehensive API documentation and automated testing workflows.</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">Postman</span>
-                                <span class="tech-tag">Google Fit API</span>
-                                <span class="tech-tag">OAuth 2.0</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-number">2</div>
-                        <div class="timeline-content">
-                            <h4>Hardware Integration</h4>
-                            <p>Developed Arduino-based health monitoring system with ultrasonic sensors and real-time data transmission to web platform.</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">Arduino UNO R4</span>
-                                <span class="tech-tag">HC-SR04 Sensor</span>
-                                <span class="tech-tag">Web Serial API</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-number">3</div>
-                        <div class="timeline-content">
-                            <h4>AI Agent Development</h4>
-                            <p>Built intelligent health agents using Fetch.ai's uAgents framework with ASI:One integration for advanced health analysis and recommendations.</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">Fetch.ai</span>
-                                <span class="tech-tag">ASI:One</span>
-                                <span class="tech-tag">uAgents</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-number">4</div>
-                        <div class="timeline-content">
-                            <h4>Frontend Integration</h4>
-                            <p>Created responsive web interface with real-time data visualization, AI chat interface, and seamless user experience.</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Live AI Chat Integration -->
-            <div class="ai-integration">
-                <h3>Live AI Integration</h3>
-                <div class="ai-chat-embed">
-                    <div class="embed-header">
-                        <h4>Try Our AI Health Assistant</h4>
-                        <p>Powered by Fetch.ai's ASI:One - The world's first agentic LLM</p>
-                    </div>
-                    <div class="embed-container">
-                        <iframe 
-                            src="https://asi1.ai/chat?webSearch=false&isAgentic=true&sharedAgentAddress=agent1qg070eahw9act7cw5j7qernypfc390al97cszmddvsawgl502a2rytvrqmu"
-                            width="100%" 
-                            height="600"
-                            frameborder="0"
-                            title="ASI:One AI Health Assistant">
-                        </iframe>
-                    </div>
-                    <div class="embed-footer">
-                        <p>This AI assistant is powered by Fetch.ai's ASI:One and can help with health monitoring, data analysis, and personalized recommendations.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Postman Collection -->
-            <div class="postman-showcase">
-                <h3>Postman API Collection</h3>
-                <div class="postman-content">
-                    <div class="postman-info">
-                        <h4>Complete API Development Workflow</h4>
-                        <p>Our Postman collection includes:</p>
-                        <ul>
-                            <li>Google Fit API integration with OAuth 2.0</li>
-                            <li>Automated testing and validation</li>
-                            <li>Comprehensive API documentation</li>
-                            <li>Environment management and variables</li>
-                            <li>Pre-request scripts and post-response tests</li>
-                        </ul>
-                        <a href="https://github.com/Medical-Insights-For-You/Medical-Insights-For-You.github.io/tree/main/postman" 
-                           class="btn btn-primary" target="_blank" rel="noopener">
-                            <ion-icon name="logo-github"></ion-icon>
-                            View Postman Collection
-                        </a>
-                    </div>
-                    <div class="postman-visual">
-                        <img src="assets/images/PostmanFlowMify.svg" alt="Postman API Flow" class="postman-flow">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         AI CHAT ASSISTANT
-    ============================================= -->
-    <section id="ai-chat" class="section">
-        <div class="container">
-            <h2 class="section-title">Intelligent Health Assistant</h2>
-            <p class="section-description">
-                Powered by Fetch.ai's ASI:One, our AI assistant provides intelligent health analysis, 
-                personalized recommendations, and real-time insights. Ask questions, get expert guidance, 
-                and discover specialized health agents for comprehensive care.
-            </p>
-
             <div class="ai-chat-container">
-                <!-- Chat Interface -->
                 <div class="chat-interface">
                     <div class="chat-header">
-                        <div class="chat-title">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                            <h3>Health AI Assistant</h3>
-                        </div>
-                        <div class="chat-status">
-                            <div id="ai-status" class="status-indicator">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                <span>Ready</span>
-                            </div>
-                        </div>
+                        <h3>Health AI Assistant</h3>
+                        <div id="ai-status" class="status">Ready</div>
                     </div>
 
                     <div id="chat-messages" class="chat-messages">
@@ -1309,137 +187,84 @@
                                 <ion-icon name="medical-outline"></ion-icon>
                             </div>
                             <div class="message-content">
-                                <div class="message-text">
-                                    Hello! I'm your AI Health Assistant. I can help you understand your health data, 
-                                    provide insights about your Arduino monitoring, and answer health-related questions. 
-                                    How can I assist you today?
-                                </div>
-                                <div class="message-time">Just now</div>
+                                <p>Hello! I'm your AI Health Assistant. I can help you understand your health data and provide insights. How can I assist you?</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="chat-input-container">
-                        <div class="input-wrapper">
-                            <input 
-                                type="text" 
-                                id="chat-input" 
-                                placeholder="Ask me about your health data, Arduino readings, or any health questions..."
-                                maxlength="500"
-                            >
-                            <button id="send-message" class="send-button">
-                                <ion-icon name="send-outline"></ion-icon>
-                            </button>
-                        </div>
-                        <div class="input-actions">
-                            <button class="quick-action" data-prompt="What do my current health readings mean?">
-                                <ion-icon name="analytics-outline"></ion-icon>
-                                Current Readings
-                            </button>
-                            <button class="quick-action" data-prompt="Are there any health concerns I should know about?">
-                                <ion-icon name="warning-outline"></ion-icon>
-                                Health Concerns
-                            </button>
-                            <button class="quick-action" data-prompt="Give me recommendations for improving my health">
-                                <ion-icon name="bulb-outline"></ion-icon>
-                                Recommendations
-                            </button>
-                            <button class="quick-action" data-prompt="Explain my Arduino device setup">
-                                <ion-icon name="hardware-chip-outline"></ion-icon>
-                                Device Help
-                            </button>
-                        </div>
+                        <input type="text" id="chat-input" placeholder="Ask about your health data...">
+                        <button id="send-message" class="send-button">
+                            <ion-icon name="send-outline"></ion-icon>
+                        </button>
                     </div>
                 </div>
 
-                <!-- AI Insights Panel -->
-                <div class="ai-insights-panel">
+                <div class="ai-insights">
                     <h3>AI Analysis</h3>
-                    <div id="ai-analysis" class="analysis-content">
-                        <div class="analysis-item">
-                            <div class="analysis-icon">
-                                <ion-icon name="trending-up-outline"></ion-icon>
-                            </div>
-                            <div class="analysis-text">
-                                <h4>Data Quality</h4>
-                                <p>Monitoring your health metrics in real-time</p>
-                            </div>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <ion-icon name="trending-up-outline"></ion-icon>
+                            <h4>Data Quality</h4>
+                            <p>Monitoring health metrics in real-time</p>
                         </div>
-                        <div class="analysis-item">
-                            <div class="analysis-icon">
-                                <ion-icon name="shield-checkmark-outline"></ion-icon>
-                            </div>
-                            <div class="analysis-text">
-                                <h4>Health Status</h4>
-                                <p>All systems functioning normally</p>
-                            </div>
+                        <div class="insight-card">
+                            <ion-icon name="shield-checkmark-outline"></ion-icon>
+                            <h4>Health Status</h4>
+                            <p>All systems functioning normally</p>
                         </div>
-                        <div class="analysis-item">
-                            <div class="analysis-icon">
-                                <ion-icon name="bulb-outline"></ion-icon>
-                            </div>
-                            <div class="analysis-text">
-                                <h4>Insights</h4>
-                                <p>Ready to provide personalized recommendations</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ai-capabilities">
-                        <h4>I can help with:</h4>
-                        <ul>
-                            <li><ion-icon name="checkmark-outline"></ion-icon> Health data interpretation</li>
-                            <li><ion-icon name="checkmark-outline"></ion-icon> Arduino device troubleshooting</li>
-                            <li><ion-icon name="checkmark-outline"></ion-icon> Lifestyle recommendations</li>
-                            <li><ion-icon name="checkmark-outline"></ion-icon> Health trend analysis</li>
-                            <li><ion-icon name="checkmark-outline"></ion-icon> Medical guidance (general)</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         FOOTER
-    ============================================= -->
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Alexander Le</h3>
+                    <p>UC Berkeley</p>
+                </div>
+                <div class="team-member">
+                    <h3>Nikita Gounder</h3>
+                    <p>UCSF</p>
+                </div>
+                <div class="team-member">
+                    <h3>Santhusha</h3>
+                    <p>UC Berkeley</p>
+                </div>
+                <div class="team-member">
+                    <h3>Teshome Haile</h3>
+                    <p>UCSF</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">Mify</div>
                 <div class="footer-links">
                     <a href="#about">About</a>
-                    <a href="#how-it-works">How It Works</a>
-                    <a href="#integrated-ecosystem">Integration</a>
-                    <a href="#fitness-dashboard">Fitness Dashboard</a>
-                    <a href="#arduino-health">Arduino Health</a>
-                    <a href="#ai-chat">AI Assistant</a>
-                    <a href="#icf-generator">ICF Generator</a>
+                    <a href="#monitor">Monitor</a>
+                    <a href="#ai">AI Chat</a>
                     <a href="#team">Team</a>
-                    <a href="https://github.com/GeneticAlgorithms/Mify" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/GeneticAlgorithms/Mify" target="_blank">GitHub</a>
                 </div>
                 <div class="footer-copyright">
                     © 2024 Mify. All rights reserved.
                 </div>
             </div>
-            
-            <!-- Mify Hero SVG -->
-            <div class="footer-hero">
-                <img src="assets/images/Mify-hero.svg" alt="Mify Hero Illustration" class="hero-svg">
-            </div>
         </div>
     </footer>
 
-    <!-- ============================================
-         JAVASCRIPT
-    ============================================= -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/fitness-api.js"></script>
-    <script src="js/ai-health-agent.js"></script>
-    <script src="js/arduino-health.js"></script>
-    <!-- AI Chat Interface Script with ASI:One Integration -->
-    <script src="js/ai-chat-asi-one.js"></script>
-    <!-- Demo Analytics Script -->
-    <script src="js/demo-analytics.js"></script>
 </body>
 </html>
