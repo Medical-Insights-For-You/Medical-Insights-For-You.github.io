@@ -25,8 +25,6 @@
             <ul class="nav-links">
                 <li><a href="#solutions">Solutions</a></li>
                 <li><a href="#demo">Demo</a></li>
-                <li><a href="#icf">ICF Generator</a></li>
-                <li><a href="#postman">Postman</a></li>
                 <li><a href="#team">Team</a></li>
             </ul>
         </div>
@@ -282,49 +280,10 @@
                     </div>
                 </div>
 
-                <!-- Health Screening Results -->
-                <div class="screening-results">
-                    <h3>Patient Screening Results</h3>
-                    <div class="screening-cards">
-                        <div class="screening-result-card">
-                            <div class="result-icon">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            </div>
-                            <div class="result-content">
-                                <h4>Heart Rate: Normal</h4>
-                                <p>Within acceptable range for most clinical trials</p>
-                                <div class="result-status normal">Eligible</div>
-                            </div>
-                        </div>
-                        
-                        <div class="screening-result-card">
-                            <div class="result-icon">
-                                <ion-icon name="warning-outline"></ion-icon>
-                            </div>
-                            <div class="result-content">
-                                <h4>Movement Pattern: Irregular</h4>
-                                <p>May indicate fatigue or health concerns</p>
-                                <div class="result-status warning">Monitor</div>
-                            </div>
-                        </div>
-                        
-                        <div class="screening-result-card">
-                            <div class="result-icon">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            </div>
-                            <div class="result-content">
-                                <h4>Overall Assessment</h4>
-                                <p>Patient meets basic eligibility criteria</p>
-                                <div class="result-status normal">Suitable</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Demo Charts -->
-                <div class="demo-charts">
-                    <h3>Health Analytics</h3>
-                    <div class="charts-grid">
+                <!-- Quick Demo -->
+                <div class="quick-demo">
+                    <h3>Live Health Analytics</h3>
+                    <div class="demo-grid">
                         <div class="chart-container">
                             <h4>Heart Rate Trend</h4>
                             <canvas id="heartRateChart" width="400" height="200"></canvas>
@@ -335,285 +294,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Patient Recruitment Demo -->
-                <div class="recruitment-demo">
-                    <h3>Smart Patient Recruitment</h3>
-                    <p>AI analyzes real-time health data to match patients with relevant clinical trials</p>
-                    
-                    <div class="recruitment-cards">
-                        <div class="recruitment-card">
-                            <div class="recruitment-icon">
-                                <ion-icon name="heart-outline"></ion-icon>
-                            </div>
-                            <div class="recruitment-content">
-                                <h4>Cardiovascular Trial Match</h4>
-                                <p>Based on heart rate patterns, this patient matches 3 active cardiovascular studies</p>
-                                <div class="match-score">Match Score: 87%</div>
-                            </div>
-                        </div>
-                        
-                        <div class="recruitment-card">
-                            <div class="recruitment-icon">
-                                <ion-icon name="walk-outline"></ion-icon>
-                            </div>
-                            <div class="recruitment-content">
-                                <h4>Activity-Based Trial</h4>
-                                <p>Movement patterns suggest eligibility for physical therapy research studies</p>
-                                <div class="match-score">Match Score: 92%</div>
-                            </div>
-                        </div>
-                        
-                        <div class="recruitment-card">
-                            <div class="recruitment-icon">
-                                <ion-icon name="pulse-outline"></ion-icon>
-                            </div>
-                            <div class="recruitment-content">
-                                <h4>Vital Signs Study</h4>
-                                <p>Consistent vital monitoring data qualifies for longitudinal health studies</p>
-                                <div class="match-score">Match Score: 78%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Chat Section -->
-    <section id="ai" class="section">
-        <div class="container">
-            <h2>AI Health Assistant</h2>
-            <p>Powered by Fetch.ai's ASI:One - Get intelligent health insights and recommendations</p>
-            
-            <div class="ai-chat-container">
-                <div class="chat-interface">
-                    <div class="chat-header">
-                        <h3>Health AI Assistant</h3>
-                        <div id="ai-status" class="status">Ready</div>
-                    </div>
-
-                    <div id="chat-messages" class="chat-messages">
-                        <div class="message ai-message">
-                            <div class="message-avatar">
-                                <ion-icon name="medical-outline"></ion-icon>
-                            </div>
-                            <div class="message-content">
-                                <p>Hello! I'm your AI Health Assistant. I can help you understand your health data and provide insights. How can I assist you?</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="chat-input-container">
-                        <input type="text" id="chat-input" placeholder="Ask about your health data...">
-                        <button id="send-message" class="send-button">
-                            <ion-icon name="send-outline"></ion-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="ai-insights">
-                    <h3>AI Analysis</h3>
-                    <div class="insights-grid">
-                        <div class="insight-card">
-                            <ion-icon name="trending-up-outline"></ion-icon>
-                            <h4>Data Quality</h4>
-                            <p>Monitoring health metrics in real-time</p>
-                        </div>
-                        <div class="insight-card">
-                            <ion-icon name="shield-checkmark-outline"></ion-icon>
-                            <h4>Health Status</h4>
-                            <p>All systems functioning normally</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ICF Generator Section -->
-    <section id="icf" class="section">
-        <div class="container">
-            <h2>Clinical Trial ICF Generator</h2>
-            <p>AI-powered Informed Consent Form generator for clinical research. Create FDA-compliant, patient-friendly consent forms in minutes.</p>
-            
-            <div class="icf-container">
-                <div class="icf-card">
-                    <div class="icf-header">
-                        <div class="icf-icon">
-                            <ion-icon name="document-text-outline"></ion-icon>
-                        </div>
-                        <div class="icf-info">
-                            <h3>ICF Generator</h3>
-                            <p>Generate comprehensive informed consent forms for clinical research studies</p>
-                        </div>
-                    </div>
-
-                    <div class="icf-features">
-                        <div class="feature-grid">
-                            <div class="feature-item">
-                                <ion-icon name="shield-checkmark-outline"></ion-icon>
-                                <h4>FDA Compliant</h4>
-                                <p>Regulatory compliant templates</p>
-                            </div>
-                            <div class="feature-item">
-                                <ion-icon name="language-outline"></ion-icon>
-                                <h4>Multi-language</h4>
-                                <p>Generate forms in multiple languages</p>
-                            </div>
-                            <div class="feature-item">
-                                <ion-icon name="people-outline"></ion-icon>
-                                <h4>Patient-Friendly</h4>
-                                <p>Clear, understandable language</p>
-                            </div>
-                            <div class="feature-item">
-                                <ion-icon name="settings-outline"></ion-icon>
-                                <h4>Customizable</h4>
-                                <p>Tailor to specific protocols</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="icf-actions">
-                        <button id="try-icf-generator" class="btn btn-primary btn-large">
-                            <ion-icon name="create-outline"></ion-icon>
-                            Try ICF Generator
-                        </button>
-                        <div class="coming-soon">
-                            <ion-icon name="information-circle-outline"></ion-icon>
-                            <span>Integration in progress - Full functionality coming soon</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="icf-process">
-                    <h3>How It Works</h3>
-                    <div class="process-steps">
-                        <div class="process-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Study Input</h4>
-                                <p>Enter clinical trial details and procedures</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>AI Analysis</h4>
-                                <p>AI generates compliant content</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Form Generation</h4>
-                                <p>Complete ICF ready for IRB submission</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Postman Section -->
-    <section id="postman" class="section">
-        <div class="container">
-            <h2>API Development with Postman</h2>
-            <p>Comprehensive API development workflow using Postman for Google Fit integration and health data processing</p>
-            
-            <div class="postman-container">
-                <div class="postman-showcase">
-                    <div class="postman-info">
-                        <h3>Complete API Development Workflow</h3>
-                        <p>Our Postman collection includes comprehensive API development tools for health data integration:</p>
-                        
-                        <div class="postman-features">
-                            <div class="postman-feature">
-                                <ion-icon name="logo-google"></ion-icon>
-                                <div>
-                                    <h4>Google Fit API Integration</h4>
-                                    <p>OAuth 2.0 authentication and data retrieval</p>
-                                </div>
-                            </div>
-                            <div class="postman-feature">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                <div>
-                                    <h4>Automated Testing</h4>
-                                    <p>Comprehensive test suites and validation</p>
-                                </div>
-                            </div>
-                            <div class="postman-feature">
-                                <ion-icon name="document-outline"></ion-icon>
-                                <div>
-                                    <h4>API Documentation</h4>
-                                    <p>Complete documentation and examples</p>
-                                </div>
-                            </div>
-                            <div class="postman-feature">
-                                <ion-icon name="settings-outline"></ion-icon>
-                                <div>
-                                    <h4>Environment Management</h4>
-                                    <p>Variables and environment configuration</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="postman-actions">
-                            <a href="https://github.com/Medical-Insights-For-You/Medical-Insights-For-You.github.io/tree/main/postman" 
-                               class="btn btn-primary" target="_blank" rel="noopener">
-                                <ion-icon name="logo-github"></ion-icon>
-                                View Postman Collection
-                            </a>
-                            <a href="https://www.postman.com/" class="btn btn-secondary" target="_blank" rel="noopener">
-                                <ion-icon name="link-outline"></ion-icon>
-                                Learn Postman
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="postman-visual">
-                        <div class="postman-flow">
-                            <h4>Postman API Flow</h4>
-                            <div class="flow-image">
-                                <img src="assets/images/PostmanFlowMify.svg" alt="Postman API Flow Diagram" class="postman-svg">
-                            </div>
-                            <p class="flow-description">
-                                Complete API development workflow using Postman for Google Fit integration, 
-                                automated testing, and health data processing
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="postman-tech">
-                    <h3>Technologies Used</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <ion-icon name="logo-google"></ion-icon>
-                            <h4>Google Fit API</h4>
-                            <p>Health data collection and analysis</p>
-                        </div>
-                        <div class="tech-item">
-                            <ion-icon name="code-outline"></ion-icon>
-                            <h4>Postman Platform</h4>
-                            <p>API development and testing</p>
-                        </div>
-                        <div class="tech-item">
-                            <ion-icon name="shield-outline"></ion-icon>
-                            <h4>OAuth 2.0</h4>
-                            <p>Secure authentication</p>
-                        </div>
-                        <div class="tech-item">
-                            <ion-icon name="server-outline"></ion-icon>
-                            <h4>REST APIs</h4>
-                            <p>Standardized data exchange</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Team Section -->
     <section id="team" class="section">
@@ -665,8 +349,6 @@
                 <div class="footer-links">
                     <a href="#solutions">Solutions</a>
                     <a href="#demo">Demo</a>
-                    <a href="#icf">ICF Generator</a>
-                    <a href="#postman">Postman</a>
                     <a href="#team">Team</a>
                     <a href="https://github.com/GeneticAlgorithms/Mify" target="_blank">GitHub</a>
                 </div>

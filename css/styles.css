@@ -1229,6 +1229,29 @@ body {
 }
 
 /* ============================================
+   QUICK DEMO
+============================================= */
+.quick-demo {
+    margin-top: var(--space-lg);
+    background: var(--bg-card);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+}
+
+.quick-demo h3 {
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-md);
+}
+
+/* ============================================
    PATIENT RECRUITMENT DEMO
 ============================================= */
 .recruitment-demo {
@@ -1453,6 +1476,10 @@ body {
     }
     
     .hardware-demo {
+        grid-template-columns: 1fr;
+    }
+    
+    .demo-grid {
         grid-template-columns: 1fr;
     }
 }
