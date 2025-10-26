@@ -116,17 +116,29 @@ class MifyApp {
         // Heart Rate Chart
         const heartRateCtx = document.getElementById('heartRateChart');
         if (heartRateCtx) {
+            // Generate initial demo data
+            const now = new Date();
+            const labels = [];
+            const data = [];
+            
+            for (let i = 9; i >= 0; i--) {
+                const time = new Date(now.getTime() - i * 60000); // Every minute
+                labels.push(time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+                data.push(Math.floor(Math.random() * 20) + 70); // 70-90 BPM
+            }
+            
             this.charts.heartRate = new Chart(heartRateCtx, {
                 type: 'line',
                 data: {
-                    labels: [],
+                    labels: labels,
                     datasets: [{
                         label: 'Heart Rate (BPM)',
-                        data: [],
-                        borderColor: '#00d4ff',
-                        backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                        data: data,
+                        borderColor: '#000000',
+                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
                         tension: 0.4,
-                        fill: true
+                        fill: true,
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -135,18 +147,33 @@ class MifyApp {
                     plugins: {
                         legend: {
                             labels: {
-                                color: '#ffffff'
+                                color: '#000000',
+                                font: {
+                                    size: 12
+                                }
                             }
                         }
                     },
                     scales: {
                         x: {
-                            ticks: { color: '#b8b8b8' },
-                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                            ticks: { 
+                                color: '#333333',
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' }
                         },
                         y: {
-                            ticks: { color: '#b8b8b8' },
-                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                            ticks: { 
+                                color: '#333333',
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            min: 60,
+                            max: 100
                         }
                     }
                 }
@@ -156,26 +183,34 @@ class MifyApp {
         // Movement Chart
         const movementCtx = document.getElementById('movementChart');
         if (movementCtx) {
+            // Generate initial demo data
+            const activityData = [
+                Math.floor(Math.random() * 80) + 20, // Active
+                Math.floor(Math.random() * 60) + 10, // Resting
+                Math.floor(Math.random() * 40) + 5,  // Walking
+                Math.floor(Math.random() * 30) + 2   // Running
+            ];
+            
             this.charts.movement = new Chart(movementCtx, {
                 type: 'bar',
                 data: {
                     labels: ['Active', 'Resting', 'Walking', 'Running'],
                     datasets: [{
                         label: 'Activity Level',
-                        data: [0, 0, 0, 0],
+                        data: activityData,
                         backgroundColor: [
-                            'rgba(0, 212, 255, 0.8)',
-                            'rgba(0, 180, 216, 0.8)',
-                            'rgba(0, 255, 136, 0.8)',
-                            'rgba(139, 92, 246, 0.8)'
+                            'rgba(0, 0, 0, 0.8)',
+                            'rgba(51, 51, 51, 0.8)',
+                            'rgba(102, 102, 102, 0.8)',
+                            'rgba(153, 153, 153, 0.8)'
                         ],
                         borderColor: [
-                            '#00d4ff',
-                            '#00b4d8',
-                            '#00ff88',
-                            '#8b5cf6'
+                            '#000000',
+                            '#333333',
+                            '#666666',
+                            '#999999'
                         ],
-                        borderWidth: 1
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -184,18 +219,33 @@ class MifyApp {
                     plugins: {
                         legend: {
                             labels: {
-                                color: '#ffffff'
+                                color: '#000000',
+                                font: {
+                                    size: 12
+                                }
                             }
                         }
                     },
                     scales: {
                         x: {
-                            ticks: { color: '#b8b8b8' },
-                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                            ticks: { 
+                                color: '#333333',
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' }
                         },
                         y: {
-                            ticks: { color: '#b8b8b8' },
-                            grid: { color: 'rgba(184, 184, 184, 0.1)' }
+                            ticks: { 
+                                color: '#333333',
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            min: 0,
+                            max: 100
                         }
                     }
                 }
@@ -204,7 +254,7 @@ class MifyApp {
     }
 
     updateCharts(heartRate, movement, proximity) {
-        const now = new Date().toLocaleTimeString();
+        const now = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         
         // Update Heart Rate Chart
         if (this.charts.heartRate) {
@@ -224,15 +274,12 @@ class MifyApp {
         // Update Movement Chart
         if (this.charts.movement) {
             const chart = this.charts.movement;
-            const activityData = [0, 0, 0, 0];
-            
-            // Simulate activity distribution
-            if (movement === 'Active') {
-                activityData[0] = Math.random() * 100;
-                activityData[2] = Math.random() * 50;
-    } else {
-                activityData[1] = Math.random() * 100;
-            }
+            const activityData = [
+                Math.floor(Math.random() * 80) + 20, // Active
+                Math.floor(Math.random() * 60) + 10, // Resting
+                Math.floor(Math.random() * 40) + 5,  // Walking
+                Math.floor(Math.random() * 30) + 2   // Running
+            ];
             
             chart.data.datasets[0].data = activityData;
             chart.update('none');
@@ -240,10 +287,10 @@ class MifyApp {
     }
 
     setupArduinoSimulation() {
-        // Initialize with default values
-        this.updateDataDisplay('heart-rate', '-- BPM');
-        this.updateDataDisplay('movement-level', '--');
-        this.updateDataDisplay('proximity-level', '-- cm');
+        // Initialize with demo values to show the system working
+        this.updateDataDisplay('heart-rate', '72 BPM');
+        this.updateDataDisplay('movement-level', 'Active');
+        this.updateDataDisplay('proximity-level', '15.3 cm');
     }
 
     // AI Chat functionality
