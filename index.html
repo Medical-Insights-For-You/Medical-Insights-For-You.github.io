@@ -84,6 +84,304 @@
     </section>
 
     <!-- ============================================
+         FITNESS DASHBOARD SECTION
+    ============================================= -->
+    <section id="fitness-dashboard" class="section">
+        <div class="container">
+            <h2 class="section-title">Fitness Dashboard</h2>
+            <p class="section-description">
+                Connect your Google Fit account to view personalized health insights and track your fitness progress.
+            </p>
+
+            <!-- Login Section -->
+            <div id="fitness-login-section" class="fitness-login-section">
+                <div class="login-card">
+                    <div class="login-icon">
+                        <ion-icon name="fitness-outline"></ion-icon>
+                    </div>
+                    <h3>Connect Google Fit</h3>
+                    <p>Sign in with your Google account to access your fitness data and get personalized health insights.</p>
+                    <button id="fitness-login-btn" class="btn btn-primary">
+                        <ion-icon name="logo-google"></ion-icon>
+                        Connect Google Fit
+                    </button>
+                    <div class="login-features">
+                        <div class="feature">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Secure OAuth 2.0 authentication</span>
+                        </div>
+                        <div class="feature">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>View steps, calories, and activity data</span>
+                        </div>
+                        <div class="feature">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>AI-powered health insights</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="fitness-dashboard-section" class="fitness-dashboard-section" style="display: none;">
+                <!-- Dashboard Controls -->
+                <div class="dashboard-controls">
+                    <div class="date-range-selector">
+                        <label for="fitness-date-range">Time Range:</label>
+                        <select id="fitness-date-range">
+                            <option value="7">Last 7 days</option>
+                            <option value="14">Last 14 days</option>
+                            <option value="30">Last 30 days</option>
+                        </select>
+                    </div>
+                    <div class="dashboard-actions">
+                        <button id="fitness-refresh-btn" class="btn btn-secondary">
+                            <ion-icon name="refresh-outline"></ion-icon>
+                            Refresh Data
+                        </button>
+                        <button id="fitness-logout-btn" class="btn btn-outline">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            Disconnect
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading and Error Messages -->
+                <div id="fitness-loading" class="fitness-message loading" style="display: none;">
+                    <ion-icon name="hourglass-outline"></ion-icon>
+                    <span>Loading...</span>
+                </div>
+                <div id="fitness-error" class="fitness-message error" style="display: none;">
+                    <ion-icon name="alert-circle-outline"></ion-icon>
+                    <span></span>
+                </div>
+                <div id="fitness-success" class="fitness-message success" style="display: none;">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    <span></span>
+                </div>
+
+                <!-- Stats Overview -->
+                <div id="fitness-stats" class="fitness-stats">
+                    <!-- Stats will be populated by JavaScript -->
+                </div>
+
+                <!-- Charts Section -->
+                <div class="fitness-charts">
+                    <div class="chart-card">
+                        <div id="steps-chart" class="chart-content">
+                            <!-- Steps chart will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div id="calories-chart" class="chart-content">
+                            <!-- Calories chart will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Summary -->
+                <div class="activity-section">
+                    <div class="chart-card">
+                        <div id="activity-summary" class="chart-content">
+                            <!-- Activity summary will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights Section -->
+                <div class="ai-insights-section">
+                    <h3>AI Health Insights</h3>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="trending-up-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>Activity Trend</h4>
+                                <p>Your activity levels show a positive trend over the past week. Keep up the great work!</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>Health Score</h4>
+                                <p>Based on your fitness data, your overall health score is excellent. Continue maintaining your current routine.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="bulb-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>Recommendation</h4>
+                                <p>Consider adding 15 minutes of moderate exercise to reach your daily activity goals more consistently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ARDUINO HEALTH MONITORING SECTION
+    ============================================= -->
+    <section id="arduino-health" class="section">
+        <div class="container">
+            <h2 class="section-title">Arduino Health Monitoring</h2>
+            <p class="section-description">
+                Affordable health monitoring using Arduino, IR sensors, and smart lighting. 
+                A cost-effective alternative for communities with limited access to expensive wearables.
+            </p>
+
+            <!-- Arduino Setup -->
+            <div class="arduino-setup">
+                <h3>Hardware Setup</h3>
+                <div class="setup-grid">
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="hardware-chip-outline"></ion-icon>
+                        </div>
+                        <h4>Arduino Board</h4>
+                        <p>Main processing unit for data collection and transmission</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="radio-outline"></ion-icon>
+                        </div>
+                        <h4>IR Sensor</h4>
+                        <p>Detects proximity and movement for health parameter measurement</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="bulb-outline"></ion-icon>
+                        </div>
+                        <h4>Hue Light Indicator</h4>
+                        <p>Visual feedback system that activates when placed on conductive surfaces</p>
+                    </div>
+                    <div class="setup-item">
+                        <div class="setup-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <h4>Metal Tin Plate</h4>
+                        <p>Conductive surface that completes the circuit for light activation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Dashboard -->
+            <div class="arduino-dashboard">
+                <h3>Real-time Health Monitoring</h3>
+                <div class="dashboard-controls">
+                    <div class="connection-status">
+                        <div id="arduino-status" class="status-indicator">
+                            <ion-icon name="radio-outline"></ion-icon>
+                            <span>Disconnected</span>
+                        </div>
+                        <button id="connect-arduino" class="btn btn-primary">
+                            <ion-icon name="link-outline"></ion-icon>
+                            Connect Arduino
+                        </button>
+                    </div>
+                    <div class="data-interval">
+                        <label for="data-interval">Update Interval:</label>
+                        <select id="data-interval">
+                            <option value="1000">1 second</option>
+                            <option value="5000">5 seconds</option>
+                            <option value="10000">10 seconds</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Live Data Display -->
+                <div class="live-data-grid">
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="pulse-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Heart Rate</h4>
+                            <div id="heart-rate" class="data-value">-- BPM</div>
+                            <div class="data-trend">
+                                <span id="heart-rate-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="walk-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Movement</h4>
+                            <div id="movement-level" class="data-value">--</div>
+                            <div class="data-trend">
+                                <span id="movement-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="thermometer-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Proximity</h4>
+                            <div id="proximity-level" class="data-value">-- cm</div>
+                            <div class="data-trend">
+                                <span id="proximity-trend" class="trend-indicator">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <div class="data-content">
+                            <h4>Circuit Status</h4>
+                            <div id="circuit-status" class="data-value">Open</div>
+                            <div class="data-trend">
+                                <span id="circuit-indicator" class="circuit-indicator">●</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Health Insights -->
+                <div class="ai-insights-section">
+                    <h3>AI Health Analysis</h3>
+                    <div id="ai-insights" class="insights-container">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                            </div>
+                            <div class="insight-content">
+                                <h4>System Status</h4>
+                                <p>Waiting for Arduino connection to begin health analysis...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Log -->
+                <div class="data-log-section">
+                    <h3>Data Log</h3>
+                    <div id="data-log" class="log-container">
+                        <div class="log-entry">
+                            <span class="log-time">--:--:--</span>
+                            <span class="log-message">System initialized. Ready to receive Arduino data.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
          ABOUT SECTION
     ============================================= -->
     <section id="about" class="section">
@@ -300,304 +598,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-         FITNESS DASHBOARD SECTION
-    ============================================= -->
-    <section id="fitness-dashboard" class="section">
-        <div class="container">
-            <h2 class="section-title">Fitness Dashboard</h2>
-            <p class="section-description">
-                Connect your Google Fit account to view personalized health insights and track your fitness progress.
-            </p>
 
-            <!-- Login Section -->
-            <div id="fitness-login-section" class="fitness-login-section">
-                <div class="login-card">
-                    <div class="login-icon">
-                        <ion-icon name="fitness-outline"></ion-icon>
-                    </div>
-                    <h3>Connect Google Fit</h3>
-                    <p>Sign in with your Google account to access your fitness data and get personalized health insights.</p>
-                    <button id="fitness-login-btn" class="btn btn-primary">
-                        <ion-icon name="logo-google"></ion-icon>
-                        Connect Google Fit
-                    </button>
-                    <div class="login-features">
-                        <div class="feature">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>Secure OAuth 2.0 authentication</span>
-                        </div>
-                        <div class="feature">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>View steps, calories, and activity data</span>
-                        </div>
-                        <div class="feature">
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>AI-powered health insights</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dashboard Section -->
-            <div id="fitness-dashboard-section" class="fitness-dashboard-section" style="display: none;">
-                <!-- Dashboard Controls -->
-                <div class="dashboard-controls">
-                    <div class="date-range-selector">
-                        <label for="fitness-date-range">Time Range:</label>
-                        <select id="fitness-date-range">
-                            <option value="7">Last 7 days</option>
-                            <option value="14">Last 14 days</option>
-                            <option value="30">Last 30 days</option>
-                        </select>
-                    </div>
-                    <div class="dashboard-actions">
-                        <button id="fitness-refresh-btn" class="btn btn-secondary">
-                            <ion-icon name="refresh-outline"></ion-icon>
-                            Refresh Data
-                        </button>
-                        <button id="fitness-logout-btn" class="btn btn-outline">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                            Disconnect
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Loading and Error Messages -->
-                <div id="fitness-loading" class="fitness-message loading" style="display: none;">
-                    <ion-icon name="hourglass-outline"></ion-icon>
-                    <span>Loading...</span>
-                </div>
-                <div id="fitness-error" class="fitness-message error" style="display: none;">
-                    <ion-icon name="alert-circle-outline"></ion-icon>
-                    <span></span>
-                </div>
-                <div id="fitness-success" class="fitness-message success" style="display: none;">
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    <span></span>
-                </div>
-
-                <!-- Stats Overview -->
-                <div id="fitness-stats" class="fitness-stats">
-                    <!-- Stats will be populated by JavaScript -->
-                </div>
-
-                <!-- Charts Section -->
-                <div class="fitness-charts">
-                    <div class="chart-card">
-                        <div id="steps-chart" class="chart-content">
-                            <!-- Steps chart will be populated by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <div class="chart-card">
-                        <div id="calories-chart" class="chart-content">
-                            <!-- Calories chart will be populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Activity Summary -->
-                <div class="activity-section">
-                    <div class="chart-card">
-                        <div id="activity-summary" class="chart-content">
-                            <!-- Activity summary will be populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Insights Section -->
-                <div class="ai-insights-section">
-                    <h3>AI Health Insights</h3>
-                    <div class="insights-grid">
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="trending-up-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>Activity Trend</h4>
-                                <p>Your activity levels show a positive trend over the past week. Keep up the great work!</p>
-                            </div>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="heart-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>Health Score</h4>
-                                <p>Based on your fitness data, your overall health score is excellent. Continue maintaining your current routine.</p>
-                            </div>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="bulb-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>Recommendation</h4>
-                                <p>Consider adding 15 minutes of moderate exercise to reach your daily activity goals more consistently.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         ARDUINO HEALTH MONITORING SECTION
-    ============================================= -->
-    <section id="arduino-health" class="section">
-        <div class="container">
-            <h2 class="section-title">Arduino Health Monitoring</h2>
-            <p class="section-description">
-                Affordable health monitoring using Arduino, IR sensors, and smart lighting. 
-                A cost-effective alternative for communities with limited access to expensive wearables.
-            </p>
-
-
-            <!-- Arduino Setup -->
-            <div class="arduino-setup">
-                <h3>Hardware Setup</h3>
-                <div class="setup-grid">
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="hardware-chip-outline"></ion-icon>
-                        </div>
-                        <h4>Arduino Board</h4>
-                        <p>Main processing unit for data collection and transmission</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="radio-outline"></ion-icon>
-                        </div>
-                        <h4>IR Sensor</h4>
-                        <p>Detects proximity and movement for health parameter measurement</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="bulb-outline"></ion-icon>
-                        </div>
-                        <h4>Hue Light Indicator</h4>
-                        <p>Visual feedback system that activates when placed on conductive surfaces</p>
-                    </div>
-                    <div class="setup-item">
-                        <div class="setup-icon">
-                            <ion-icon name="flash-outline"></ion-icon>
-                        </div>
-                        <h4>Metal Tin Plate</h4>
-                        <p>Conductive surface that completes the circuit for light activation</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Real-time Dashboard -->
-            <div class="arduino-dashboard">
-                <h3>Real-time Health Monitoring</h3>
-                <div class="dashboard-controls">
-                    <div class="connection-status">
-                        <div id="arduino-status" class="status-indicator">
-                            <ion-icon name="radio-outline"></ion-icon>
-                            <span>Disconnected</span>
-                        </div>
-                        <button id="connect-arduino" class="btn btn-primary">
-                            <ion-icon name="link-outline"></ion-icon>
-                            Connect Arduino
-                        </button>
-                    </div>
-                    <div class="data-interval">
-                        <label for="data-interval">Update Interval:</label>
-                        <select id="data-interval">
-                            <option value="1000">1 second</option>
-                            <option value="5000">5 seconds</option>
-                            <option value="10000">10 seconds</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Live Data Display -->
-                <div class="live-data-grid">
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="pulse-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Heart Rate</h4>
-                            <div id="heart-rate" class="data-value">-- BPM</div>
-                            <div class="data-trend">
-                                <span id="heart-rate-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="walk-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Movement</h4>
-                            <div id="movement-level" class="data-value">--</div>
-                            <div class="data-trend">
-                                <span id="movement-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="thermometer-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Proximity</h4>
-                            <div id="proximity-level" class="data-value">-- cm</div>
-                            <div class="data-trend">
-                                <span id="proximity-trend" class="trend-indicator">--</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="data-card">
-                        <div class="data-icon">
-                            <ion-icon name="flash-outline"></ion-icon>
-                        </div>
-                        <div class="data-content">
-                            <h4>Circuit Status</h4>
-                            <div id="circuit-status" class="data-value">Open</div>
-                            <div class="data-trend">
-                                <span id="circuit-indicator" class="circuit-indicator">●</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Health Insights -->
-                <div class="ai-insights-section">
-                    <h3>AI Health Analysis</h3>
-                    <div id="ai-insights" class="insights-container">
-                        <div class="insight-card">
-                            <div class="insight-icon">
-                                <ion-icon name="analytics-outline"></ion-icon>
-                            </div>
-                            <div class="insight-content">
-                                <h4>System Status</h4>
-                                <p>Waiting for Arduino connection to begin health analysis...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Log -->
-                <div class="data-log-section">
-                    <h3>Data Log</h3>
-                    <div id="data-log" class="log-container">
-                        <div class="log-entry">
-                            <span class="log-time">--:--:--</span>
-                            <span class="log-message">System initialized. Ready to receive Arduino data.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ============================================
          AI CHAT ASSISTANT
