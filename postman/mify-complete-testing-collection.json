@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "mify-complete-testing-001",
+		"name": "Mify Complete System Testing",
+		"description": "Comprehensive testing collection for the complete Mify health monitoring system including OAuth, Google Fit API, Arduino simulation, and AI integration.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. OAuth Authentication",
+			"item": [
+				{
+					"name": "Get Authorization Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://accounts.google.com/o/oauth2/v2/auth?client_id={{clientId}}&redirect_uri={{redirectUri}}&scope={{scope}}&response_type=code&access_type=offline&prompt=consent",
+							"protocol": "https",
+							"host": ["accounts", "google", "com"],
+							"path": ["o", "oauth2", "v2", "auth"],
+							"query": [
+								{"key": "client_id", "value": "{{clientId}}"},
+								{"key": "redirect_uri", "value": "{{redirectUri}}"},
+								{"key": "scope", "value": "{{scope}}"},
+								{"key": "response_type", "value": "code"},
+								{"key": "access_type", "value": "offline"},
+								{"key": "prompt", "value": "consent"}
+							]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Authorization URL is correct', function () {",
+									"    pm.expect(pm.request.url.toString()).to.include('accounts.google.com');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Exchange Code for Tokens",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{"key": "client_id", "value": "{{clientId}}"},
+								{"key": "client_secret", "value": "{{clientSecret}}"},
+								{"key": "code", "value": "{{authorizationCode}}"},
+								{"key": "grant_type", "value": "authorization_code"},
+								{"key": "redirect_uri", "value": "{{redirectUri}}"}
+							]
+						},
+						"url": {
+							"raw": "https://oauth2.googleapis.com/token",
+							"protocol": "https",
+							"host": ["oauth2", "googleapis", "com"],
+							"path": ["token"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains access token', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('access_token');",
+									"    pm.environment.set('accessToken', jsonData.access_token);",
+									"    pm.environment.set('refreshToken', jsonData.refresh_token);",
+									"    pm.environment.set('tokenExpiry', Date.now() + (jsonData.expires_in * 1000));",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Refresh Access Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{"key": "client_id", "value": "{{clientId}}"},
+								{"key": "client_secret", "value": "{{clientSecret}}"},
+								{"key": "refresh_token", "value": "{{refreshToken}}"},
+								{"key": "grant_type", "value": "refresh_token"}
+							]
+						},
+						"url": {
+							"raw": "https://oauth2.googleapis.com/token",
+							"protocol": "https",
+							"host": ["oauth2", "googleapis", "com"],
+							"path": ["token"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Token refresh successful', function () {",
+									"    pm.response.to.have.status(200);",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('access_token');",
+									"    pm.environment.set('accessToken', jsonData.access_token);",
+									"    pm.environment.set('tokenExpiry', Date.now() + (jsonData.expires_in * 1000));",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "2. Google Fit API",
+			"item": [
+				{
+					"name": "Get Data Sources",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/fitness/v1/users/me/dataSources",
+							"host": ["{{baseURL}}"],
+							"path": ["fitness", "v1", "users", "me", "dataSources"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains data sources', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('dataSource');",
+									"    pm.expect(jsonData.dataSource).to.be.an('array');",
+									"});",
+									"",
+									"pm.test('Response time is acceptable', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Fetch Health Data (Steps, Calories, Activities)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"aggregateBy\": [\n    {\n      \"dataTypeName\": \"com.google.step_count.delta\"\n    },\n    {\n      \"dataTypeName\": \"com.google.calories.expended\"\n    },\n    {\n      \"dataTypeName\": \"com.google.activity.segment\"\n    }\n  ],\n  \"bucketByTime\": {\n    \"durationMillis\": 86400000\n  },\n  \"startTimeMillis\": {{startTime}},\n  \"endTimeMillis\": {{endTime}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/fitness/v1/users/me/dataset:aggregate",
+							"host": ["{{baseURL}}"],
+							"path": ["fitness", "v1", "users", "me", "dataset:aggregate"]
+						}
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Set time range for last 7 days",
+									"const now = Date.now();",
+									"const sevenDaysAgo = now - (7 * 24 * 60 * 60 * 1000);",
+									"pm.environment.set('startTime', sevenDaysAgo);",
+									"pm.environment.set('endTime', now);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains health data', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('bucket');",
+									"    pm.expect(jsonData.bucket).to.be.an('array');",
+									"});",
+									"",
+									"pm.test('Data processing time is acceptable', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "3. Arduino Data Simulation",
+			"item": [
+				{
+					"name": "Simulate Arduino Health Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"heartRate\": 75,\n  \"movement\": \"Medium\",\n  \"proximity\": 15.3,\n  \"circuit\": \"Closed\",\n  \"timestamp\": {{currentTimestamp}},\n  \"deviceId\": \"arduino-001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{arduinoDataEndpoint}}",
+							"host": ["{{arduinoDataEndpoint}}"]
+						}
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('currentTimestamp', Date.now());"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Arduino data accepted', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains success message', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('status');",
+									"    pm.expect(jsonData.status).to.eql('success');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get Processed Arduino Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arduinoDataEndpoint}}/processed",
+							"host": ["{{arduinoDataEndpoint}}"],
+							"path": ["processed"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Processed data retrieved', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains processed data', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "4. AI Integration",
+			"item": [
+				{
+					"name": "Test ASI:One Chat Interface",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{websiteUrl}}/#ai-chat",
+							"host": ["{{websiteUrl}}"],
+							"path": ["#ai-chat"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('AI Chat interface loads', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains AI chat elements', function () {",
+									"    pm.expect(pm.response.text()).to.include('ai-chat');",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Test AI Health Analysis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"healthData\": {\n    \"heartRate\": 75,\n    \"movement\": \"Medium\",\n    \"proximity\": 15.3,\n    \"circuit\": \"Closed\"\n  },\n  \"query\": \"Analyze my current health status and provide recommendations\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{websiteUrl}}/api/ai-analysis",
+							"host": ["{{websiteUrl}}"],
+							"path": ["api", "ai-analysis"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('AI analysis completed', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains AI insights', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('insights');",
+									"    pm.expect(jsonData).to.have.property('recommendations');",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "5. End-to-End Integration",
+			"item": [
+				{
+					"name": "Complete Health Data Flow Test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"googleFitData\": {\n    \"steps\": 8500,\n    \"calories\": 450,\n    \"activities\": [\"walking\", \"running\"]\n  },\n  \"arduinoData\": {\n    \"heartRate\": 75,\n    \"movement\": \"Medium\",\n    \"proximity\": 15.3,\n    \"circuit\": \"Closed\"\n  },\n  \"analysisType\": \"comprehensive\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{websiteUrl}}/api/complete-analysis",
+							"host": ["{{websiteUrl}}"],
+							"path": ["api", "complete-analysis"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Complete analysis successful', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response contains comprehensive insights', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('healthScore');",
+									"    pm.expect(jsonData).to.have.property('insights');",
+									"    pm.expect(jsonData).to.have.property('recommendations');",
+									"    pm.expect(jsonData).to.have.property('trends');",
+									"});",
+									"",
+									"pm.test('Analysis completed within acceptable time', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Website Functionality Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{websiteUrl}}",
+							"host": ["{{websiteUrl}}"]
+						}
+					},
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Website loads successfully', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Contains Arduino Health section', function () {",
+									"    pm.expect(pm.response.text()).to.include('Affordable Health Monitoring');",
+									"});",
+									"",
+									"pm.test('Contains Fitness Dashboard', function () {",
+									"    pm.expect(pm.response.text()).to.include('Smart Fitness Analytics');",
+									"});",
+									"",
+									"pm.test('Contains AI Chat section', function () {",
+									"    pm.expect(pm.response.text()).to.include('Intelligent Health Assistant');",
+									"});",
+									"",
+									"pm.test('Contains demo analytics', function () {",
+									"    pm.expect(pm.response.text()).to.include('Demo: Health Analytics Dashboard');",
+									"});",
+									"",
+									"pm.test('Website loads within acceptable time', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+									"});"
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Global pre-request script for token management",
+					"if (pm.environment.get('accessToken')) {",
+					"    const tokenExpiry = pm.environment.get('tokenExpiry');",
+					"    const now = Date.now();",
+					"    ",
+					"    if (tokenExpiry && now > tokenExpiry) {",
+					"        console.log('Token expired, refreshing...');",
+					"        // Token refresh logic would go here",
+					"    }",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Global test script for common validations",
+					"pm.test('Response time is acceptable', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+					"});",
+					"",
+					"pm.test('No server errors', function () {",
+					"    pm.expect(pm.response.code).to.not.be.oneOf([500, 502, 503, 504]);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://www.googleapis.com"
+		},
+		{
+			"key": "clientId",
+			"value": "40359737596-07dvjuh9kkcf7g9bsu7kia4k4idb7pci.apps.googleusercontent.com"
+		},
+		{
+			"key": "clientSecret",
+			"value": "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"
+		},
+		{
+			"key": "redirectUri",
+			"value": "https://medical-insights-for-you.github.io/auth/callback.html"
+		},
+		{
+			"key": "scope",
+			"value": "https://www.googleapis.com/auth/fitness.activity.read"
+		},
+		{
+			"key": "websiteUrl",
+			"value": "https://medical-insights-for-you.github.io"
+		},
+		{
+			"key": "arduinoDataEndpoint",
+			"value": "http://localhost:3000/api/arduino-data"
+		}
+	]
+}
