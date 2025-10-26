@@ -513,6 +513,10 @@ class MifyApp {
         const oxygenStatus = oxygen < 97 ? 'Low' : 'Normal';
         const tempStatus = parseFloat(temperature) > 99 ? 'Elevated' : 'Normal';
 
+        // Simulate health conditions based on biometrics
+        const conditions = this.assessHealthConditions(heartRate, systolic, diastolic, oxygen, temperature);
+        const trialRecommendations = this.getTrialRecommendations(conditions);
+
         // Overall assessment
         const isEligible = heartStatus === 'Normal' && bpStatus === 'Normal' && oxygenStatus === 'Normal' && tempStatus === 'Normal';
         
@@ -526,8 +530,120 @@ class MifyApp {
             bpStatus,
             oxygenStatus,
             tempStatus,
-            isEligible
+            isEligible,
+            conditions,
+            trialRecommendations
         };
+    }
+
+    assessHealthConditions(heartRate, systolic, diastolic, oxygen, temperature) {
+        const conditions = [];
+        
+        // Overweight/Obesity indicators
+        if (heartRate > 85 && systolic > 125) {
+            conditions.push('overweight');
+        }
+        
+        // Sedentary lifestyle indicators (simulated by low heart rate variability)
+        if (heartRate < 75 && Math.random() > 0.3) {
+            conditions.push('sedentary');
+        }
+        
+        // High screen time indicators (simulated by elevated heart rate and stress)
+        if (heartRate > 90 && systolic > 120) {
+            conditions.push('high_screen_time');
+        }
+        
+        // Cardiovascular risk
+        if (systolic > 130 || diastolic > 85) {
+            conditions.push('cardiovascular_risk');
+        }
+        
+        // Metabolic syndrome indicators
+        if (heartRate > 85 && systolic > 125 && parseFloat(temperature) > 98.5) {
+            conditions.push('metabolic_syndrome');
+        }
+        
+        return conditions;
+    }
+
+    getTrialRecommendations(conditions) {
+        const recommendations = [];
+        
+        if (conditions.includes('overweight')) {
+            recommendations.push({
+                type: 'Weight Management Study',
+                description: 'Novo Nordisk Semaglutide Weight Loss Trial',
+                phase: 'Phase III',
+                location: 'UCSF Medical Center',
+                duration: '68 weeks',
+                compensation: '$2,500',
+                eligibility: 'BMI 27-40, age 18-75'
+            });
+        }
+        
+        if (conditions.includes('sedentary')) {
+            recommendations.push({
+                type: 'Physical Activity Intervention',
+                description: 'Apple Watch Fitness & Health Outcomes Study',
+                phase: 'Phase II',
+                location: 'Stanford University',
+                duration: '12 months',
+                compensation: '$1,200',
+                eligibility: 'Low activity level, age 25-65'
+            });
+        }
+        
+        if (conditions.includes('high_screen_time')) {
+            recommendations.push({
+                type: 'Digital Wellness Study',
+                description: 'Meta Digital Detox & Mental Health Trial',
+                phase: 'Phase II',
+                location: 'UC Berkeley',
+                duration: '8 weeks',
+                compensation: '$800',
+                eligibility: 'High screen time usage, age 18-35'
+            });
+        }
+        
+        if (conditions.includes('cardiovascular_risk')) {
+            recommendations.push({
+                type: 'Cardiovascular Prevention',
+                description: 'Pfizer Atorvastatin Heart Health Study',
+                phase: 'Phase IV',
+                location: 'UCSF Cardiology',
+                duration: '24 months',
+                compensation: '$3,000',
+                eligibility: 'Elevated cardiovascular risk, age 40-75'
+            });
+        }
+        
+        if (conditions.includes('metabolic_syndrome')) {
+            recommendations.push({
+                type: 'Metabolic Health Study',
+                description: 'Eli Lilly Tirzepatide Metabolic Trial',
+                phase: 'Phase III',
+                location: 'UCSF Diabetes Center',
+                duration: '52 weeks',
+                compensation: '$2,800',
+                eligibility: 'Metabolic syndrome, age 30-70'
+            });
+        }
+        
+        // Default recommendation if no specific conditions
+        if (recommendations.length === 0) {
+            recommendations.push({
+                type: 'General Health Study',
+                description: 'Google Fit Wellness & Lifestyle Trial',
+                phase: 'Phase II',
+                location: 'Multiple Sites',
+                duration: '6 months',
+                compensation: '$1,500',
+                eligibility: 'Healthy adults, age 25-55'
+            });
+        }
+        
+        return recommendations;
     }
 
     populateDiagnosis(diagnosis) {
@@ -543,25 +659,42 @@ class MifyApp {
         this.updateBiometricStatus('diag-oxygen-status', diagnosis.oxygenStatus);
         this.updateBiometricStatus('diag-temp-status', diagnosis.tempStatus);
 
-        // Update eligibility and recommendations
+        // Update eligibility and recommendations with specific trials
         const eligibilityText = diagnosis.isEligible ? 
             'Patient meets basic eligibility criteria for most clinical trials' : 
             'Patient may require additional screening before trial participation';
         
-        const recommendations = diagnosis.isEligible ?
-            'Consider for cardiovascular, general health, and wellness studies' :
-            'Recommend consultation with healthcare provider before trial enrollment';
+        // Generate specific trial recommendations
+        const primaryTrial = diagnosis.trialRecommendations[0];
+        const recommendationsText = `🎯 RECOMMENDED: ${primaryTrial.type}\n` +
+            `📋 ${primaryTrial.description}\n` +
+            `📍 ${primaryTrial.location} | ${primaryTrial.phase}\n` +
+            `⏱️ ${primaryTrial.duration} | 💰 ${primaryTrial.compensation}\n` +
+            `✅ ${primaryTrial.eligibility}`;
 
         document.getElementById('eligibility-status').textContent = eligibilityText;
-        document.getElementById('recommendations').textContent = recommendations;
+        document.getElementById('recommendations').textContent = recommendationsText;
 
-        // Update diagnosis title and description
-        document.getElementById('diagnosis-title').textContent = 
-            diagnosis.isEligible ? 'Healthy - Trial Eligible' : 'Requires Review';
-        document.getElementById('diagnosis-description').textContent = 
-            diagnosis.isEligible ? 
-            'All biometric parameters within normal ranges' : 
-            'Some parameters require medical review';
+        // Update diagnosis title and description based on conditions
+        let title = 'Healthy - Trial Eligible';
+        let description = 'All biometric parameters within normal ranges';
+        
+        if (diagnosis.conditions.length > 0) {
+            const conditionNames = {
+                'overweight': 'Weight Management',
+                'sedentary': 'Physical Activity',
+                'high_screen_time': 'Digital Wellness',
+                'cardiovascular_risk': 'Cardiovascular Health',
+                'metabolic_syndrome': 'Metabolic Health'
+            };
+            
+            const primaryCondition = conditionNames[diagnosis.conditions[0]] || 'Health';
+            title = `${primaryCondition} - Trial Matched`;
+            description = `AI identified ${diagnosis.conditions.length} health profile(s) for targeted trials`;
+        }
+
+        document.getElementById('diagnosis-title').textContent = title;
+        document.getElementById('diagnosis-description').textContent = description;
     }
 
     updateBiometricStatus(elementId, status) {

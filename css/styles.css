@@ -1549,9 +1549,13 @@ body {
 
 .recommendation-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-sm);
     margin-bottom: var(--space-sm);
+    padding: var(--space-sm);
+    background: var(--bg-dark);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
     color: var(--text-secondary);
 }
 
@@ -1559,6 +1563,15 @@ body {
     color: var(--primary);
     font-size: 1.2rem;
     flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.recommendation-item span {
+    color: var(--text-primary);
+    line-height: 1.5;
+    white-space: pre-line;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.9rem;
 }
 
 /* ============================================
