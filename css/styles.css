@@ -2413,6 +2413,75 @@ body {
     border: 1px solid var(--border-subtle);
 }
 
+.wiring-guide-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.wiring-steps h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.wiring-steps ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+}
+
+.wiring-steps li {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm);
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-blue);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+}
+
+.wiring-steps strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.wiring-resources h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.resource-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--primary-blue);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-sm);
+    transition: var(--transition-smooth);
+    font-size: 0.875rem;
+}
+
+.resource-link:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.resource-link ion-icon {
+    font-size: 1rem;
+}
+
 .wiring-guide-section h3 {
     color: var(--text-primary);
     margin-bottom: var(--space-md);
@@ -2433,79 +2502,16 @@ body {
     overflow-x: auto;
 }
 
-.wiring-guide-content {
-    background: var(--bg-card);
-    padding: var(--space-lg);
+.wiring-guide-image {
+    max-width: 100%;
+    height: auto;
     border-radius: var(--border-radius);
-    border: 1px solid var(--border-subtle);
-}
-
-.wiring-guide-content h4 {
-    color: var(--text-primary);
-    margin-bottom: var(--space-md);
-    font-size: 1.125rem;
-    font-weight: 600;
-}
-
-.wiring-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: var(--space-lg);
-}
-
-.wiring-list li {
-    background: var(--bg-overlay);
-    padding: var(--space-md);
-    margin-bottom: var(--space-sm);
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary-blue);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.875rem;
-}
-
-.wiring-list strong {
-    color: var(--primary-blue);
-    font-weight: 600;
-}
-
-.guide-links {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.guide-links .btn {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    text-decoration: none;
-    padding: var(--space-md) var(--space-lg);
-    border-radius: var(--border-radius);
-    font-weight: 500;
     transition: var(--transition-smooth);
 }
 
-.guide-links .btn-primary {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-.guide-links .btn-primary:hover {
-    transform: translateY(-2px);
+.wiring-guide-image:hover {
+    transform: scale(1.02);
     box-shadow: var(--shadow-glow);
-}
-
-.guide-links .btn-secondary {
-    background: var(--bg-overlay);
-    color: var(--text-primary);
-    border: 1px solid var(--border-subtle);
-}
-
-.guide-links .btn-secondary:hover {
-    background: var(--bg-card);
-    border-color: var(--primary-blue);
-    transform: translateY(-2px);
 }
 
 /* Responsive Wiring Guide */
@@ -2716,7 +2722,7 @@ body {
 }
 
 /* ============================================
-       ARDUINO INTERFACE BOX STYLES
+   ARDUINO HEALTH MONITORING STYLES
 ============================================= */
 
 /* Accessibility Note */
@@ -3100,185 +3106,6 @@ body {
 .log-message {
     color: var(--text-secondary);
     flex: 1;
-}
-
-/* Arduino Interface Box */
-.arduino-interface-box {
-    background: var(--gradient-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius);
-    padding: var(--space-2xl);
-    margin-bottom: var(--space-xl);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.arduino-interface-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-}
-
-.interface-preview {
-    margin-bottom: var(--space-xl);
-}
-
-.interface-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--space-lg);
-    color: white;
-    font-size: 2rem;
-}
-
-.interface-preview h3 {
-    color: var(--text-primary);
-    margin-bottom: var(--space-md);
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.interface-description {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-lg);
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.interface-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-md);
-    margin-bottom: var(--space-xl);
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm);
-    background: var(--bg-overlay);
-    border-radius: var(--border-radius);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.feature-item ion-icon {
-    color: var(--primary-blue);
-    font-size: 1.2rem;
-}
-
-.interface-actions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    align-items: center;
-}
-
-.btn-large {
-    padding: var(--space-md) var(--space-xl);
-    font-size: 1.1rem;
-    font-weight: 600;
-    min-width: 200px;
-}
-
-.hardware-requirements {
-    border-top: 1px solid var(--border-subtle);
-    padding-top: var(--space-xl);
-}
-
-.hardware-requirements h4 {
-    color: var(--text-primary);
-    margin-bottom: var(--space-lg);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.requirements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-lg);
-}
-
-.requirement-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--bg-overlay);
-    border-radius: var(--border-radius);
-    transition: var(--transition-smooth);
-}
-
-.requirement-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
-}
-
-.requirement-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--gradient-medical);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.requirement-content h5 {
-    color: var(--text-primary);
-    margin-bottom: var(--space-xs);
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.requirement-content p {
-    color: var(--text-secondary);
-    margin: 0;
-    font-size: 0.85rem;
-    line-height: 1.5;
-}
-
-/* Responsive Design for Arduino Interface Box */
-@media (max-width: 768px) {
-    .arduino-interface-box {
-        padding: var(--space-lg);
-    }
-    
-    .interface-features {
-        grid-template-columns: 1fr;
-    }
-    
-    .requirements-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .interface-actions {
-        flex-direction: column;
-        gap: var(--space-sm);
-    }
-    
-    .btn-large {
-        width: 100%;
-        min-width: auto;
-    }
 }
 
 /* ============================================
@@ -3744,5 +3571,10 @@ body {
 
     .insights-container {
         grid-template-columns: 1fr;
+    }
+    
+    .wiring-guide-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
     }
 }
