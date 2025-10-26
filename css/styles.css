@@ -433,9 +433,11 @@ body {
 ============================================= */
 .dashboard {
     background: var(--bg-card);
-    padding: var(--space-md);
+    padding: var(--space-sm);
     border-radius: var(--border-radius);
     border: 1px solid var(--border);
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .dashboard-controls {
@@ -465,14 +467,14 @@ body {
 
 .data-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-md);
-    margin-bottom: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
 }
 
 .data-card {
     background: rgba(0, 0, 0, 0.05);
-    padding: var(--space-md);
+    padding: var(--space-sm);
     border-radius: var(--border-radius);
     border: 1px solid var(--primary);
     text-align: center;
@@ -516,9 +518,11 @@ body {
 
 .chart-container {
     background: var(--bg-card);
-    padding: var(--space-md);
+    padding: var(--space-sm);
     border-radius: var(--border-radius);
     border: 1px solid var(--border);
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .chart-container h4 {
@@ -1232,9 +1236,9 @@ body {
    QUICK DEMO
 ============================================= */
 .quick-demo {
-    margin-top: var(--space-lg);
+    margin-top: var(--space-md);
     background: var(--bg-card);
-    padding: var(--space-lg);
+    padding: var(--space-md);
     border-radius: var(--border-radius);
     border: 1px solid var(--border);
 }
@@ -1247,8 +1251,10 @@ body {
 
 .demo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-sm);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* ============================================
