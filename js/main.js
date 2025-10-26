@@ -36,6 +36,12 @@ class MifyApp {
             });
         }
 
+        // ICF Generator
+        const icfBtn = document.getElementById('try-icf-generator');
+        if (icfBtn) {
+            icfBtn.addEventListener('click', () => this.showICFGenerator());
+        }
+
         // Smooth scrolling for navigation links
         for (const anchor of document.querySelectorAll('a[href^="#"]')) {
             anchor.addEventListener('click', (e) => {
@@ -314,6 +320,11 @@ class MifyApp {
             return responses.recommendation;
         }
         return responses.default;
+    }
+
+    // ICF Generator functionality
+    showICFGenerator() {
+        alert('ICF Generator is currently in development. This feature will allow you to generate FDA-compliant Informed Consent Forms for clinical research studies. Stay tuned for the full integration!');
     }
 }
 
