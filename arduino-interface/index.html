@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Real-Time Health Monitor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>
+                    <ion-icon name="hardware-chip-outline"></ion-icon>
+                    Arduino Health Monitor
+                </h1>
+                <p>Real-time health data visualization from Arduino UNO R4 WiFi</p>
+            </div>
+        </header>
+
+        <!-- Connection Panel -->
+        <section class="connection-panel">
+            <div class="panel-header">
+                <h2>
+                    <ion-icon name="link-outline"></ion-icon>
+                    Device Connection
+                </h2>
+            </div>
+            <div class="connection-controls">
+                <div class="connection-status">
+                    <div id="connection-indicator" class="status-indicator disconnected">
+                        <ion-icon name="radio-outline"></ion-icon>
+                        <span id="connection-text">Disconnected</span>
+                    </div>
+                    <button id="connect-btn" class="btn btn-primary">
+                        <ion-icon name="link-outline"></ion-icon>
+                        Connect Arduino
+                    </button>
+                </div>
+                <div class="connection-info">
+                    <div class="info-item">
+                        <span class="label">Baud Rate:</span>
+                        <span class="value">9600</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Port:</span>
+                        <span id="port-info" class="value">Not selected</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Last Update:</span>
+                        <span id="last-update" class="value">Never</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-Time Data Display -->
+        <section class="data-display">
+            <div class="data-grid">
+                <!-- Heart Rate Card -->
+                <div class="data-card heart-rate">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <ion-icon name="pulse-outline"></ion-icon>
+                        </div>
+                        <h3>Heart Rate</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="heart-rate-value" class="data-value">--</div>
+                        <div class="data-unit">BPM</div>
+                        <div id="heart-rate-trend" class="trend-indicator">
+                            <ion-icon name="remove-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="data-range">
+                            <span class="min">50</span>
+                            <div class="range-bar">
+                                <div id="heart-rate-bar" class="range-fill"></div>
+                            </div>
+                            <span class="max">120</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Movement Card -->
+                <div class="data-card movement">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <ion-icon name="walk-outline"></ion-icon>
+                        </div>
+                        <h3>Movement</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="movement-value" class="data-value">--</div>
+                        <div class="data-unit">Level</div>
+                        <div id="movement-trend" class="trend-indicator">
+                            <ion-icon name="remove-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="movement-levels">
+                            <span class="level low">Low</span>
+                            <span class="level medium">Medium</span>
+                            <span class="level high">High</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proximity Card -->
+                <div class="data-card proximity">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <ion-icon name="thermometer-outline"></ion-icon>
+                        </div>
+                        <h3>Proximity</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="proximity-value" class="data-value">--</div>
+                        <div class="data-unit">cm</div>
+                        <div id="proximity-trend" class="trend-indicator">
+                            <ion-icon name="remove-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="data-range">
+                            <span class="min">5</span>
+                            <div class="range-bar">
+                                <div id="proximity-bar" class="range-fill"></div>
+                            </div>
+                            <span class="max">30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circuit Status Card -->
+                <div class="data-card circuit">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <h3>Circuit</h3>
+                    </div>
+                    <div class="card-content">
+                        <div id="circuit-value" class="data-value">--</div>
+                        <div class="data-unit">Status</div>
+                        <div id="circuit-indicator" class="circuit-light">
+                            <div class="light-bulb"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="circuit-status">
+                            <span class="status open">Open</span>
+                            <span class="status closed">Closed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Chart Section -->
+        <section class="chart-section">
+            <div class="chart-header">
+                <h2>
+                    <ion-icon name="analytics-outline"></ion-icon>
+                    Live Data Charts
+                </h2>
+                <div class="chart-controls">
+                    <button id="pause-chart" class="btn btn-secondary">
+                        <ion-icon name="pause-outline"></ion-icon>
+                        Pause
+                    </button>
+                    <button id="clear-chart" class="btn btn-secondary">
+                        <ion-icon name="trash-outline"></ion-icon>
+                        Clear
+                    </button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="live-chart" width="800" height="400"></canvas>
+            </div>
+        </section>
+
+        <!-- Data Log Section -->
+        <section class="log-section">
+            <div class="log-header">
+                <h2>
+                    <ion-icon name="list-outline"></ion-icon>
+                    Data Log
+                </h2>
+                <div class="log-controls">
+                    <button id="export-log" class="btn btn-secondary">
+                        <ion-icon name="download-outline"></ion-icon>
+                        Export
+                    </button>
+                    <button id="clear-log" class="btn btn-secondary">
+                        <ion-icon name="trash-outline"></ion-icon>
+                        Clear
+                    </button>
+                </div>
+            </div>
+            <div class="log-container">
+                <div id="data-log" class="log-content">
+                    <div class="log-entry system">
+                        <span class="timestamp">--:--:--</span>
+                        <span class="message">System initialized. Ready to connect to Arduino.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Panel -->
+        <section class="settings-panel">
+            <div class="settings-header">
+                <h2>
+                    <ion-icon name="settings-outline"></ion-icon>
+                    Settings
+                </h2>
+            </div>
+            <div class="settings-content">
+                <div class="setting-group">
+                    <label for="update-interval">Update Interval (ms):</label>
+                    <select id="update-interval">
+                        <option value="100">100ms</option>
+                        <option value="500" selected>500ms</option>
+                        <option value="1000">1s</option>
+                        <option value="2000">2s</option>
+                        <option value="5000">5s</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="chart-duration">Chart Duration (seconds):</label>
+                    <select id="chart-duration">
+                        <option value="30">30s</option>
+                        <option value="60" selected>1min</option>
+                        <option value="300">5min</option>
+                        <option value="600">10min</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="data-retention">Data Retention (entries):</label>
+                    <select id="data-retention">
+                        <option value="100">100</option>
+                        <option value="500" selected>500</option>
+                        <option value="1000">1000</option>
+                        <option value="5000">5000</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="arduino-interface.js"></script>
+    <script src="chart-renderer.js"></script>
+</body>
+</html>
