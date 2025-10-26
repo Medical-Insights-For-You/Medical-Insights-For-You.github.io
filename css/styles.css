@@ -1384,6 +1384,184 @@ body {
 }
 
 /* ============================================
+   DIAGNOSIS MODAL
+============================================= */
+.diagnosis-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.diagnosis-modal.show {
+    opacity: 1;
+}
+
+.diagnosis-content {
+    background: var(--bg-dark);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.diagnosis-modal.show .diagnosis-content {
+    transform: scale(1);
+}
+
+.diagnosis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border);
+}
+
+.diagnosis-header h3 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.close-diagnosis {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.close-diagnosis:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+.diagnosis-body {
+    padding: var(--space-md);
+}
+
+.diagnosis-summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+}
+
+.diagnosis-icon {
+    font-size: 3rem;
+    color: var(--primary);
+}
+
+.diagnosis-text h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.diagnosis-text p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.biometrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.biometric-item {
+    background: rgba(0, 0, 0, 0.05);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.biometric-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.biometric-value {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.biometric-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.biometric-status.normal {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.biometric-status.high,
+.biometric-status.elevated {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.biometric-status.low {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.diagnosis-recommendations {
+    background: rgba(0, 0, 0, 0.05);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+}
+
+.diagnosis-recommendations h4 {
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+}
+
+.recommendation-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+}
+
+.recommendation-item ion-icon {
+    color: var(--primary);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* ============================================
    FOOTER
 ============================================= */
 .footer {
@@ -1481,6 +1659,15 @@ body {
     
     .demo-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .biometrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .diagnosis-content {
+        width: 95%;
+        margin: var(--space-sm);
     }
 }
 

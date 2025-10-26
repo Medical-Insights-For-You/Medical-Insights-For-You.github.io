@@ -66,6 +66,11 @@ class MifyApp {
             
             // Start data simulation
             this.startDataSimulation();
+            
+            // Show diagnosis after 5 seconds
+            setTimeout(() => {
+                this.showDiagnosis();
+            }, 5000);
         } else {
             this.arduinoConnected = false;
             connectBtn.innerHTML = '<ion-icon name="link-outline"></ion-icon> Connect Arduino';
@@ -74,6 +79,9 @@ class MifyApp {
             
             // Stop data simulation
             this.stopDataSimulation();
+            
+            // Hide diagnosis
+            this.hideDiagnosis();
         }
     }
 
@@ -398,11 +406,174 @@ class MifyApp {
     showICFGenerator() {
         alert('ICF Generator is currently in development. This feature will allow you to generate FDA-compliant Informed Consent Forms for clinical research studies. Stay tuned for the full integration!');
     }
+
+    // Diagnosis functionality
+    showDiagnosis() {
+        // Create diagnosis modal if it doesn't exist
+        let diagnosisModal = document.getElementById('diagnosis-modal');
+        if (!diagnosisModal) {
+            diagnosisModal = this.createDiagnosisModal();
+            document.body.appendChild(diagnosisModal);
+        }
+        
+        // Generate diagnosis data
+        const diagnosis = this.generateDiagnosis();
+        this.populateDiagnosis(diagnosis);
+        
+        // Show modal
+        diagnosisModal.style.display = 'flex';
+        setTimeout(() => {
+            diagnosisModal.classList.add('show');
+        }, 100);
+    }
+
+    hideDiagnosis() {
+        const diagnosisModal = document.getElementById('diagnosis-modal');
+        if (diagnosisModal) {
+            diagnosisModal.classList.remove('show');
+            setTimeout(() => {
+                diagnosisModal.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    createDiagnosisModal() {
+        const modal = document.createElement('div');
+        modal.id = 'diagnosis-modal';
+        modal.className = 'diagnosis-modal';
+        modal.innerHTML = `
+            <div class="diagnosis-content">
+                <div class="diagnosis-header">
+                    <h3>AI Health Diagnosis</h3>
+                    <button class="close-diagnosis" onclick="window.mifyApp.hideDiagnosis()">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+                </div>
+                <div class="diagnosis-body">
+                    <div class="diagnosis-summary">
+                        <div class="diagnosis-icon">
+                            <ion-icon name="medical-outline"></ion-icon>
+                        </div>
+                        <div class="diagnosis-text">
+                            <h4 id="diagnosis-title">Health Assessment Complete</h4>
+                            <p id="diagnosis-description">Based on biometric analysis</p>
+                        </div>
+                    </div>
+                    
+                    <div class="biometrics-grid">
+                        <div class="biometric-item">
+                            <div class="biometric-label">Heart Rate</div>
+                            <div class="biometric-value" id="diag-heart-rate">-- BPM</div>
+                            <div class="biometric-status" id="diag-heart-status">--</div>
+                        </div>
+                        <div class="biometric-item">
+                            <div class="biometric-label">Blood Pressure</div>
+                            <div class="biometric-value" id="diag-bp">--/-- mmHg</div>
+                            <div class="biometric-status" id="diag-bp-status">--</div>
+                        </div>
+                        <div class="biometric-item">
+                            <div class="biometric-label">Oxygen Saturation</div>
+                            <div class="biometric-value" id="diag-oxygen">--%</div>
+                            <div class="biometric-status" id="diag-oxygen-status">--</div>
+                        </div>
+                        <div class="biometric-item">
+                            <div class="biometric-label">Body Temperature</div>
+                            <div class="biometric-value" id="diag-temp">--°F</div>
+                            <div class="biometric-status" id="diag-temp-status">--</div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagnosis-recommendations">
+                        <h4>Clinical Trial Eligibility</h4>
+                        <div class="recommendation-item">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span id="eligibility-status">Assessing eligibility...</span>
+                        </div>
+                        <div class="recommendation-item">
+                            <ion-icon name="bulb-outline"></ion-icon>
+                            <span id="recommendations">Generating recommendations...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        return modal;
+    }
+
+    generateDiagnosis() {
+        const heartRate = Math.floor(Math.random() * 30) + 70; // 70-100 BPM
+        const systolic = Math.floor(Math.random() * 20) + 110; // 110-130
+        const diastolic = Math.floor(Math.random() * 10) + 70; // 70-80
+        const oxygen = Math.floor(Math.random() * 5) + 95; // 95-100%
+        const temperature = (Math.random() * 2 + 97.5).toFixed(1); // 97.5-99.5°F
+
+        // Determine status for each metric
+        const heartStatus = heartRate > 90 ? 'High' : heartRate < 70 ? 'Low' : 'Normal';
+        const bpStatus = systolic > 120 ? 'Elevated' : 'Normal';
+        const oxygenStatus = oxygen < 97 ? 'Low' : 'Normal';
+        const tempStatus = parseFloat(temperature) > 99 ? 'Elevated' : 'Normal';
+
+        // Overall assessment
+        const isEligible = heartStatus === 'Normal' && bpStatus === 'Normal' && oxygenStatus === 'Normal' && tempStatus === 'Normal';
+        
+        return {
+            heartRate,
+            systolic,
+            diastolic,
+            oxygen,
+            temperature,
+            heartStatus,
+            bpStatus,
+            oxygenStatus,
+            tempStatus,
+            isEligible
+        };
+    }
+
+    populateDiagnosis(diagnosis) {
+        // Update biometric values
+        document.getElementById('diag-heart-rate').textContent = `${diagnosis.heartRate} BPM`;
+        document.getElementById('diag-bp').textContent = `${diagnosis.systolic}/${diagnosis.diastolic} mmHg`;
+        document.getElementById('diag-oxygen').textContent = `${diagnosis.oxygen}%`;
+        document.getElementById('diag-temp').textContent = `${diagnosis.temperature}°F`;
+
+        // Update status indicators
+        this.updateBiometricStatus('diag-heart-status', diagnosis.heartStatus);
+        this.updateBiometricStatus('diag-bp-status', diagnosis.bpStatus);
+        this.updateBiometricStatus('diag-oxygen-status', diagnosis.oxygenStatus);
+        this.updateBiometricStatus('diag-temp-status', diagnosis.tempStatus);
+
+        // Update eligibility and recommendations
+        const eligibilityText = diagnosis.isEligible ? 
+            'Patient meets basic eligibility criteria for most clinical trials' : 
+            'Patient may require additional screening before trial participation';
+        
+        const recommendations = diagnosis.isEligible ?
+            'Consider for cardiovascular, general health, and wellness studies' :
+            'Recommend consultation with healthcare provider before trial enrollment';
+
+        document.getElementById('eligibility-status').textContent = eligibilityText;
+        document.getElementById('recommendations').textContent = recommendations;
+
+        // Update diagnosis title and description
+        document.getElementById('diagnosis-title').textContent = 
+            diagnosis.isEligible ? 'Healthy - Trial Eligible' : 'Requires Review';
+        document.getElementById('diagnosis-description').textContent = 
+            diagnosis.isEligible ? 
+            'All biometric parameters within normal ranges' : 
+            'Some parameters require medical review';
+    }
+
+    updateBiometricStatus(elementId, status) {
+        const element = document.getElementById(elementId);
+        element.textContent = status;
+        element.className = `biometric-status ${status.toLowerCase()}`;
+    }
 }
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new MifyApp();
+    window.mifyApp = new MifyApp();
 });
 
 // Add some utility functions
