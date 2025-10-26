@@ -48,6 +48,7 @@
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#fitness-dashboard">Fitness Dashboard</a></li>
         <li><a href="#arduino-health">Arduino Health</a></li>
+        <li><a href="#icf-generator">ICF Generator</a></li>
         <li><a href="#ai-chat">AI Assistant</a></li>
                 <li><a href="https://github.com/GeneticAlgorithms/Mify" class="github-link" target="_blank" rel="noopener">
                     <ion-icon name="logo-github"></ion-icon>
@@ -245,15 +246,15 @@
                         <div class="setup-icon">
                             <ion-icon name="hardware-chip-outline"></ion-icon>
                         </div>
-                        <h4>Arduino Board</h4>
-                        <p>Main processing unit for data collection and transmission</p>
+                        <h4>Arduino UNO R4 WiFi</h4>
+                        <p>Advanced IoT board with ESP32-S3, 12x8 LED matrix, Qwiic connector, and WiFi/Bluetooth</p>
                     </div>
                     <div class="setup-item">
                         <div class="setup-icon">
                             <ion-icon name="radio-outline"></ion-icon>
                         </div>
-                        <h4>IR Sensor</h4>
-                        <p>Detects proximity and movement for health parameter measurement</p>
+                        <h4>Ultrasonic Sensor (HC-SR04)</h4>
+                        <p>Measures distance and detects movement for health parameter monitoring</p>
                     </div>
                     <div class="setup-item">
                         <div class="setup-icon">
@@ -268,6 +269,17 @@
                         </div>
                         <h4>Metal Tin Plate</h4>
                         <p>Conductive surface that completes the circuit for light activation</p>
+                    </div>
+                </div>
+                
+                <!-- Wiring Guide -->
+                <div class="wiring-guide-section">
+                    <h3>Wiring Guide</h3>
+                    <p class="section-description">
+                        Follow this visual guide to properly connect your Arduino UNO R4 WiFi with the health monitoring sensors.
+                    </p>
+                    <div class="wiring-guide-container">
+                        <img src="assets/images/arduino-wiring-guide.svg" alt="Arduino UNO R4 WiFi Wiring Guide" class="wiring-guide-image">
                     </div>
                 </div>
             </div>
@@ -374,6 +386,139 @@
                         <div class="log-entry">
                             <span class="log-time">--:--:--</span>
                             <span class="log-message">System initialized. Ready to receive Arduino data.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ICF GENERATOR SECTION
+    ============================================= -->
+    <section id="icf-generator" class="section">
+        <div class="container">
+            <h2 class="section-title">ICF Generator for Clinical Trials</h2>
+            <p class="section-description">
+                Streamline clinical trial documentation with our AI-powered Informed Consent Form generator. 
+                Create compliant, patient-friendly consent forms tailored to your research protocol.
+            </p>
+
+            <div class="icf-generator-container">
+                <!-- ICF Generator Card -->
+                <div class="icf-generator-card">
+                    <div class="generator-header">
+                        <div class="generator-icon">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                        </div>
+                        <div class="generator-info">
+                            <h3>Clinical Trial ICF Generator</h3>
+                            <p>Generate comprehensive informed consent forms for your clinical research studies</p>
+                        </div>
+                    </div>
+
+                    <div class="generator-features">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                                <h4>Regulatory Compliance</h4>
+                                <p>FDA, ICH-GCP, and IRB compliant templates</p>
+                            </div>
+                            <div class="feature-item">
+                                <ion-icon name="language-outline"></ion-icon>
+                                <h4>Multi-language Support</h4>
+                                <p>Generate forms in multiple languages for diverse populations</p>
+                            </div>
+                            <div class="feature-item">
+                                <ion-icon name="people-outline"></ion-icon>
+                                <h4>Patient-Friendly</h4>
+                                <p>Clear, understandable language for all education levels</p>
+                            </div>
+                            <div class="feature-item">
+                                <ion-icon name="settings-outline"></ion-icon>
+                                <h4>Customizable</h4>
+                                <p>Tailor forms to specific study protocols and requirements</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="generator-actions">
+                        <button id="try-icf-generator" class="btn btn-primary btn-large">
+                            <ion-icon name="create-outline"></ion-icon>
+                            Try ICF Generator
+                        </button>
+                        <div class="coming-soon-note">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>Integration in progress - Full functionality coming soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Integration Status -->
+                    <div class="integration-status">
+                        <h4>Integration Status</h4>
+                        <div class="status-timeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-icon">
+                                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5>ICF Generator Built</h5>
+                                    <p>Core functionality developed by team member</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item in-progress">
+                                <div class="timeline-icon">
+                                    <ion-icon name="time-outline"></ion-icon>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5>Integration in Progress</h5>
+                                    <p>Connecting to Mify platform</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item pending">
+                                <div class="timeline-icon">
+                                    <ion-icon name="ellipse-outline"></ion-icon>
+                                </div>
+                                <div class="timeline-content">
+                                    <h5>Full Integration</h5>
+                                    <p>Complete platform integration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ICF Process Overview -->
+                <div class="icf-process-overview">
+                    <h3>How ICF Generation Works</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Study Protocol Input</h4>
+                                <p>Enter your clinical trial details, objectives, and procedures</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>AI Analysis</h4>
+                                <p>Our AI analyzes requirements and generates compliant content</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Form Generation</h4>
+                                <p>Receive a complete, formatted ICF ready for IRB submission</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Review & Customize</h4>
+                                <p>Review, edit, and customize the generated form as needed</p>
+                            </div>
                         </div>
                     </div>
                 </div>
